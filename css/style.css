@@ -181,7 +181,10 @@ body {
   transition: color 0.15s ease;
 }
 
-.nav a:hover,
-.nav a.active {
+.nav a:hover {
   color: var(--color-text-muted);
+}
+
+.nav a.active {
+  color: var(--color-accent);
 }
