@@ -1,0 +1,27 @@
+if (window.matchMedia('(pointer: fine)').matches) {
+  const cursor = document.createElement('div');
+  cursor.id = 'cursor';
+  document.body.appendChild(cursor);
+
+  const xTo = gsap.quickTo(cursor, 'x', { duration: 0.4, ease: 'power3' });
+  const yTo = gsap.quickTo(cursor, 'y', { duration: 0.4, ease: 'power3' });
+
+  document.addEventListener('mousemove', e => {
+    xTo(e.clientX - 10);
+    yTo(e.clientY - 10);
+    gsap.to(cursor, { opacity: 1, duration: 0.15, overwrite: 'auto' });
+  }, { passive: true });
+
+  document.addEventListener('mouseout', e => {
+    if (!e.relatedTarget) {
+      gsap.to(cursor, { opacity: 0, duration: 0.3, overwrite: 'auto' });
+    }
+  });
+
+  document.addEventListener('mouseover', e => {
+    if (!e.relatedTarget) {
+      gsap.set(cursor, { x: e.clientX - 10, y: e.clientY - 10 });
+      gsap.to(cursor, { opacity: 1, duration: 0.15, overwrite: 'auto' });
+    }
+  });
+}
