@@ -144,6 +144,16 @@ body {
   justify-content: space-between;
 }
 
+@media (max-width: 600px) {
+  .works-item {
+    flex-direction: column;
+  }
+
+  .works-item .muted {
+    margin-top: 0.1em;
+  }
+}
+
 .muted {
   color: var(--color-text-muted);
 }
