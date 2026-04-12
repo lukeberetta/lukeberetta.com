@@ -92,10 +92,6 @@
   const appsInners = maskItems('.apps .works-item');
   const contactInners = maskItems('.contact .works-item');
 
-  gsap.set(worksInners, { y: '110%' });
-  gsap.set(appsInners, { y: '110%' });
-  gsap.set(contactInners, { y: '110%' });
-
   // Wrap nav links in masks
   maskNavLinks();
   const navLinks = document.querySelectorAll('.nav .line-inner');

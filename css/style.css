@@ -8,16 +8,20 @@
 
   /* Typography */
   --font-family: 'Rams', sans-serif;
-  --font-size: clamp(1.4rem, 0.5rem + 2vw, 2.5rem);
+  --font-size: clamp(1.4rem, 0.3rem + 2vw, 2.5rem);
   --font-weight: 400;
   --line-height: 1;
   --letter-spacing: -0.02em;
 
   /* Spacing */
-  --space-xs: 0.25em;
+  --space-xs: 0.2em;
   --space-sm: 0.75em;
   --space-md: 1.2em;
-  --space-page: 28px;
+  --space-page: 32px;
+  --space-page-sm: 16px;
+
+  /* Animation */
+  --transition-color: color 0.15s ease;
 }
 
 /* ── Font ── */
@@ -146,7 +150,7 @@ body {
 
 @media (max-width: 600px) {
   body {
-    padding: 16px;
+    padding: var(--space-page-sm);
   }
 
 }
@@ -159,7 +163,7 @@ body {
 .works-item a {
   color: var(--color-text);
   text-decoration: none;
-  transition: color 0.15s ease;
+  transition: var(--transition-color);
 }
 
 .works-item a:hover {
@@ -186,7 +190,7 @@ body {
   display: block;
   text-decoration: none;
   color: var(--color-text);
-  transition: color 0.15s ease;
+  transition: var(--transition-color);
 }
 
 .nav a:hover {
