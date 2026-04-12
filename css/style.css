@@ -136,26 +136,31 @@ body {
 .works .line-mask + .line-mask,
 .apps .line-mask + .line-mask,
 .contact .line-mask + .line-mask {
-  margin-top: 0.25em;
+  margin-top: 0.2em;
 }
 
 .works-item {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.works-item .muted {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (max-width: 600px) {
-  .works-item {
-    flex-direction: column;
+  body {
+    padding: 16px;
+    font-size: 20px;
   }
 
-  .works-item .muted {
-    margin-top: 0.1em;
-  }
 }
 
 .muted {
   color: var(--color-text-muted);
+  text-align: right;
 }
 
 .works-item a {
@@ -181,7 +186,7 @@ body {
 }
 
 .nav .line-mask+.line-mask {
-  margin-top: 0.25em;
+  margin-top: 0.2em;
 }
 
 .nav a {

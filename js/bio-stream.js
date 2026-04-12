@@ -73,8 +73,11 @@
     document.querySelectorAll('.nav a').forEach(a => {
       const mask = document.createElement('div');
       mask.className = 'line-mask';
+      const inner = document.createElement('div');
+      inner.className = 'line-inner';
       a.parentNode.insertBefore(mask, a);
-      mask.appendChild(a);
+      inner.appendChild(a);
+      mask.appendChild(inner);
     });
   }
 
@@ -95,7 +98,7 @@
 
   // Wrap nav links in masks
   maskNavLinks();
-  const navLinks = document.querySelectorAll('.nav a');
+  const navLinks = document.querySelectorAll('.nav .line-inner');
 
   // Intro animation
   gsap.set(allInners, { y: '110%' });
