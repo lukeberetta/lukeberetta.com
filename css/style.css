@@ -170,6 +170,22 @@ body {
   color: var(--color-text-muted);
 }
 
+.works .works-item span:first-child {
+  transition: var(--transition-color);
+}
+
+.works .works-item:hover span:first-child {
+  color: var(--color-text-muted);
+}
+
+.works .works-item .muted::after {
+  content: attr(data-default);
+}
+
+.works .works-item:hover .muted::after {
+  content: attr(data-hover);
+}
+
 
 /* ── Nav ── */
 .nav {
