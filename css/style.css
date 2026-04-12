@@ -14,7 +14,7 @@
   --letter-spacing: -0.02em;
 
   /* Spacing */
-  --space-xs: 0.2em;
+  --space-xs: 0.1em;
   --space-sm: 0.75em;
   --space-md: 1.2em;
   --space-page: 32px;
@@ -103,7 +103,7 @@ body {
 
 /* ── Bio ── */
 .bio {
-  max-width: 600px;
+  max-width: 550px;
   min-width: 33.33vw;
 }
 
