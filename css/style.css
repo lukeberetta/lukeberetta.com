@@ -8,13 +8,13 @@
 
   /* Typography */
   --font-family: 'Rams', sans-serif;
-  --font-size: clamp(1.5rem, 0.5rem + 2vw, 2.5rem);
+  --font-size: clamp(1.4rem, 0.5rem + 2vw, 2.5rem);
   --font-weight: 400;
-  --line-height: 0.95;
+  --line-height: 1;
   --letter-spacing: -0.02em;
 
   /* Spacing */
-  --space-xs: 0.45em;
+  --space-xs: 0.25em;
   --space-sm: 0.75em;
   --space-md: 1.2em;
   --space-page: 28px;
@@ -99,7 +99,7 @@ body {
 
 /* ── Bio ── */
 .bio {
-  max-width: 500px;
+  max-width: 600px;
   min-width: 33.33vw;
 }
 
@@ -133,10 +133,10 @@ body {
   overflow: hidden;
 }
 
-.works .line-mask + .line-mask,
-.apps .line-mask + .line-mask,
-.contact .line-mask + .line-mask {
-  margin-top: 0.2em;
+.works .line-mask+.line-mask,
+.apps .line-mask+.line-mask,
+.contact .line-mask+.line-mask {
+  margin-top: var(--space-xs);
 }
 
 .works-item {
@@ -144,16 +144,9 @@ body {
   grid-template-columns: auto 1fr;
 }
 
-.works-item .muted {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 @media (max-width: 600px) {
   body {
     padding: 16px;
-    font-size: 20px;
   }
 
 }
@@ -186,7 +179,7 @@ body {
 }
 
 .nav .line-mask+.line-mask {
-  margin-top: 0.2em;
+  margin-top: var(--space-xs);
 }
 
 .nav a {
