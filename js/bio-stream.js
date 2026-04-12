@@ -100,7 +100,9 @@
   gsap.set(allInners, { y: '110%' });
   gsap.set(navLinks, { y: '110%' });
 
-  gsap.timeline()
+  gsap.timeline({
+    onComplete: () => document.dispatchEvent(new CustomEvent('intro-complete'))
+  })
     .to(allInners, {
       y: '0%',
       duration: 0.9,
