@@ -124,16 +124,31 @@
 
   let currentView = 'home';
   let isAnimating = false;
+  let pendingView = null;
 
   function transitionTo(name) {
-    if (isAnimating || name === currentView) return;
+    if (isAnimating) {
+      if (name !== currentView) pendingView = name;
+      return;
+    }
+    if (name === currentView) return;
     isAnimating = true;
+    pendingView = null;
 
     const from = views[currentView];
     const to = views[name];
     currentView = name;
 
-    gsap.timeline({ onComplete: () => { isAnimating = false; } })
+    gsap.timeline({
+      onComplete: () => {
+        isAnimating = false;
+        if (pendingView) {
+          const next = pendingView;
+          pendingView = null;
+          transitionTo(next);
+        }
+      }
+    })
       .to(from.inners, { y: '110%', duration: 0.6, ease: 'power4.in', stagger: 0.04 })
       .add(() => {
         gsap.set(from.el, { display: 'none' });
