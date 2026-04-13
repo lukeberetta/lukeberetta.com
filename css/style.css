@@ -78,7 +78,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: var(--space-page);
-  padding-bottom: 8rem;
+  padding-bottom: calc(8rem + env(safe-area-inset-bottom, 0px));
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-family);
@@ -96,7 +96,7 @@ body::after {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 14rem;
+  height: calc(14rem + env(safe-area-inset-bottom, 0px));
   background: linear-gradient(to bottom, transparent, var(--color-bg) 70%);
   pointer-events: none;
   z-index: 1;
