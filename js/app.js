@@ -1,70 +1,57 @@
 (function () {
-  function splitLines(p) {
-    // Flatten all child nodes into individual word spans, preserving classes (e.g. .orange, .muted)
-    const words = [];
-
-    Array.from(p.childNodes).forEach(node => {
-      const cls = node.nodeType === Node.ELEMENT_NODE ? node.className : null;
-      const tokens = node.textContent.trim().split(/\s+/).filter(Boolean);
-      tokens.forEach(token => {
-        const span = document.createElement('span');
-        if (cls) span.className = cls;
-        span.textContent = token;
-        words.push(span);
-      });
-    });
-
-    // Render words inline so the browser can lay them out
-    p.innerHTML = '';
-    words.forEach((w, i) => {
-      if (i > 0) p.appendChild(document.createTextNode(' '));
-      p.appendChild(w);
-    });
-
-    // Measure: group words that share the same top into a line
-    p.getBoundingClientRect(); // force reflow
-    const lineGroups = [];
-    words.forEach(span => {
-      const top = Math.round(span.getBoundingClientRect().top);
-      const last = lineGroups[lineGroups.length - 1];
-      if (!last || last.top !== top) {
-        lineGroups.push({ top, words: [span] });
-      } else {
-        last.words.push(span);
-      }
-    });
-
-    // Rebuild: each line → .line-mask > .line-inner
-    p.innerHTML = '';
-    return lineGroups.map(group => {
-      const mask = document.createElement('span');
-      mask.className = 'line-mask';
-
-      const inner = document.createElement('span');
-      inner.className = 'line-inner';
-
-      group.words.forEach((span, i) => {
-        if (i > 0) inner.appendChild(document.createTextNode(' '));
-        inner.appendChild(span);
-      });
-
-      mask.appendChild(inner);
-      p.appendChild(mask);
-      return inner;
-    });
-  }
-
-  function maskItems(selector) {
+  function maskContent(selector) {
     const inners = [];
-    document.querySelectorAll(selector).forEach(item => {
-      const mask = document.createElement('div');
-      mask.className = 'line-mask';
-      const inner = document.createElement('div');
-      inner.className = 'line-inner';
-      item.parentNode.insertBefore(mask, item);
-      mask.appendChild(inner);
-      inner.appendChild(item);
-      inners.push(inner);
+    document.querySelectorAll(selector).forEach(el => {
+      if (el.tagName === 'P') {
+        // Paragraphs: flatten words, measure line breaks, wrap each line
+        const words = [];
+        Array.from(el.childNodes).forEach(node => {
+          const cls = node.nodeType === Node.ELEMENT_NODE ? node.className : null;
+          node.textContent.trim().split(/\s+/).filter(Boolean).forEach(token => {
+            const span = document.createElement('span');
+            if (cls) span.className = cls;
+            span.textContent = token;
+            words.push(span);
+          });
+        });
+        el.innerHTML = '';
+        words.forEach((w, i) => {
+          if (i > 0) el.appendChild(document.createTextNode(' '));
+          el.appendChild(w);
+        });
+        el.getBoundingClientRect(); // force reflow
+        const lineGroups = [];
+        words.forEach(span => {
+          const top = Math.round(span.getBoundingClientRect().top);
+          const last = lineGroups[lineGroups.length - 1];
+          if (!last || last.top !== top) lineGroups.push({ top, words: [span] });
+          else last.words.push(span);
+        });
+        el.innerHTML = '';
+        lineGroups.forEach(group => {
+          const mask = document.createElement('span');
+          mask.className = 'line-mask';
+          const inner = document.createElement('span');
+          inner.className = 'line-inner';
+          group.words.forEach((span, i) => {
+            if (i > 0) inner.appendChild(document.createTextNode(' '));
+            inner.appendChild(span);
+          });
+          mask.appendChild(inner);
+          el.appendChild(mask);
+          inners.push(inner);
+        });
+      } else {
+        // Block elements: wrap the whole element as one unit
+        const mask = document.createElement('div');
+        mask.className = 'line-mask';
+        const inner = document.createElement('div');
+        inner.className = 'line-inner';
+        el.parentNode.insertBefore(mask, el);
+        mask.appendChild(inner);
+        inner.appendChild(el);
+        inners.push(inner);
+      }
     });
     return inners;
   }
@@ -81,19 +68,14 @@
     });
   }
 
-  // Split bio paragraphs into per-line masks
-  const allInners = [];
-  document.querySelectorAll('.bio p').forEach(p => {
-    allInners.push(...splitLines(p));
-  });
-
-  // Wrap each list row in a line-mask > line-inner for the reveal animation
-  const worksInners = maskItems('.works .works-item');
-  const appsInners = maskItems('.apps .works-item');
-  const contactInners = maskItems('.contact .works-item');
-
-  // Journey case study: wrap each block as a single animation unit
-  const journeyInners = maskItems('.journey p, .journey .case-image');
+  const allInners     = maskContent('.bio p');
+  const worksInners   = maskContent('.works .works-item');
+  const appsInners    = maskContent('.apps .works-item');
+  const contactInners = maskContent('.contact .works-item');
+  const journeyEl = document.querySelector('.journey');
+  journeyEl.style.cssText = 'display:block;visibility:hidden';
+  const journeyInners = maskContent('.journey p, .journey .case-image');
+  journeyEl.style.cssText = '';
 
   // Wrap nav links in masks
   maskNavLinks();

@@ -196,11 +196,11 @@ body::after {
 
 
 /* ── Case Studies ── */
-.case-study .line-mask+.line-mask {
+.case-study p+p {
   margin-top: var(--space-sm);
 }
 
-.case-study .line-mask:has(.case-image) {
+.case-study>.line-mask:has(.case-image) {
   margin-top: var(--space-md);
 }
 
@@ -223,6 +223,7 @@ body::after {
 }
 
 .caption {
+  margin-top: var(--space-md);
   font-size: clamp(14px, 0.5rem + 1vw, 20px);
 }
 

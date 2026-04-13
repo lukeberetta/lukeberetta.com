@@ -25,13 +25,12 @@ All views are `<div>` siblings in `index.html`. Only one is visible at a time.
 | `contact` | `.contact`     | index.html    |
 | `journey` | `.journey`     | index.html    |
 
-Views are registered in `js/bio-stream.js` in the `views` object. Each entry needs an `el` selector and an `inners` array of `.line-inner` elements for the GSAP animation.
+Views are registered in `js/app.js` in the `views` object. Each entry needs an `el` selector and an `inners` array of `.line-inner` elements for the GSAP animation.
 
 ### Animation system
 Every text line or content block is wrapped in `.line-mask > .line-inner`. GSAP animates `y` between `110%` (hidden below clip) and `0%` (visible).
 
-- `splitLines(p)` — word-by-word line detection for prose paragraphs (used in bio, journey header)
-- `maskItems(selector)` — wraps each matched element as a single animation unit (used for list rows, image blocks)
+- `maskContent(selector)` — wraps each matched element as animation units; `<p>` elements are split line-by-line, all other elements are wrapped as a single block
 - `maskNavLinks()` — wraps `.nav a` elements
 
 ### Navigation
@@ -50,7 +49,7 @@ Every text line or content block is wrapped in `.line-mask > .line-inner`. GSAP 
 1. Add a `<div class="case-study-name" aria-hidden="true">` in `index.html` (before `<nav>`)
 2. Add the works item's `data-to="case-study-name"` attribute and update `data-hover`
 3. Add CSS: `.case-study-name { display: none; max-width: 480px; }` + line-mask styles
-4. In `bio-stream.js`: collect inners with `maskItems(...)`, register in `views`, done — back link logic is already generic
+4. In `app.js`: collect inners with `maskContent(...)`, register in `views`, done — back link logic is already generic
 
 ## Assets
 - Images: `img/` directory
