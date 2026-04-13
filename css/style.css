@@ -17,8 +17,7 @@
   --space-xs: 0.1em;
   --space-sm: 0.75em;
   --space-md: 1.2em;
-  --space-page: 32px;
-  --space-page-sm: 16px;
+  --space-page: clamp(1rem, 1.5vw + 0.65rem, 2.5rem);
 
   /* Animation */
   --transition-color: color 0.15s ease;
@@ -158,7 +157,6 @@ body::after {
 
 @media (max-width: 600px) {
   body {
-    padding: var(--space-page-sm);
     padding-bottom: 8rem;
   }
 }
@@ -223,7 +221,7 @@ body::after {
 }
 
 .caption {
-  margin-top: var(--space-md);
+  margin: var(--space-page) 0;
   font-size: clamp(14px, 0.5rem + 1vw, 20px);
 }
 
@@ -368,7 +366,7 @@ body::after {
 
 @media (max-width: 600px) {
   .nav {
-    bottom: var(--space-page-sm);
-    left: var(--space-page-sm);
+    bottom: var(--space-page);
+    left: var(--space-page);
   }
 }
