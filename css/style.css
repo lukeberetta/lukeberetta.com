@@ -90,18 +90,6 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-body::after {
-  content: '';
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 14rem;
-  background: linear-gradient(to bottom, transparent, var(--color-bg) 70%);
-  pointer-events: none;
-  z-index: 1;
-  filter: drop-shadow(0 100px 0px var(--color-bg));
-}
 
 /* ── Container ── */
 .container {

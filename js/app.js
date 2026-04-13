@@ -80,6 +80,31 @@
   // Wrap nav links in masks
   maskNavLinks();
 
+  // Fade content elements as they approach the nav (replaces gradient overlay)
+  function updateFade() {
+    const nav = document.querySelector('.nav');
+    const navTop = nav.getBoundingClientRect().top;
+    const fadeEnd = navTop;
+    const fadeStart = fadeEnd - 140;
+
+    document.querySelectorAll('.line-inner').forEach(el => {
+      if (el.closest('.nav')) return;
+      const top = el.getBoundingClientRect().top;
+      let opacity;
+      if (top <= fadeStart) {
+        opacity = 1;
+      } else if (top >= fadeEnd) {
+        opacity = 0;
+      } else {
+        opacity = 1 - (top - fadeStart) / (fadeEnd - fadeStart);
+      }
+      el.style.opacity = opacity;
+    });
+  }
+
+  window.addEventListener('scroll', updateFade, { passive: true });
+  window.addEventListener('resize', updateFade, { passive: true });
+
   // Identify back link and separate it from regular nav links
   const backLinkEl = document.querySelector('[data-back]');
   const backLinkInner = backLinkEl.closest('.line-inner');
@@ -95,7 +120,11 @@
   gsap.set(backLinkInner, { y: '110%' });
 
   gsap.timeline({
-    onComplete: () => document.dispatchEvent(new CustomEvent('intro-complete'))
+    onUpdate: updateFade,
+    onComplete: () => {
+      updateFade();
+      document.dispatchEvent(new CustomEvent('intro-complete'));
+    }
   })
     .to(allInners, {
       y: '0%',
@@ -137,8 +166,10 @@
     currentView = name;
 
     gsap.timeline({
+      onUpdate: updateFade,
       onComplete: () => {
         isAnimating = false;
+        updateFade();
         if (pendingView) {
           const next = pendingView;
           pendingView = null;
