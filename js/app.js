@@ -168,18 +168,10 @@
     });
   });
 
-  function restoreNav() {
-    document.body.classList.remove('case-study-active');
-    backLinkMask.classList.remove('visible');
-    navLinks.forEach(inner => { inner.closest('.line-mask').style.display = ''; });
-    gsap.fromTo(navLinks, { y: '110%' }, { y: '0%', duration: 0.7, ease: 'power4.out', stagger: 0.08 });
-  }
-
   // Works item click handlers (case study navigation)
   document.querySelectorAll('.works-item[data-to]').forEach(item => {
     item.addEventListener('click', () => {
       document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
-      document.body.classList.add('case-study-active');
       gsap.to(navLinks, {
         y: '110%', duration: 0.5, ease: 'power4.in', stagger: 0.04,
         onComplete: () => {
@@ -193,20 +185,18 @@
     });
   });
 
-  // Back link handler (desktop)
+  // Back link handler
   backLinkEl.addEventListener('click', e => {
     e.preventDefault();
     gsap.to(backLinkInner, {
       y: '110%', duration: 0.5, ease: 'power4.in',
-      onComplete: restoreNav
+      onComplete: () => {
+        backLinkMask.classList.remove('visible');
+        // Restore nav masks before animating them back in
+        navLinks.forEach(inner => { inner.closest('.line-mask').style.display = ''; });
+        gsap.fromTo(navLinks, { y: '110%' }, { y: '0%', duration: 0.7, ease: 'power4.out', stagger: 0.08 });
+      }
     });
-    document.querySelector('[data-to="works"]').classList.add('active');
-    transitionTo('works');
-  });
-
-  // Mobile back button handler
-  document.getElementById('mobile-back-btn').addEventListener('click', () => {
-    restoreNav();
     document.querySelector('[data-to="works"]').classList.add('active');
     transitionTo('works');
   });

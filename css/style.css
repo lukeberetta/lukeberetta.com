@@ -320,66 +320,6 @@ body::after {
   background: rgba(0, 0, 0, 0.6);
 }
 
-/* ── Mobile Case Study Back Nav ── */
-#mobile-back-nav {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  height: 3rem;
-  align-items: center;
-  padding: 0 var(--space-page);
-  background: var(--color-bg);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-}
-
-#mobile-back-btn {
-  background: none;
-  border: none;
-  color: var(--color-text);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  cursor: pointer;
-  transition: color 0.15s ease;
-  -webkit-tap-highlight-color: transparent;
-}
-
-#mobile-back-btn:active {
-  color: var(--color-text-muted);
-}
-
-@media (max-width: 600px) {
-  #mobile-back-nav {
-    display: flex;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-  }
-
-  body.case-study-active #mobile-back-nav {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  body.case-study-active {
-    padding-top: calc(3rem + var(--space-page));
-  }
-
-  /* Hide the bottom back link on mobile — replaced by top bar */
-  body.case-study-active .nav .back-mask {
-    display: none !important;
-  }
-
-  /* Hide the bottom gradient overlay on case study pages */
-  body.case-study-active::after {
-    display: none;
-  }
-}
-
 /* ── Nav ── */
 .nav {
   position: fixed;
