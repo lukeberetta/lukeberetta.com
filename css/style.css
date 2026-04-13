@@ -78,6 +78,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: var(--space-page);
+  padding-bottom: 8rem;
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-family);
@@ -87,6 +88,25 @@ body {
   letter-spacing: var(--letter-spacing);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 14rem;
+  background: linear-gradient(to bottom, transparent, var(--color-bg) 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Container ── */
+.container {
+  max-width: 600px;
+  min-width: 33.33vw;
+  padding-bottom: 8rem;
 }
 
 /* ── Utilities ── */
@@ -100,12 +120,6 @@ body {
   color: var(--color-bg);
 }
 
-
-/* ── Bio ── */
-.bio {
-  max-width: 550px;
-  min-width: 33.33vw;
-}
 
 .bio p+p {
   margin-top: var(--space-sm);
@@ -123,18 +137,12 @@ body {
 }
 
 
-/* ── Works / Apps / Contact ── */
+/* ── Works / Apps / Contact / Case Studies ── */
 .works,
 .apps,
-.contact {
+.contact,
+.case-study {
   display: none;
-}
-
-.works .line-mask,
-.apps .line-mask,
-.contact .line-mask {
-  display: block;
-  overflow: hidden;
 }
 
 .works .line-mask+.line-mask,
@@ -151,8 +159,8 @@ body {
 @media (max-width: 600px) {
   body {
     padding: var(--space-page-sm);
+    padding-bottom: 8rem;
   }
-
 }
 
 .muted {
@@ -187,10 +195,138 @@ body {
 }
 
 
+/* ── Case Studies ── */
+.case-study .line-mask+.line-mask {
+  margin-top: var(--space-sm);
+}
+
+.case-study .line-mask:has(.case-image) {
+  margin-top: var(--space-md);
+}
+
+.case-image {
+  aspect-ratio: 16 / 10;
+  width: 100%;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5%;
+  overflow: hidden;
+}
+
+.case-image img {
+  width: 100%;
+  object-fit: contain;
+  border-radius: 2px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+}
+
+.caption {
+  font-size: clamp(14px, 0.5rem + 1vw, 20px);
+}
+
+/* ── Image Viewer ── */
+#img-viewer-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 499;
+}
+
+#img-viewer {
+  display: none;
+  position: fixed;
+  background: #0C3A41;
+  border-radius: 4px;
+  z-index: 500;
+  overflow: hidden;
+}
+
+#img-viewer-stage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  overflow: hidden;
+}
+
+#img-viewer-stage:active {
+  cursor: grabbing;
+}
+
+#img-viewer-img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+  border-radius: 2px;
+  box-shadow: 0 12px 60px rgba(0, 0, 0, 0.5);
+  will-change: transform;
+}
+
+#img-viewer-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  background: rgba(0, 0, 0, 0.35);
+  border: none;
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+#img-viewer-close:hover {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.case-image {
+  cursor: zoom-in;
+  position: relative;
+}
+
+.case-image-expand {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  background: rgba(0, 0, 0, 0.35);
+  border: none;
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: color 0.15s ease, background 0.15s ease;
+  pointer-events: none;
+}
+
+.case-image:hover .case-image-expand {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.6);
+}
+
 /* ── Nav ── */
 .nav {
-  margin-top: auto;
+  position: fixed;
+  bottom: var(--space-page);
+  left: var(--space-page);
   padding-top: var(--space-md);
+  z-index: 2;
 }
 
 .nav .line-mask {
@@ -215,4 +351,23 @@ body {
 
 .nav a.active {
   color: var(--color-accent);
+}
+
+.nav .back-mask {
+  display: none;
+}
+
+.nav .back-mask.visible {
+  display: block;
+}
+
+.works-item[data-to] {
+  cursor: default;
+}
+
+@media (max-width: 600px) {
+  .nav {
+    bottom: var(--space-page-sm);
+    left: var(--space-page-sm);
+  }
 }

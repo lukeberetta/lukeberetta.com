@@ -92,13 +92,25 @@
   const appsInners = maskItems('.apps .works-item');
   const contactInners = maskItems('.contact .works-item');
 
+  // Journey case study: wrap each block as a single animation unit
+  const journeyInners = maskItems('.journey p, .journey .case-image');
+
   // Wrap nav links in masks
   maskNavLinks();
-  const navLinks = document.querySelectorAll('.nav .line-inner');
+
+  // Identify back link and separate it from regular nav links
+  const backLinkEl = document.querySelector('[data-back]');
+  const backLinkInner = backLinkEl.closest('.line-inner');
+  const backLinkMask = backLinkInner.closest('.line-mask');
+  backLinkMask.classList.add('back-mask');
+
+  const allNavInners = Array.from(document.querySelectorAll('.nav .line-inner'));
+  const navLinks = allNavInners.filter(inner => inner !== backLinkInner);
 
   // Intro animation
   gsap.set(allInners, { y: '110%' });
   gsap.set(navLinks, { y: '110%' });
+  gsap.set(backLinkInner, { y: '110%' });
 
   gsap.timeline({
     onComplete: () => document.dispatchEvent(new CustomEvent('intro-complete'))
@@ -121,7 +133,8 @@
     home:    { el: '.bio',      inners: allInners     },
     works:   { el: '.works',    inners: worksInners   },
     apps:    { el: '.apps',     inners: appsInners    },
-    contact: { el: '.contact',  inners: contactInners }
+    contact: { el: '.contact',  inners: contactInners },
+    journey: { el: '.journey',  inners: journeyInners }
   };
 
   let currentView = 'home';
@@ -171,5 +184,38 @@
       link.classList.add('active');
       transitionTo(link.dataset.to);
     });
+  });
+
+  // Works item click handlers (case study navigation)
+  document.querySelectorAll('.works-item[data-to]').forEach(item => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
+      gsap.to(navLinks, {
+        y: '110%', duration: 0.5, ease: 'power4.in', stagger: 0.04,
+        onComplete: () => {
+          // Hide nav masks so Back anchors to the same bottom-left position
+          navLinks.forEach(inner => { inner.closest('.line-mask').style.display = 'none'; });
+          backLinkMask.classList.add('visible');
+          gsap.fromTo(backLinkInner, { y: '110%' }, { y: '0%', duration: 0.7, ease: 'power4.out' });
+        }
+      });
+      transitionTo(item.dataset.to);
+    });
+  });
+
+  // Back link handler
+  backLinkEl.addEventListener('click', e => {
+    e.preventDefault();
+    gsap.to(backLinkInner, {
+      y: '110%', duration: 0.5, ease: 'power4.in',
+      onComplete: () => {
+        backLinkMask.classList.remove('visible');
+        // Restore nav masks before animating them back in
+        navLinks.forEach(inner => { inner.closest('.line-mask').style.display = ''; });
+        gsap.fromTo(navLinks, { y: '110%' }, { y: '0%', duration: 0.7, ease: 'power4.out', stagger: 0.08 });
+      }
+    });
+    document.querySelector('[data-to="works"]').classList.add('active');
+    transitionTo('works');
   });
 })();

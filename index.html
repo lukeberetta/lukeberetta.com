@@ -44,7 +44,7 @@
 </head>
 
 <body>
-  <div class="bio">
+  <div class="bio container">
     <p>Hi, I'm <span class="orange">Luke Beretta.</span> Product designer and developer based in Cape Town.</p>
     <p>I've created products across fintech, crypto, SaaS, retail, and consumer experiences.
     </p>
@@ -55,8 +55,8 @@
   <div class="works" aria-hidden="true">
     <div class="works-item"><span>Spritz Finance</span><span class="muted" data-default="2024－2025"
         data-hover="Coming soon..."></span></div>
-    <div class="works-item"><span>Journey (YC W21)</span><span class="muted" data-default="2022－2023"
-        data-hover="Coming soon..."></span></div>
+    <div class="works-item" data-to="journey"><span>Journey (YC W21)</span><span class="muted" data-default="2022－2023"
+        data-hover="View case study"></span></div>
     <div class="works-item"><span>Peach Payments</span><span class="muted" data-default="2021－2022"
         data-hover="Coming soon..."></span></div>
     <div class="works-item"><span>Kurtosys</span><span class="muted" data-default="2018－2021"
@@ -74,6 +74,17 @@
         class="muted">Train noise map</span></div>
   </div>
 
+  <div class="journey case-study container" aria-hidden="true">
+    <p><span class="orange">Journey</span> helped teams explain complex ideas at the moments that
+      matter most: onboarding, proposals, introductions, the points where clarity determines outcome.</p>
+    <div class="case-image" style="background: #0C3A41;"><img src="img/Journey/journey-1.png" alt="Journey 2.0 onboarding screen"></div>
+    <p class="caption">Image: A Journey 2.0</p>
+    <p>Version one worked. It was clean, considered, and people used it. But it was still a deck: a fixed sequence, a predetermined path, a story that had already been decided before the reader arrived.</p>
+    <p>Stories are not linear. They respond, adjust, and breathe. This didn't.</p>
+    <p>We didn't begin with features. We began with a question: what does it mean to tell a story well? Not slides or pages, but something that adapts to the person reading it — without a fixed path, able to go deeper or stay light depending on what's needed.</p>
+    <p>From that, three decisions followed. The format had to change. The story had to respond. And intelligence had to be fundamental, not layered on.</p>
+  </div>
+
   <div class="contact" aria-hidden="true">
     <div class="works-item"><a href="mailto:hello@lukeberetta.com">Email</a></div>
     <div class="works-item"><a href="https://www.linkedin.com/in/lukeberetta/" target="_blank"
@@ -86,11 +97,13 @@
     <a href="#" data-to="works">Works (5)</a>
     <a href="#" data-to="apps">Apps (3)</a>
     <a href="#" data-to="contact">Contact</a>
+    <a href="#" data-back>Back</a>
   </nav>
 
   <script src="js/bio-stream.js"></script>
   <script src="js/name-hover.js"></script>
   <script src="js/cursor.js"></script>
+  <script src="js/image-viewer.js"></script>
 </body>
 
 </html>
