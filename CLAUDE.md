@@ -42,8 +42,18 @@ Every text line or content block is wrapped in `.line-mask > .line-inner`. GSAP 
 - All tokens in `:root` — `--color-*`, `--font-*`, `--space-*`
 - Key colors: `--color-accent` (`#FFA303` orange), `--color-bg` (`#101010`), `--color-text-muted` (`rgba(255,255,255,0.5)`)
 - Font: `Rams` (local TTF at `fonts/Rams-569.ttf`) — loaded via `@font-face`
-- Fluid font size: `clamp(1.4rem, 0.3rem + 2vw, 2.5rem)`
 - Single breakpoint at `max-width: 600px` (padding only)
+
+### Type scale
+Three sizes, each with its own `font-size`, `line-height`, and `letter-spacing` tokens:
+
+| Size | Token prefix | Font size | Line height | Letter spacing |
+|------|-------------|-----------|-------------|----------------|
+| Large | `--font-size-lg` etc. | `clamp(1.4rem, 0.3rem + 2vw, 2.5rem)` | `1` | `-0.02em` |
+| Medium | `--font-size-md` etc. | `clamp(1.1rem, 0.4rem + 1.4vw, 1.8rem)` | `1.3` | `-0.01em` |
+| Small | `--font-size-sm` etc. | `clamp(1rem, 0.3rem + 1vw, 1.25rem)` | `1.1` | `0em` |
+
+Apply via utility classes `.text-lg`, `.text-md`, `.text-sm`. `body` defaults to large. Use medium for longform/body copy inside case studies, small for captions.
 
 ## Adding a new case study
 1. Add a `<div class="case-study-name" aria-hidden="true">` in `index.html` (before `<nav>`)

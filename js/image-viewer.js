@@ -67,6 +67,9 @@
     viewImg.alt = alt || '';
     resetTransform(false);
 
+    const customCursor = document.getElementById('cursor');
+    if (customCursor) customCursor.style.display = 'none';
+
     const rect = el.getBoundingClientRect();
     const m = MARGIN();
 
@@ -123,6 +126,9 @@
       ease: 'power2.in',
       onComplete: () => gsap.set(backdrop, { display: 'none' })
     });
+
+    const customCursor = document.getElementById('cursor');
+    if (customCursor) customCursor.style.display = '';
 
     // Collapse back to thumbnail
     gsap.to(overlay, {
