@@ -19,12 +19,22 @@
   viewImg.id = 'img-viewer-img';
   viewImg.draggable = false;
 
+  const viewVideo = document.createElement('video');
+  viewVideo.id = 'img-viewer-video';
+  viewVideo.autoplay = true;
+  viewVideo.loop = true;
+  viewVideo.muted = true;
+  viewVideo.playsInline = true;
+  viewVideo.controls = true;
+  gsap.set(viewVideo, { display: 'none' });
+
   const closeBtn = document.createElement('button');
   closeBtn.id = 'img-viewer-close';
   closeBtn.setAttribute('aria-label', 'Close');
   closeBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="1" y1="1" x2="13" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="13" y1="1" x2="1" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
 
   stage.appendChild(viewImg);
+  stage.appendChild(viewVideo);
   overlay.appendChild(stage);
   overlay.appendChild(closeBtn);
   document.body.appendChild(overlay);
@@ -61,10 +71,25 @@
   }
 
   // ── Open / close ──────────────────────────────────────────────────────────────
-  function open(src, alt, el) {
+  let isVideo = false;
+
+  function open(src, alt, el, video) {
     originEl = el;
-    viewImg.src = src;
-    viewImg.alt = alt || '';
+    isVideo = !!video;
+
+    if (isVideo) {
+      overlay.classList.add('is-video');
+      gsap.set(viewImg, { display: 'none' });
+      viewVideo.src = src;
+      gsap.set(viewVideo, { display: 'block' });
+    } else {
+      overlay.classList.remove('is-video');
+      gsap.set(viewVideo, { display: 'none' });
+      viewImg.src = src;
+      viewImg.alt = alt || '';
+      gsap.set(viewImg, { display: 'block' });
+    }
+
     resetTransform(false);
 
     const customCursor = document.getElementById('cursor');
@@ -72,6 +97,7 @@
 
     const rect = el.getBoundingClientRect();
     const m = MARGIN();
+    const bg = el.style.background || el.style.backgroundColor || '#101010';
 
     // Backdrop fade in
     gsap.set(backdrop, { display: 'block' });
@@ -85,6 +111,7 @@
       width: rect.width,
       height: rect.height,
       borderRadius: 4,
+      background: bg,
     });
 
     // Hide close button until expansion is done
@@ -116,8 +143,9 @@
     // Hide close button immediately
     gsap.to(closeBtn, { opacity: 0, duration: 0.15 });
 
-    // Fade out the image during collapse so there's no size-mismatch snap at the end
-    gsap.to(viewImg, { opacity: 0, duration: 0.25, ease: 'power2.in' });
+    // Fade out the media during collapse so there's no size-mismatch snap at the end
+    const activeMedia = isVideo ? viewVideo : viewImg;
+    gsap.to(activeMedia, { opacity: 0, duration: 0.25, ease: 'power2.in' });
 
     // Backdrop fade out
     gsap.to(backdrop, {
@@ -141,8 +169,16 @@
       ease: 'power3.inOut',
       onComplete: () => {
         gsap.set(overlay, { display: 'none', clearProps: 'top,left,width,height' });
-        gsap.set(viewImg, { opacity: 1 });
-        viewImg.src = '';
+        if (isVideo) {
+          overlay.classList.remove('is-video');
+          viewVideo.pause();
+          viewVideo.src = '';
+          gsap.set(viewVideo, { opacity: 1, display: 'none' });
+          gsap.set(viewImg, { display: 'block' });
+        } else {
+          gsap.set(viewImg, { opacity: 1 });
+          viewImg.src = '';
+        }
       }
     });
   }
@@ -156,10 +192,15 @@
     expandBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="9,1 13,1 13,5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="5,13 1,13 1,9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="13" y1="1" x2="8" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="13" x2="6" y2="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
     el.appendChild(expandBtn);
 
-    el.addEventListener('click', () => {
-      const img = el.querySelector('img');
-      if (img) open(img.src, img.alt, el);
-    });
+    const vid = el.querySelector('video');
+    if (vid) {
+      el.addEventListener('click', () => open(vid.src, null, el, true));
+    } else {
+      el.addEventListener('click', () => {
+        const img = el.querySelector('img');
+        if (img) open(img.src, img.alt, el);
+      });
+    }
   });
 
 

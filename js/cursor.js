@@ -16,6 +16,14 @@ if (window.matchMedia('(pointer: fine)').matches) {
     gsap.to(cursor, { opacity: 1, duration: 0.15, overwrite: 'auto' });
   }, { passive: true });
 
+  document.addEventListener('mousedown', () => {
+    gsap.to(cursor, { scale: 0.8, duration: 0.12, ease: 'power2.out', overwrite: 'auto' });
+  });
+
+  document.addEventListener('mouseup', () => {
+    gsap.to(cursor, { scale: 1, duration: 0.2, ease: 'power2.out', overwrite: 'auto' });
+  });
+
   document.addEventListener('mouseout', e => {
     if (!e.relatedTarget) {
       gsap.to(cursor, { opacity: 0, duration: 0.3, overwrite: 'auto' });

@@ -285,7 +285,8 @@ body {
   cursor: none;
 }
 
-.carousel-slide img {
+.carousel-slide img,
+.carousel-slide video {
   width: 100%;
   object-fit: contain;
   border-radius: var(--radius-sm);
@@ -311,7 +312,7 @@ body {
 #img-viewer {
   display: none;
   position: fixed;
-  background: #0C3A41;
+  background: #101010;
   border-radius: var(--radius-md);
   z-index: 500;
   overflow: hidden;
@@ -331,6 +332,11 @@ body {
   cursor: grabbing;
 }
 
+#img-viewer.is-video #img-viewer-stage,
+#img-viewer.is-video #img-viewer-stage:active {
+  cursor: default;
+}
+
 #img-viewer-img {
   max-width: 90%;
   max-height: 90%;
@@ -341,6 +347,14 @@ body {
   border-radius: var(--radius-sm);
   box-shadow: 0 12px 60px rgba(0, 0, 0, 0.5);
   will-change: transform;
+}
+
+#img-viewer-video {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 12px 60px rgba(0, 0, 0, 0.5);
 }
 
 #img-viewer-close {
