@@ -13,7 +13,7 @@
   --line-height-lg: 1;
   --letter-spacing-lg: -0.02em;
 
-  --font-size-md: clamp(1.1rem, 0.4rem + 1.4vw, 1.8rem);
+  --font-size-md: clamp(1.2rem, 0.4rem + 1.4vw, 1.8rem);
   --line-height-md: 1.1;
   --letter-spacing-md: -0.01em;
 
@@ -27,7 +27,7 @@
   --space-xs: 0.1em;
   --space-sm: 0.75em;
   --space-md: 1.2em;
-  --space-lg: 3.75em;
+  --space-lg: 3.5em;
   --space-page: clamp(1rem, 1.5vw + 0.65rem, 2.5rem);
 
   /* Border radius */

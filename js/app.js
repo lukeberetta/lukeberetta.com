@@ -178,12 +178,13 @@
         }
       }
     })
-      .to(from.inners, { y: '110%', duration: 0.6, ease: 'power4.in', stagger: 0.04 })
-      .to(from.extras || [], { opacity: 0, duration: 0.3, ease: 'power4.in' }, '<')
+      .to(from.el, { opacity: 0, duration: 0.3, ease: 'power2.in' })
+      .to(from.extras || [], { opacity: 0, duration: 0.3, ease: 'power2.in' }, '<')
       .add(() => {
-        gsap.set(from.el, { display: 'none' });
+        gsap.set(from.el, { display: 'none', opacity: 1 });
         gsap.set(to.inners, { y: '110%' });
         gsap.set(to.el, { display: 'block' });
+        window.scrollTo(0, 0);
         if (to.extras?.length) gsap.set(to.extras, { opacity: 0 });
       })
       .to(to.inners, { y: '0%', duration: 0.9, ease: 'power4.out', stagger: 0.08 })
