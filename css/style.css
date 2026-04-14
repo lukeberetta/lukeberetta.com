@@ -410,7 +410,7 @@ body {
 
 @media (max-width: 600px) {
   .carousel-expand {
-    opacity: 1;
+    display: none;
   }
 }
 

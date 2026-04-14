@@ -194,14 +194,13 @@
 
     const vid = el.querySelector('video');
     if (vid) {
-      if (window.matchMedia('(hover: none)').matches) {
-        expandBtn.remove();
-        el.addEventListener('click', () => vid.paused ? vid.play() : vid.pause());
-      } else {
-        el.addEventListener('click', () => open(vid.src, null, el, true));
-      }
+      el.addEventListener('click', () => {
+        if (window.innerWidth <= 600) return;
+        open(vid.src, null, el, true);
+      });
     } else {
       el.addEventListener('click', () => {
+        if (window.innerWidth <= 600) return;
         const img = el.querySelector('img');
         if (img) open(img.src, img.alt, el);
       });
