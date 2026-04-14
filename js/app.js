@@ -74,7 +74,8 @@
   const contactInners = maskContent('.contact .works-item');
   const journeyEl = document.querySelector('.journey');
   journeyEl.style.cssText = 'display:block;visibility:hidden';
-  const journeyInners = maskContent('.journey p, .journey .case-image');
+  const journeyInners = maskContent('.journey p');
+  const carouselWrap = document.querySelector('.journey .case-carousel-wrap');
   journeyEl.style.cssText = '';
 
   // Wrap nav links in masks
@@ -145,7 +146,7 @@
     works:   { el: '.works',    inners: worksInners   },
     apps:    { el: '.apps',     inners: appsInners    },
     contact: { el: '.contact',  inners: contactInners },
-    journey: { el: '.journey',  inners: journeyInners }
+    journey: { el: '.journey',  inners: journeyInners, extras: carouselWrap ? [carouselWrap] : [] }
   };
 
   let currentView = 'home';
@@ -178,12 +179,15 @@
       }
     })
       .to(from.inners, { y: '110%', duration: 0.6, ease: 'power4.in', stagger: 0.04 })
+      .to(from.extras || [], { opacity: 0, duration: 0.3, ease: 'power4.in' }, '<')
       .add(() => {
         gsap.set(from.el, { display: 'none' });
         gsap.set(to.inners, { y: '110%' });
         gsap.set(to.el, { display: 'block' });
+        if (to.extras?.length) gsap.set(to.extras, { opacity: 0 });
       })
-      .to(to.inners, { y: '0%', duration: 0.9, ease: 'power4.out', stagger: 0.08 });
+      .to(to.inners, { y: '0%', duration: 0.9, ease: 'power4.out', stagger: 0.08 })
+      .fromTo(to.extras || [], { opacity: 0 }, { opacity: 1, duration: 0.8, ease: 'power1.inOut' }, '<');
   }
 
   // Nav active state + click handlers
