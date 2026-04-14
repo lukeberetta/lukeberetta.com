@@ -193,10 +193,6 @@ body {
   content: attr(data-default);
 }
 
-.works .works-item:hover .muted::after {
-  content: attr(data-hover);
-}
-
 
 /* ── Case Studies ── */
 .case-study p+p {
@@ -244,7 +240,7 @@ body {
   padding: 5%;
   overflow: hidden;
   position: relative;
-  cursor: zoom-in;
+  cursor: none;
 }
 
 .carousel-slide img {
