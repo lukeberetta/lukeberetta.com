@@ -194,7 +194,12 @@
 
     const vid = el.querySelector('video');
     if (vid) {
-      el.addEventListener('click', () => open(vid.src, null, el, true));
+      if (window.matchMedia('(hover: none)').matches) {
+        expandBtn.remove();
+        el.addEventListener('click', () => vid.paused ? vid.play() : vid.pause());
+      } else {
+        el.addEventListener('click', () => open(vid.src, null, el, true));
+      }
     } else {
       el.addEventListener('click', () => {
         const img = el.querySelector('img');
