@@ -69,6 +69,17 @@ html {
   background: var(--color-bg);
 }
 
+/* ── Resize smoothing ── */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    transition: font-size 0.2s ease;
+  }
+
+  body {
+    transition: padding 0.2s ease, font-size 0.2s ease;
+  }
+}
+
 html,
 body {
   height: 100%;
@@ -266,8 +277,10 @@ body {
   width: 32px;
   height: 32px;
   background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: none;
-  border-radius: 50%;
+  border-radius: 4px;
   color: rgba(255, 255, 255, 0.7);
   display: flex;
   align-items: center;
@@ -293,8 +306,10 @@ body {
   width: 32px;
   height: 32px;
   background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: none;
-  border-radius: 50%;
+  border-radius: 4px;
   color: rgba(255, 255, 255, 0.7);
   display: flex;
   align-items: center;

@@ -113,6 +113,9 @@
     // Hide close button immediately
     gsap.to(closeBtn, { opacity: 0, duration: 0.15 });
 
+    // Fade out the image during collapse so there's no size-mismatch snap at the end
+    gsap.to(viewImg, { opacity: 0, duration: 0.25, ease: 'power2.in' });
+
     // Backdrop fade out
     gsap.to(backdrop, {
       opacity: 0,
@@ -132,6 +135,7 @@
       ease: 'power3.inOut',
       onComplete: () => {
         gsap.set(overlay, { display: 'none', clearProps: 'top,left,width,height' });
+        gsap.set(viewImg, { opacity: 1 });
         viewImg.src = '';
       }
     });
