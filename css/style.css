@@ -27,7 +27,7 @@
   --space-xs: 0.1em;
   --space-sm: 0.75em;
   --space-md: 1.2em;
-  --space-lg: 3.5em;
+  --space-lg: 4em;
   --space-page: clamp(1rem, 1.5vw + 0.65rem, 2.5rem);
 
   /* Border radius */
@@ -160,6 +160,18 @@ body {
   letter-spacing: var(--letter-spacing-sm);
 }
 
+.spacer-lg {
+  height: var(--space-lg);
+}
+
+.heading {
+  /* text-transform: uppercase; */
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-md);
+  letter-spacing: var(--letter-spacing-md);
+  color: var(--color-text-muted);
+}
+
 /* ── Selection ── */
 ::selection {
   background: var(--color-accent);
@@ -238,7 +250,7 @@ body {
 
 /* ── Case Studies ── */
 .case-study p+p {
-  margin-top: var(--space-sm);
+  margin-top: var(--space-md);
 }
 
 .case-carousel-wrap {

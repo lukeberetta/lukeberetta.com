@@ -72,14 +72,19 @@
   </div>
 
   <div class="journey case-study container" aria-hidden="true">
-    <p class="text-lg"><span class="orange">Journey</span> helped teams explain complex ideas at the moments that
-      matter most: onboarding, proposals, introductions, the points where clarity determines outcome.</p>
+    <p class="text-lg"><span class="orange">Journey</span> helped teams explain complex
+      ideas at the moments that matter most:
+      onboarding, proposals, introductions,
+      the points where clarity determines
+      outcome.</p>
     <div class="case-carousel-wrap">
       <div class="case-carousel">
         <div class="carousel-item">
           <div class="carousel-slide" style="background: #222222;"><video src="img/Journey/01_Hero-1080p30.mp4" autoplay
               muted loop playsinline></video></div>
-          <p class="carousel-caption"><span>Journey 2.0.</span> <span class="muted">A complete rethink of the format. Stories that respond to the reader, adapt to context, and go as deep or as light as the moment requires.</span></p>
+          <p class="carousel-caption"><span>Journey 2.0.</span> <span class="muted">A complete rethink of the format.
+              Stories that respond to the reader, adapt to context, and go as deep or as light as the moment
+              requires.</span></p>
         </div>
         <div class="carousel-item">
           <div class="carousel-slide" style="background: #0C3A41;"><video src="img/Journey/02_Assistant-1080p30.mp4"
@@ -91,7 +96,8 @@
         <div class="carousel-item">
           <div class="carousel-slide" style="background: #70270C;"><video src="img/Journey/03_Recipients-1080p30.mp4"
               autoplay muted loop playsinline></video></div>
-          <p class="carousel-caption"><span>Recipients.</span> <span class="muted">Share a Journey with anyone. No account required. Readers pick up exactly where they left off, on any device, at any time.</span></p>
+          <p class="carousel-caption"><span>Recipients.</span> <span class="muted">Share a Journey with anyone. No
+              account required. Readers pick up exactly where they left off, on any device, at any time.</span></p>
         </div>
         <div class="carousel-item">
           <div class="carousel-slide" style="background: #e7e7e7;"><video src="img/Journey/04_Branding-1080p30.mp4"
@@ -108,16 +114,38 @@
         </div>
       </div>
     </div>
-    <p class="text-md">Version one worked. It was clean, considered, and people used it. But it was still a deck: a
-      fixed sequence, a
-      predetermined path, a story that had already been decided before the reader arrived.</p>
-    <p class="text-md">We didn't begin with features. We began with a question: what does it mean to tell a story well?
-      Not slides or
-      pages, but something that adapts to the person reading it — without a fixed path, able to go deeper or stay light
-      depending on what's needed.</p>
-    <p class="text-md">From that, three decisions followed. The format had to change. The story had to respond. And
-      intelligence had to
-      be fundamental, not layered on.</p>
+    <p class="heading">Introduction</p>
+    <p class="text-md">I co-led the design of v2 alongside the founding designer, building a flexible AI&#8209;powered
+      block
+      canvas that redefined how stories get built and consumed. The new product unlocked non&#8209;linear storytelling,
+      deep analytics, and AI across the full experience. Journey was acquired, and the v2 architecture became the
+      foundation
+      the acquiring team inherited.</p>
+    <p class="heading">Understanding the space</p>
+    <p class="text-md">I audited tools like Notion, Pitch, and Coda to understand how the best products handle flexible
+      content creation. The clearest insight: most competitors had ignored the reading experience entirely. How a story
+      gets consumed was almost always an afterthought.</p>
+    <p class="heading">Design direction</p>
+    <p class="text-md">Three principles shaped v2. A block canvas where structure emerges from content rather than being
+      imposed by a grid. An onboarding arc with multiple entry points — templates, AI generation, and blank canvas —
+      designed to meet creators at their level. And an automagical theming system that pulled brand identity from a
+      domain, so every Journey felt intentional without requiring design skills.</p>
+    <p class="heading">Validation</p>
+    <p class="text-md">We tested multiple approaches to the canvas and onboarding flow. The block canvas with guided
+      entry points consistently outperformed alternatives — faster first publishes, less blank&#8209;state abandonment,
+      higher
+      creator confidence.</p>
+    <p class="heading">Solution</p>
+    <p class="text-md">Replacing the fixed slide grid with a fluid block system let creators mix text, video, embeds,
+      and interactive elements freely. The result adapted to any screen without manual adjustment.</p>
+    <p class="heading">AI across the full loop</p>
+    <p class="text-md">On the creation side, describe what you want and Journey drafts the structure. Inline tools let
+      you refine any block in context. On the reading side, an Ask Anything panel lets recipients query the content
+      directly. Each surface was designed to feel native, not bolted on.</p>
+    <p class="heading">Analytics</p>
+    <p class="text-md">A redesigned dashboard showed creators exactly how their stories were being consumed — which
+      blocks got attention, where readers dropped off, who engaged and for how long. Data that had previously been
+      invisible became the feedback loop for every next Journey.</p>
   </div>
 
   <div class="contact" aria-hidden="true">
@@ -146,7 +174,7 @@
           const video = entry.target.querySelector('video');
           if (!video) return;
           if (entry.isIntersecting) {
-            video.play().catch(() => {});
+            video.play().catch(() => { });
           } else {
             video.pause();
           }
