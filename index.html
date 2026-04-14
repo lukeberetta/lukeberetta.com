@@ -139,6 +139,25 @@
   <script src="js/name-hover.js"></script>
   <script src="js/cursor.js"></script>
   <script src="js/image-viewer.js"></script>
+  <script>
+    (function () {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const video = entry.target.querySelector('video');
+          if (!video) return;
+          if (entry.isIntersecting) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+      }, { threshold: 0.5 });
+
+      document.querySelectorAll('.carousel-slide').forEach(slide => {
+        if (slide.querySelector('video')) observer.observe(slide);
+      });
+    })();
+  </script>
 </body>
 
 </html>
