@@ -18,7 +18,7 @@
   --letter-spacing-md: -0.01em;
 
   --font-size-sm: clamp(1rem, 0.3rem + 1vw, 1.25rem);
-  --line-height-sm: 1.1;
+  --line-height-sm: 1.2;
   --letter-spacing-sm: 0em;
 
   --font-weight: 400;
@@ -28,6 +28,7 @@
   --space-sm: 0.75em;
   --space-md: 1.2em;
   --space-lg: 4em;
+  --space-section: 20vh;
   --space-page: clamp(1rem, 1.5vw + 0.65rem, 2.5rem);
 
   /* Border radius */
@@ -222,6 +223,9 @@ body {
 
 .muted {
   color: var(--color-text-muted);
+}
+
+.works-item .muted {
   text-align: right;
 }
 
@@ -249,9 +253,22 @@ body {
 
 
 /* ── Case Studies ── */
-.case-study p+p {
-  margin-top: var(--space-md);
+.hero {
+  margin-bottom: var(--space-section);
 }
+
+.case-section {
+  margin-top: var(--space-section);
+}
+
+.case-section p+p {
+  margin-top: var(--space-sm);
+}
+
+.case-section .case-carousel-wrap+p {
+  margin-top: var(--space-sm);
+}
+
 
 .case-carousel-wrap {
   width: calc(100vw - 2 * var(--space-page));
@@ -264,7 +281,7 @@ body {
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   gap: var(--space-page);
-  margin: var(--space-lg) 0;
+  margin-top: var(--space-md);
 }
 
 .case-carousel::-webkit-scrollbar {
@@ -288,6 +305,7 @@ body {
 .carousel-slide {
   aspect-ratio: 1 / 1;
   border-radius: var(--radius-md);
+  background: #222222;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -310,6 +328,37 @@ body {
   font-size: var(--font-size-sm);
   line-height: var(--line-height-sm);
   letter-spacing: var(--letter-spacing-sm);
+}
+
+/* ── Case Meta ── */
+.case-meta {
+  margin-top: var(--space-md);
+  display: grid;
+  gap: var(--space-md);
+}
+
+.case-meta-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+/* ── Case Image Placeholder ── */
+.case-img {
+  margin-top: var(--space-lg);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  aspect-ratio: 16 / 9;
+}
+
+.case-img+p {
+  margin-top: var(--space-sm);
+}
+
+/* ── Case Caption ── */
+.case-caption {
+  color: var(--color-text-muted);
 }
 
 /* ── Image Viewer ── */

@@ -78,6 +78,15 @@
   const carouselWrap = document.querySelector('.journey .case-carousel-wrap');
   journeyEl.style.cssText = '';
 
+  const spritzEl = document.querySelector('.spritz');
+  spritzEl.style.cssText = 'display:block;visibility:hidden';
+  const spritzInners = [
+    ...maskContent('.spritz p'),
+    ...maskContent('.spritz .case-meta-row')
+  ].sort((a, b) => a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1);
+  const spritzCarouselWrap = document.querySelector('.spritz .case-carousel-wrap');
+  spritzEl.style.cssText = '';
+
   // Wrap nav links in masks
   maskNavLinks();
 
@@ -146,12 +155,14 @@
     works:   { el: '.works',    inners: worksInners   },
     apps:    { el: '.apps',     inners: appsInners    },
     contact: { el: '.contact',  inners: contactInners },
-    journey: { el: '.journey',  inners: journeyInners, extras: carouselWrap ? [carouselWrap] : [] }
+    journey: { el: '.journey',  inners: journeyInners, extras: carouselWrap ? [carouselWrap] : [] },
+    spritz:  { el: '.spritz',   inners: spritzInners,  extras: spritzCarouselWrap ? [spritzCarouselWrap] : [] }
   };
 
   let currentView = 'home';
   let isAnimating = false;
   let pendingView = null;
+  let activeTimeline = null;
 
   function transitionTo(name) {
     if (isAnimating) {
@@ -166,10 +177,11 @@
     const to = views[name];
     currentView = name;
 
-    gsap.timeline({
+    activeTimeline = gsap.timeline({
       onUpdate: updateFade,
       onComplete: () => {
         isAnimating = false;
+        activeTimeline = null;
         updateFade();
         if (pendingView) {
           const next = pendingView;
@@ -224,6 +236,14 @@
   // Back link handler
   backLinkEl.addEventListener('click', e => {
     e.preventDefault();
+    // If still mid-entrance animation, kill it so Back responds immediately
+    if (isAnimating && activeTimeline) {
+      activeTimeline.kill();
+      activeTimeline = null;
+      gsap.set(views[currentView].el, { display: 'block', opacity: 1 });
+      isAnimating = false;
+      pendingView = null;
+    }
     gsap.to(backLinkInner, {
       y: '110%', duration: 0.5, ease: 'power4.in',
       onComplete: () => {

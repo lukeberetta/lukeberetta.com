@@ -55,11 +55,55 @@ Three sizes, each with its own `font-size`, `line-height`, and `letter-spacing` 
 
 Apply via utility classes `.text-lg`, `.text-md`, `.text-sm`. `body` defaults to large. Use medium for longform/body copy inside case studies, small for captions.
 
+## Case study structure
+Each case study follows this content formula:
+
+```html
+<div class="case-study-name case-study container" aria-hidden="true">
+
+  <!-- Hero: standalone, sits above all sections -->
+  <p class="text-lg hero"><span class="orange">Project Name</span> one-line summary.</p>
+
+  <!-- Intro: always first section, no carousel -->
+  <section class="case-section">
+    <p class="heading">Intro</p>
+    <p class="text-md">...</p>
+    <div class="case-meta">
+      <div class="case-meta-row">
+        <span class="heading">Role</span>
+        <span class="text-md">...</span>
+      </div>
+      <!-- Timeline, Team rows follow the same pattern -->
+    </div>
+  </section>
+
+  <!-- Body sections: heading + body + optional carousel at the bottom -->
+  <section class="case-section">
+    <p class="heading">Section Title</p>
+    <p class="text-md">...</p>
+    <div class="case-carousel-wrap">...</div>  <!-- optional, always last -->
+  </section>
+
+  <!-- Outro: always last section, no carousel -->
+  <section class="case-section outro">
+    <p class="heading">Outro</p>
+    <p class="text-md">...</p>
+  </section>
+
+</div>
+```
+
+Rules:
+- Carousels always sit at the bottom of a section — never between text blocks
+- Headings with no body text below them should be removed
+- `.case-carousel-wrap` default background is set in CSS — don't inline `style="background:"`
+- Carousel captions: `<span>Label.</span> <span class="muted">Description.</span>`
+
 ## Adding a new case study
-1. Add a `<div class="case-study-name" aria-hidden="true">` in `index.html` (before `<nav>`)
+1. Add the HTML using the structure above in `index.html` (before `<nav>`)
 2. Add the works item's `data-to="case-study-name"` attribute and update `data-hover`
-3. Add CSS: `.case-study-name { display: none; max-width: 480px; }` + line-mask styles
-4. In `app.js`: collect inners with `maskContent(...)`, register in `views`, done — back link logic is already generic
+3. Add CSS: `.case-study-name { display: none; }` (`.container` handles max-width)
+4. In `app.js`: collect inners — `maskContent('.case-study-name p')` plus `.case-meta-row` elements sorted by DOM order, register in `views` — back link logic is already generic
 
 ## Assets
 - Images: `img/` directory
