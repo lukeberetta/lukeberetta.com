@@ -166,6 +166,20 @@
     spritz:  { el: '.spritz',   inners: spritzInners,  extras: spritzCarouselWraps }
   };
 
+  // Play videos only when they're visible in the viewport
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const video = entry.target;
+      if (entry.isIntersecting) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.case-study video').forEach(v => videoObserver.observe(v));
+
   let currentView = 'home';
   let isAnimating = false;
   let pendingView = null;
@@ -206,7 +220,6 @@
         gsap.set(to.el, { display: 'block' });
         window.scrollTo(0, 0);
         if (to.extras?.length) gsap.set(to.extras, { opacity: 0 });
-        document.querySelectorAll(to.el + ' video').forEach(v => v.play().catch(() => {}));
       })
       .to(to.inners, { y: '0%', duration: 0.9, ease: 'power4.out', stagger: 0.08 })
       .fromTo(to.extras || [], { opacity: 0 }, { opacity: 1, duration: 0.8, ease: 'power1.inOut' }, '<');
