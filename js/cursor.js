@@ -9,11 +9,12 @@ if (window.matchMedia('(pointer: fine)').matches) {
 
   const xTo = gsap.quickTo(cursor, 'x', { duration: 0.4, ease: 'power3' });
   const yTo = gsap.quickTo(cursor, 'y', { duration: 0.4, ease: 'power3' });
+  const opacityTo = gsap.quickTo(cursor, 'opacity', { duration: 0.15 });
 
   document.addEventListener('mousemove', e => {
     xTo(e.clientX - 10);
     yTo(e.clientY - 10);
-    gsap.to(cursor, { opacity: 1, duration: 0.15, overwrite: 'auto' });
+    opacityTo(1);
   }, { passive: true });
 
   document.addEventListener('mousedown', () => {

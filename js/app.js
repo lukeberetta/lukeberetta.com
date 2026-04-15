@@ -89,8 +89,10 @@
   // Wrap nav links in masks
   maskNavLinks();
 
-  // Cache nav element once — avoids querying the DOM on every animation frame
+  // Cache nav element and non-nav inners once — avoids DOM queries on every frame
   const navEl = document.querySelector('.nav');
+  const fadeInners = Array.from(document.querySelectorAll('.line-inner'))
+    .filter(el => !el.closest('.nav'));
 
   // Fade content elements as they approach the nav (replaces gradient overlay)
   // Reads all rects first, then writes opacity — avoids layout thrashing
@@ -99,12 +101,8 @@
     const fadeEnd = navTop;
     const fadeStart = fadeEnd - 140;
 
-    const inners = document.querySelectorAll('.line-inner');
-    const entries = Array.from(inners)
-      .filter(el => !el.closest('.nav'))
-      .map(el => ({ el, top: el.getBoundingClientRect().top }));
-
-    entries.forEach(({ el, top }) => {
+    const tops = fadeInners.map(el => ({ el, top: el.getBoundingClientRect().top }));
+    tops.forEach(({ el, top }) => {
       let opacity;
       if (top <= fadeStart) {
         opacity = 1;
@@ -118,7 +116,11 @@
   }
 
   window.addEventListener('scroll', updateFade, { passive: true });
-  window.addEventListener('resize', updateFade, { passive: true });
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(updateFade, 100);
+  }, { passive: true });
 
   // Identify back link and separate it from regular nav links
   const backLinkEl = document.querySelector('[data-back]');
@@ -198,11 +200,13 @@
       .to(from.el, { opacity: 0, duration: 0.3, ease: 'power2.in' })
       .to(from.extras || [], { opacity: 0, duration: 0.3, ease: 'power2.in' }, '<')
       .add(() => {
+        document.querySelectorAll(from.el + ' video').forEach(v => { v.pause(); v.currentTime = 0; });
         gsap.set(from.el, { display: 'none', opacity: 1 });
         gsap.set(to.inners, { y: '110%' });
         gsap.set(to.el, { display: 'block' });
         window.scrollTo(0, 0);
         if (to.extras?.length) gsap.set(to.extras, { opacity: 0 });
+        document.querySelectorAll(to.el + ' video').forEach(v => v.play().catch(() => {}));
       })
       .to(to.inners, { y: '0%', duration: 0.9, ease: 'power4.out', stagger: 0.08 })
       .fromTo(to.extras || [], { opacity: 0 }, { opacity: 1, duration: 0.8, ease: 'power1.inOut' }, '<');
