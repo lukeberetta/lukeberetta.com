@@ -1,4 +1,6 @@
 (function () {
+  document.fonts.ready.then(function () {
+
   function maskContent(selector) {
     const inners = [];
     document.querySelectorAll(selector).forEach(el => {
@@ -87,16 +89,22 @@
   // Wrap nav links in masks
   maskNavLinks();
 
+  // Cache nav element once — avoids querying the DOM on every animation frame
+  const navEl = document.querySelector('.nav');
+
   // Fade content elements as they approach the nav (replaces gradient overlay)
+  // Reads all rects first, then writes opacity — avoids layout thrashing
   function updateFade() {
-    const nav = document.querySelector('.nav');
-    const navTop = nav.getBoundingClientRect().top;
+    const navTop = navEl.getBoundingClientRect().top;
     const fadeEnd = navTop;
     const fadeStart = fadeEnd - 140;
 
-    document.querySelectorAll('.line-inner').forEach(el => {
-      if (el.closest('.nav')) return;
-      const top = el.getBoundingClientRect().top;
+    const inners = document.querySelectorAll('.line-inner');
+    const entries = Array.from(inners)
+      .filter(el => !el.closest('.nav'))
+      .map(el => ({ el, top: el.getBoundingClientRect().top }));
+
+    entries.forEach(({ el, top }) => {
       let opacity;
       if (top <= fadeStart) {
         opacity = 1;
@@ -253,4 +261,6 @@
     document.querySelector('[data-to="works"]').classList.add('active');
     transitionTo('works');
   });
+
+  }); // document.fonts.ready
 })();

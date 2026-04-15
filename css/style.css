@@ -196,6 +196,7 @@ body {
 .line-inner {
   display: block;
   padding-bottom: 0.15em;
+  will-change: transform;
 }
 
 
