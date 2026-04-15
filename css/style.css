@@ -13,12 +13,12 @@
   --line-height-lg: 1;
   --letter-spacing-lg: -0.02em;
 
-  --font-size-md: clamp(1.2rem, 0.4rem + 1.4vw, 1.8rem);
+  --font-size-md: clamp(1.25rem, 0.4rem + 1.4vw, 1.8rem);
   --line-height-md: 1.1;
   --letter-spacing-md: -0.01em;
 
   --font-size-sm: clamp(1rem, 0.3rem + 1vw, 1.25rem);
-  --line-height-sm: 1.2;
+  --line-height-sm: 1.25;
   --letter-spacing-sm: 0em;
 
   --font-weight: 400;
