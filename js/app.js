@@ -185,12 +185,26 @@
   let pendingView = null;
   let activeTimeline = null;
 
-  function transitionTo(name) {
+  const caseStudyViews = new Set(
+    Object.keys(views).filter(k => !['home','works','apps','contact'].includes(k))
+  );
+
+  // Seed the initial history entry so popstate always has state
+  const initialHash = location.hash.slice(1);
+  const initialView = (initialHash && views[initialHash]) ? initialHash : 'home';
+  history.replaceState({ view: initialView }, '', location.href);
+
+  function transitionTo(name, { pushHistory = true } = {}) {
     if (isAnimating) {
       if (name !== currentView) pendingView = name;
       return;
     }
     if (name === currentView) return;
+
+    if (pushHistory) {
+      history.pushState({ view: name }, '', name === 'home' ? location.pathname : '#' + name);
+    }
+
     isAnimating = true;
     pendingView = null;
 
@@ -241,16 +255,7 @@
   // Works item click handlers (case study navigation)
   document.querySelectorAll('.works-item[data-to]').forEach(item => {
     item.addEventListener('click', () => {
-      document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
-      gsap.to(navLinks, {
-        y: '110%', duration: 0.5, ease: 'power4.in', stagger: 0.04,
-        onComplete: () => {
-          // Hide nav masks so Back anchors to the same bottom-left position
-          navLinks.forEach(inner => { inner.closest('.line-mask').style.display = 'none'; });
-          backLinkMask.classList.add('visible');
-          gsap.fromTo(backLinkInner, { y: '110%' }, { y: '0%', duration: 0.7, ease: 'power4.out' });
-        }
-      });
+      enterCaseStudy();
       transitionTo(item.dataset.to);
     });
   });
@@ -258,7 +263,25 @@
   // Back link handler
   backLinkEl.addEventListener('click', e => {
     e.preventDefault();
-    // If still mid-entrance animation, kill it so Back responds immediately
+    exitCaseStudy('works');
+    transitionTo('works');
+  });
+
+  // Helper: slide nav links out and back link in (used by works-item clicks and popstate)
+  function enterCaseStudy() {
+    document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
+    gsap.to(navLinks, {
+      y: '110%', duration: 0.5, ease: 'power4.in', stagger: 0.04,
+      onComplete: () => {
+        navLinks.forEach(inner => { inner.closest('.line-mask').style.display = 'none'; });
+        backLinkMask.classList.add('visible');
+        gsap.fromTo(backLinkInner, { y: '110%' }, { y: '0%', duration: 0.7, ease: 'power4.out' });
+      }
+    });
+  }
+
+  // Helper: slide back link out and nav links in (used by back-link clicks and popstate)
+  function exitCaseStudy(activeView) {
     if (isAnimating && activeTimeline) {
       activeTimeline.kill();
       activeTimeline = null;
@@ -270,14 +293,47 @@
       y: '110%', duration: 0.5, ease: 'power4.in',
       onComplete: () => {
         backLinkMask.classList.remove('visible');
-        // Restore nav masks before animating them back in
         navLinks.forEach(inner => { inner.closest('.line-mask').style.display = ''; });
         gsap.fromTo(navLinks, { y: '110%' }, { y: '0%', duration: 0.7, ease: 'power4.out', stagger: 0.08 });
       }
     });
-    document.querySelector('[data-to="works"]').classList.add('active');
-    transitionTo('works');
+    document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
+    const link = document.querySelector(`.nav a[data-to="${activeView}"]`);
+    if (link) link.classList.add('active');
+  }
+
+  // Browser back/forward
+  window.addEventListener('popstate', e => {
+    const target = (e.state?.view && views[e.state.view]) ? e.state.view : 'home';
+    const leavingCase = caseStudyViews.has(currentView);
+    const enteringCase = caseStudyViews.has(target);
+
+    if (leavingCase && !enteringCase) {
+      exitCaseStudy(target);
+    } else if (!leavingCase && enteringCase) {
+      enterCaseStudy();
+    } else if (!leavingCase && !enteringCase) {
+      document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
+      const link = document.querySelector(`.nav a[data-to="${target}"]`);
+      if (link) link.classList.add('active');
+    }
+
+    transitionTo(target, { pushHistory: false });
   });
+
+  // Deep-link: if the page loaded with a hash, navigate there after the intro
+  if (initialView !== 'home') {
+    document.addEventListener('intro-complete', () => {
+      if (caseStudyViews.has(initialView)) {
+        enterCaseStudy();
+      } else {
+        document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
+        const link = document.querySelector(`.nav a[data-to="${initialView}"]`);
+        if (link) link.classList.add('active');
+      }
+      transitionTo(initialView, { pushHistory: false });
+    }, { once: true });
+  }
 
   }); // document.fonts.ready
 })();
