@@ -68,13 +68,9 @@ Each case study follows this content formula:
   <section class="case-section">
     <p class="heading">Intro</p>
     <p class="text-md">...</p>
-    <div class="case-meta">
-      <div class="case-meta-row">
-        <span class="heading">Role</span>
-        <span class="text-md">...</span>
-      </div>
-      <!-- Timeline, Team rows follow the same pattern -->
-    </div>
+    <p class="text-md">Role: <span class="muted">...</span></p>
+    <p class="text-md">Timeline: <span class="muted">...</span></p>
+    <p class="text-md">Team: <span class="muted">...</span></p>
   </section>
 
   <!-- Body sections: heading + body + optional carousel at the bottom -->
@@ -103,7 +99,7 @@ Rules:
 1. Add the HTML using the structure above in `index.html` (before `<nav>`)
 2. Add the works item's `data-to="case-study-name"` attribute and update `data-hover`
 3. Add CSS: `.case-study-name { display: none; }` (`.container` handles max-width)
-4. In `app.js`: collect inners — `maskContent('.case-study-name p')` plus `.case-meta-row` elements sorted by DOM order, register in `views` — back link logic is already generic
+4. In `app.js`: collect inners — `maskContent('.case-study-name p')`, register in `views` — back link logic is already generic
 
 ## Assets
 - Images: `img/` directory

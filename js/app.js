@@ -75,16 +75,13 @@
   const journeyEl = document.querySelector('.journey');
   journeyEl.style.cssText = 'display:block;visibility:hidden';
   const journeyInners = maskContent('.journey p');
-  const carouselWrap = document.querySelector('.journey .case-carousel-wrap');
+  const journeyCarouselWraps = Array.from(document.querySelectorAll('.journey .case-carousel-wrap'));
   journeyEl.style.cssText = '';
 
   const spritzEl = document.querySelector('.spritz');
   spritzEl.style.cssText = 'display:block;visibility:hidden';
-  const spritzInners = [
-    ...maskContent('.spritz p'),
-    ...maskContent('.spritz .case-meta-row')
-  ].sort((a, b) => a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1);
-  const spritzCarouselWrap = document.querySelector('.spritz .case-carousel-wrap');
+  const spritzInners = maskContent('.spritz p');
+  const spritzCarouselWraps = Array.from(document.querySelectorAll('.spritz .case-carousel-wrap'));
   spritzEl.style.cssText = '';
 
   // Wrap nav links in masks
@@ -155,8 +152,8 @@
     works:   { el: '.works',    inners: worksInners   },
     apps:    { el: '.apps',     inners: appsInners    },
     contact: { el: '.contact',  inners: contactInners },
-    journey: { el: '.journey',  inners: journeyInners, extras: carouselWrap ? [carouselWrap] : [] },
-    spritz:  { el: '.spritz',   inners: spritzInners,  extras: spritzCarouselWrap ? [spritzCarouselWrap] : [] }
+    journey: { el: '.journey',  inners: journeyInners, extras: journeyCarouselWraps },
+    spritz:  { el: '.spritz',   inners: spritzInners,  extras: spritzCarouselWraps }
   };
 
   let currentView = 'home';

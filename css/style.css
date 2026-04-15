@@ -135,12 +135,16 @@ body {
 .container {
   max-width: 600px;
   min-width: 33.33vw;
-  padding-bottom: 25vh;
+  padding-bottom: 10vh;
 }
 
 /* ── Utilities ── */
 .orange {
   color: var(--color-accent);
+}
+
+.tight {
+  margin: unset !important;
 }
 
 .text-lg {
@@ -166,11 +170,10 @@ body {
 }
 
 .heading {
-  /* text-transform: uppercase; */
   font-size: var(--font-size-md);
   line-height: var(--line-height-md);
   letter-spacing: var(--letter-spacing-md);
-  color: var(--color-text-muted);
+  color: var(--color-accent);
 }
 
 /* ── Selection ── */
@@ -254,11 +257,16 @@ body {
 
 /* ── Case Studies ── */
 .hero {
-  margin-bottom: var(--space-section);
+  /* margin-bottom: var(--space-md); */
 }
 
 .case-section {
-  margin-top: var(--space-section);
+  padding-bottom: var(--space-section);
+  min-height: 80vh;
+}
+
+.case-section:last-child {
+  min-height: unset;
 }
 
 .case-section p+p {
