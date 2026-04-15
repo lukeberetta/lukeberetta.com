@@ -1,4 +1,5 @@
 (function () {
+  document.fonts.ready.then(function () {
   const orangeSpans = document.querySelectorAll('.bio .orange');
   if (!orangeSpans.length) return;
 
@@ -52,4 +53,5 @@
   });
 
   document.addEventListener('intro-complete', wave, { once: true });
+  }); // document.fonts.ready
 })();
