@@ -97,7 +97,7 @@
 
     const rect = el.getBoundingClientRect();
     const m = MARGIN();
-    const bg = el.style.background || el.style.backgroundColor || '#101010';
+    const bg = el.style.background || el.style.backgroundColor || '#222222';
 
     // Backdrop fade in
     gsap.set(backdrop, { display: 'block' });
