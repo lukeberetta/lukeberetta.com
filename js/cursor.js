@@ -38,7 +38,7 @@ if (window.matchMedia('(pointer: fine)').matches) {
     }
   });
 
-  document.querySelectorAll('.works .works-item:not([data-to])').forEach(item => {
+  document.querySelectorAll('.works-item.unavailable').forEach(item => {
     item.addEventListener('mouseenter', () => {
       gsap.to(cursor, { backgroundColor: colorMuted, duration: 0.2, overwrite: 'auto' });
     });
