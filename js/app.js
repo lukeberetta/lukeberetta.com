@@ -1,5 +1,9 @@
 (function () {
-  document.fonts.ready.then(function () {
+  var fontsReady = Promise.race([
+    document.fonts.ready,
+    new Promise(function (resolve) { setTimeout(resolve, 2000); })
+  ]);
+  fontsReady.then(function () {
 
   function maskContent(selector) {
     const inners = [];
