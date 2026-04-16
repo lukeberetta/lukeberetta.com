@@ -425,8 +425,6 @@ body {
   -webkit-user-drag: none;
   pointer-events: none;
   border-radius: var(--radius-sm);
-  box-shadow: 0 12px 60px rgba(0, 0, 0, 0.5);
-  will-change: transform;
 }
 
 #img-viewer-video {
@@ -434,7 +432,6 @@ body {
   max-height: 90%;
   object-fit: contain;
   border-radius: var(--radius-sm);
-  box-shadow: 0 12px 60px rgba(0, 0, 0, 0.5);
 }
 
 #img-viewer-close {
