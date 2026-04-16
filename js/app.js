@@ -5,6 +5,8 @@
   ]);
   fontsReady.then(function () {
 
+  gsap.registerPlugin(ScrollTrigger);
+
   function maskContent(selector) {
     const inners = [];
     document.querySelectorAll(selector).forEach(el => {
@@ -74,18 +76,24 @@
     });
   }
 
+  function captureOriginals(selector) {
+    return Array.from(document.querySelectorAll(selector)).map(el => ({ el, html: el.innerHTML }));
+  }
+
   const allInners     = maskContent('.bio p');
   const worksInners   = maskContent('.works .works-item');
   const appsInners    = maskContent('.apps .works-item');
   const contactInners = maskContent('.contact .works-item');
   const journeyEl = document.querySelector('.journey');
   journeyEl.style.cssText = 'display:block;visibility:hidden';
+  const journeyOriginals = captureOriginals('.journey p');
   const journeyInners = maskContent('.journey p');
   const journeyCarouselWraps = Array.from(document.querySelectorAll('.journey .case-carousel-wrap'));
   journeyEl.style.cssText = '';
 
   const spritzEl = document.querySelector('.spritz');
   spritzEl.style.cssText = 'display:block;visibility:hidden';
+  const spritzOriginals = captureOriginals('.spritz p');
   const spritzInners = maskContent('.spritz p');
   const spritzCarouselWraps = Array.from(document.querySelectorAll('.spritz .case-carousel-wrap'));
   spritzEl.style.cssText = '';
@@ -95,7 +103,7 @@
 
   // Cache nav element and non-nav inners once — avoids DOM queries on every frame
   const navEl = document.querySelector('.nav');
-  const fadeInners = Array.from(document.querySelectorAll('.line-inner'))
+  let fadeInners = Array.from(document.querySelectorAll('.line-inner'))
     .filter(el => !el.closest('.nav'));
 
   // Fade content elements as they approach the nav (replaces gradient overlay)
@@ -121,9 +129,24 @@
 
   window.addEventListener('scroll', updateFade, { passive: true });
   let resizeTimer;
+  let lastWidth = window.innerWidth;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(updateFade, 100);
+    resizeTimer = setTimeout(() => {
+      updateFade();
+      const newWidth = window.innerWidth;
+      if (newWidth !== lastWidth) {
+        lastWidth = newWidth;
+        // Invalidate cached split widths so case studies re-split on next entry
+        Object.keys(csSplitWidths).forEach(k => delete csSplitWidths[k]);
+        // If currently viewing a case study, re-split and show all content immediately
+        if (caseStudyViews?.has(currentView)) {
+          killScrollTriggers(currentView);
+          ensureSplit(currentView);
+          updateFade();
+        }
+      }
+    }, 150);
   }, { passive: true });
 
   // Identify back link and separate it from regular nav links
@@ -160,14 +183,57 @@
       ease: 'power4.out'
     }, '-=0.3');
 
+  // ScrollTrigger state per case study
+  const csSplitWidths = { journey: window.innerWidth, spritz: window.innerWidth };
+  const csScrollTriggers = {};
+
+  function killScrollTriggers(key) {
+    (csScrollTriggers[key] || []).forEach(st => st.kill());
+    csScrollTriggers[key] = null;
+  }
+
+  function setupScrollTriggers(key) {
+    const inners = views[key].inners;
+    const vh = window.innerHeight;
+    const aboveFold = [];
+    const belowFold = [];
+    inners.forEach(inner => {
+      (inner.getBoundingClientRect().top < vh * 0.9 ? aboveFold : belowFold).push(inner);
+    });
+    if (aboveFold.length) {
+      gsap.to(aboveFold, { y: '0%', duration: 0.9, ease: 'power4.out', stagger: 0.08 });
+    }
+    if (belowFold.length) {
+      csScrollTriggers[key] = ScrollTrigger.batch(belowFold, {
+        onEnter: batch => gsap.to(batch, { y: '0%', duration: 0.8, ease: 'power4.out', stagger: 0.06 }),
+        start: 'top 88%',
+      });
+    }
+  }
+
+  function ensureSplit(key) {
+    if (csSplitWidths[key] === window.innerWidth) return;
+    const view = views[key];
+    view.originals.forEach(({ el, html }) => { el.innerHTML = html; });
+    const csEl = document.querySelector(view.el);
+    const isHidden = getComputedStyle(csEl).display === 'none';
+    if (isHidden) csEl.style.cssText = 'display:block;visibility:hidden';
+    view.inners = maskContent(view.el + ' p');
+    if (isHidden) csEl.style.cssText = '';
+    csSplitWidths[key] = window.innerWidth;
+    // Refresh fadeInners to include new line-inner elements
+    fadeInners = Array.from(document.querySelectorAll('.line-inner'))
+      .filter(el => !el.closest('.nav'));
+  }
+
   // View registry
   const views = {
     home:    { el: '.bio',      inners: allInners     },
     works:   { el: '.works',    inners: worksInners   },
     apps:    { el: '.apps',     inners: appsInners    },
     contact: { el: '.contact',  inners: contactInners },
-    journey: { el: '.journey',  inners: journeyInners, extras: journeyCarouselWraps },
-    spritz:  { el: '.spritz',   inners: spritzInners,  extras: spritzCarouselWraps }
+    journey: { el: '.journey',  inners: journeyInners, extras: journeyCarouselWraps, originals: journeyOriginals },
+    spritz:  { el: '.spritz',   inners: spritzInners,  extras: spritzCarouselWraps,  originals: spritzOriginals  }
   };
 
   // Play videos only when they're visible in the viewport
@@ -212,6 +278,7 @@
     isAnimating = true;
     pendingView = null;
 
+    const fromKey = currentView;
     const from = views[currentView];
     const to = views[name];
     currentView = name;
@@ -233,14 +300,26 @@
       .to(from.extras || [], { opacity: 0, duration: 0.3, ease: 'power2.in' }, '<')
       .add(() => {
         document.querySelectorAll(from.el + ' video').forEach(v => { v.pause(); v.currentTime = 0; });
+        if (caseStudyViews.has(fromKey)) killScrollTriggers(fromKey);
         gsap.set(from.el, { display: 'none', opacity: 1 });
+        if (caseStudyViews.has(name)) ensureSplit(name);
         gsap.set(to.inners, { y: '110%' });
         gsap.set(to.el, { display: 'block' });
         window.scrollTo(0, 0);
         if (to.extras?.length) gsap.set(to.extras, { opacity: 0 });
-      })
-      .to(to.inners, { y: '0%', duration: 0.9, ease: 'power4.out', stagger: 0.08 })
-      .fromTo(to.extras || [], { opacity: 0 }, { opacity: 1, duration: 0.8, ease: 'power1.inOut' }, '<');
+        if (caseStudyViews.has(name)) setupScrollTriggers(name);
+      });
+
+    if (!caseStudyViews.has(name)) {
+      activeTimeline.to(to.inners, { y: '0%', duration: 0.9, ease: 'power4.out', stagger: 0.08 });
+    }
+
+    activeTimeline.fromTo(
+      to.extras || [],
+      { opacity: 0 },
+      { opacity: 1, duration: 0.8, ease: 'power1.inOut' },
+      caseStudyViews.has(name) ? '+=0' : '<'
+    );
   }
 
   // Nav active state + click handlers
