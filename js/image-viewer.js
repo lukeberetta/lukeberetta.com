@@ -88,6 +88,10 @@
       viewImg.src = src;
       viewImg.alt = alt || '';
       gsap.set(viewImg, { display: 'block' });
+    viewImg.onerror = () => {
+      viewImg.alt = 'Image failed to load';
+      gsap.set(viewImg, { opacity: 0.3 });
+    };
     }
 
     resetTransform(false);
@@ -97,7 +101,7 @@
 
     const rect = el.getBoundingClientRect();
     const m = MARGIN();
-    const bg = el.style.background || el.style.backgroundColor || '#222222';
+    const bg = getComputedStyle(el).backgroundColor || '#222222';
 
     // Backdrop fade in
     gsap.set(backdrop, { display: 'block' });
@@ -185,14 +189,17 @@
 
   // ── Triggers ──────────────────────────────────────────────────────────────────
   document.querySelectorAll('.carousel-slide').forEach(el => {
-    // Inject expand button
+    const vid = el.querySelector('video');
+    const img = el.querySelector('img');
+    if (!vid && !img) return; // skip empty slides — no button, no listener
+
+    // Inject expand button only when there is content to show
     const expandBtn = document.createElement('button');
     expandBtn.className = 'carousel-expand';
     expandBtn.setAttribute('aria-label', 'Expand image');
     expandBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="9,1 13,1 13,5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="5,13 1,13 1,9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="13" y1="1" x2="8" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="13" x2="6" y2="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
     el.appendChild(expandBtn);
 
-    const vid = el.querySelector('video');
     if (vid) {
       el.addEventListener('click', () => {
         if (window.innerWidth <= 600) return;
@@ -201,8 +208,7 @@
     } else {
       el.addEventListener('click', () => {
         if (window.innerWidth <= 600) return;
-        const img = el.querySelector('img');
-        if (img) open(img.src, img.alt, el);
+        open(img.src, img.alt, el);
       });
     }
   });

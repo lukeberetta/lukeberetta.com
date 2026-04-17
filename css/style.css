@@ -257,9 +257,11 @@ body {
 
 
 /* ── Case Studies ── */
-.hero {
-  /* margin-bottom: var(--space-md); */
-}
+
+/* Slide background color variants */
+.carousel-slide.slide-bg-teal  { background: #0C3A41; }
+.carousel-slide.slide-bg-light { background: #e7e7e7; }
+.carousel-slide.slide-bg-rust  { background: #70270C; }
 
 .case-section {
   padding-bottom: var(--space-section);

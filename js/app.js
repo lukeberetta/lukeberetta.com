@@ -127,7 +127,13 @@
     });
   }
 
-  window.addEventListener('scroll', updateFade, { passive: true });
+  let fadeTicking = false;
+  window.addEventListener('scroll', () => {
+    if (!fadeTicking) {
+      requestAnimationFrame(() => { updateFade(); fadeTicking = false; });
+      fadeTicking = true;
+    }
+  }, { passive: true });
   let resizeTimer;
   let lastWidth = window.innerWidth;
   window.addEventListener('resize', () => {
@@ -157,6 +163,9 @@
 
   const allNavInners = Array.from(document.querySelectorAll('.nav .line-inner'));
   const navLinks = allNavInners.filter(inner => inner !== backLinkInner);
+
+  // Set initial aria-hidden state — home view is visible, all others are hidden
+  document.querySelector('.bio').setAttribute('aria-hidden', 'false');
 
   // Intro animation
   gsap.set(allInners, { y: '110%' });
@@ -302,9 +311,11 @@
         document.querySelectorAll(from.el + ' video').forEach(v => { v.pause(); v.currentTime = 0; });
         if (caseStudyViews.has(fromKey)) killScrollTriggers(fromKey);
         gsap.set(from.el, { display: 'none', opacity: 1 });
+        document.querySelector(from.el).setAttribute('aria-hidden', 'true');
         if (caseStudyViews.has(name)) ensureSplit(name);
         gsap.set(to.inners, { y: '110%' });
         gsap.set(to.el, { display: 'block' });
+        document.querySelector(to.el).setAttribute('aria-hidden', 'false');
         window.scrollTo(0, 0);
         if (to.extras?.length) gsap.set(to.extras, { opacity: 0 });
         if (caseStudyViews.has(name)) setupScrollTriggers(name);
