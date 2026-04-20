@@ -4,7 +4,7 @@
   --color-bg: #101010;
   --color-text: #fff;
   --color-accent: #FFA303;
-  --color-text-muted: rgb(156, 156, 156);
+  --color-text-muted: rgb(145, 145, 145);
 
   /* Typography */
   --font-family: 'Rams', sans-serif;
@@ -264,9 +264,17 @@ body.loading .nav {
 /* ── Case Studies ── */
 
 /* Slide background color variants */
-.carousel-slide.slide-bg-teal  { background: #0C3A41; }
-.carousel-slide.slide-bg-light { background: #e7e7e7; }
-.carousel-slide.slide-bg-rust  { background: #70270C; }
+.carousel-slide.slide-bg-teal {
+  background: #0C3A41;
+}
+
+.carousel-slide.slide-bg-light {
+  background: #e7e7e7;
+}
+
+.carousel-slide.slide-bg-rust {
+  background: #70270C;
+}
 
 .case-section {
   padding-bottom: var(--space-section);
@@ -550,10 +558,7 @@ body.loading .nav {
 .works-item.unavailable {
   cursor: none;
   color: var(--color-text-muted);
-}
-
-.works-item.unavailable .muted {
-  opacity: 0.5;
+  /* opacity: 0.5; */
 }
 
 @media (max-width: 600px) {
