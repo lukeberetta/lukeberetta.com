@@ -269,6 +269,9 @@
     Object.keys(views).filter(k => !['home','works','apps','contact'].includes(k))
   );
 
+  // Prevent browser from auto-restoring scroll on back/forward — we handle it in transitionTo
+  history.scrollRestoration = 'manual';
+
   // Seed the initial history entry so popstate always has state
   const initialHash = location.hash.slice(1);
   const initialView = (initialHash && views[initialHash]) ? initialHash : 'home';

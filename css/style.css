@@ -535,6 +535,10 @@ body.loading .nav {
   display: none;
 }
 
+.nav a[data-back] {
+  font-size: var(--font-size-md);
+}
+
 .nav .back-mask.visible {
   display: block;
 }
@@ -546,6 +550,10 @@ body.loading .nav {
 .works-item.unavailable {
   cursor: none;
   color: var(--color-text-muted);
+}
+
+.works-item.unavailable .muted {
+  opacity: 0.5;
 }
 
 @media (max-width: 600px) {
