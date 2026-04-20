@@ -183,7 +183,8 @@ body {
 }
 
 
-body.loading .bio {
+body.loading .bio,
+body.loading .nav {
   visibility: hidden;
 }
 
