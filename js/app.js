@@ -171,6 +171,7 @@
   gsap.set(allInners, { y: '110%' });
   gsap.set(navLinks, { y: '110%' });
   gsap.set(backLinkInner, { y: '110%' });
+  document.body.classList.remove('loading');
 
   gsap.timeline({
     onUpdate: updateFade,

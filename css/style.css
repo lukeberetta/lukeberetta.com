@@ -183,6 +183,10 @@ body {
 }
 
 
+body.loading .bio {
+  visibility: hidden;
+}
+
 .bio p+p {
   margin-top: var(--space-sm);
 }
