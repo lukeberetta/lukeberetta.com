@@ -63,7 +63,7 @@
         data-default="2022 – 2023"></span></div>
     <div class="works-item unavailable"><span>Peach Payments</span><span class="muted" data-default="2021 – 2022"></span>
     </div>
-    <div class="works-item unavailable"><span>Kurtosys</span><span class="muted" data-default="2018 – 2021"></span></div>
+    <div class="works-item" data-to="kurtosys"><span>Kurtosys</span><span class="muted" data-default="2018 – 2021"></span></div>
     <div class="works-item unavailable"><span>MakeReign</span><span class="muted" data-default="2018 – 2018"></span></div>
     <div class="works-item"><a href="https://dribbble.com/LukeBeretta" target="_blank" rel="noopener">Dribbble</a><span
         class="muted" data-default="2017 – 2022"></span></div>
@@ -295,11 +295,12 @@
 
     <section class="case-section">
       <p class="heading" role="heading" aria-level="2">Spritz Finance</p>
-      <p class="text-md">Spritz bridges the gap between crypto and everyday financial life, letting users pay bills,
-        off&#8209;ramp to their bank, and spend anywhere via a Visa card, all funded by crypto. I joined as the sole
-        product designer at a pivotal moment: a new brand identity had just been developed by an agency, and the entire
-        product needed to be rebuilt around it. Over the following year I led design across the full app suite, from the
-        design system foundation through to every major feature and flow.</p>
+      <p class="text-md">Spritz bridges the gap between crypto and everyday financial life, allowing users to pay bills,
+        off&#8209;ramp to their bank, and spend globally via a Visa card, all funded by crypto. I joined as the sole
+        product designer at a pivotal moment, just as a new brand identity had been developed by an external agency and
+        the entire product needed to be rebuilt around it. Over the following year, I led design across the full app
+        suite, establishing the system foundations and carrying that through into every major feature and flow across
+        the product.</p>
       <p class="text-md">Role: <span class="muted">Principal Product Designer</span></p>
       <p class="text-md tight">Timeline: <span class="muted">Nov 2024 – Nov 2025</span></p>
       <p class="text-md tight">Team: <span class="muted">Product, Engineering, Marketing</span></p>
@@ -307,32 +308,32 @@
 
     <section class="case-section">
       <p class="heading" role="heading" aria-level="2">Brand & Design System</p>
-      <p class="text-md">The new brand was bold and crypto&#8209;native, a dark high&#8209;contrast visual language that
-        repositioned Spritz from a friendly fintech to a serious web3 product. My first task was translating that
-        identity into a living system. I designed Aperol, a comprehensive Figma-based design system covering color,
-        typography, iconography, variables, and a full component library. Motion was defined with spring physics rather
-        than easing curves, ensuring modals and overlays felt considered across the product. The system served design,
-        engineering, and marketing from a single source of truth.</p>
+      <p class="text-md">The new brand marked a decisive shift in how Spritz positioned itself. What had previously
+        felt like a soft, fintech&#8209;adjacent product became darker, more restrained, and aligned with
+        crypto&#8209;native expectations. My role was to translate that identity into a system that could support a
+        complex and rapidly evolving product surface. I designed Aperol, a comprehensive design system built in Figma
+        that defined colour, typography, iconography, variables, and a complete component library. Motion was treated as
+        a first class concern, with interaction behaviour defined through spring physics so that overlays and
+        transitions felt consistent and responsive across contexts. The system was adopted across design, engineering,
+        and marketing, becoming the shared foundation for how the product was built, extended, and maintained.</p>
       <div class="case-carousel-wrap">
         <div class="case-carousel">
           <div class="carousel-item">
             <div class="carousel-slide"><img src="img/Spritz/design-system.png" alt="Aperol Design System" class="fill">
             </div>
-            <p class="carousel-caption"><span>Aperol Design System.</span> <span class="muted">Foundations through
-                components, color, typography, icons, variables, and a full UI library built for scale.</span></p>
+            <p class="carousel-caption"><span>Aperol design system.</span> <span class="muted">Covering foundations,
+                variables, and a full component library built for scale.</span></p>
           </div>
           <div class="carousel-item">
             <div class="carousel-slide"><img src="img/Spritz/motion.png" alt="Motion Specification" class="fill"></div>
-            <p class="carousel-caption"><span>Motion Specification.</span> <span class="muted">Spring physics (mass,
-                stiffness, damping) defined for overlay elements, ensuring consistent feel across the product.</span>
-            </p>
+            <p class="carousel-caption"><span>Motion specification.</span> <span class="muted">Using spring physics to
+                define consistent interaction behaviour across the product.</span></p>
           </div>
           <div class="carousel-item">
             <div class="carousel-slide"><img src="img/Spritz/before-after.png" alt="Before & After: Dashboard"
                 class="fill"></div>
-            <p class="carousel-caption"><span>Before & After: Dashboard.</span> <span class="muted">The old brand was
-                warm, playful, and fintech&#8209;adjacent. The new one is dark, restrained, and
-                crypto&#8209;native.</span></p>
+            <p class="carousel-caption"><span>Dashboard before and after.</span> <span class="muted">Showing the shift
+                from a softer fintech aesthetic to a more restrained, crypto&#8209;native language.</span></p>
           </div>
         </div>
       </div>
@@ -340,37 +341,39 @@
 
     <section class="case-section">
       <p class="heading" role="heading" aria-level="2">Onboarding & KYC</p>
-      <p class="text-md">Spritz served two distinct user types: crypto&#8209;native users connecting wallets, and
-        newcomers signing up with email. I designed a unified auth flow that handled both paths — email, Google, Apple,
-        and wallet connection across EVM, Solana, and Sui — without either feeling like a compromise. A welcome screen I
-        introduced captured user intent across five categories, wiring directly into backend segmentation and lifecycle
-        email campaigns. The getting started checklist lived persistently on the home dashboard, tracking account
-        creation, KYC completion, and first transaction, tied to growth campaigns including a $25 signup reward.
-        Previously, KYC existed as multiple fragmented paths across the app. I consolidated these into a single
-        predictable flow used consistently wherever verification was required.</p>
+      <p class="text-md">Spritz served two fundamentally different audiences, crypto&#8209;native users connecting
+        wallets and new users entering through more traditional signup methods. I designed a unified authentication flow
+        that handled both without compromise, supporting email, Google, Apple, and wallet connections across multiple
+        chains within a single coherent entry point. Early in the experience, a welcome screen captured user intent and
+        routed users based on their goals, feeding directly into backend segmentation and lifecycle systems to create a
+        clearer connection between onboarding and long&#8209;term engagement. KYC had previously been fragmented across
+        the product, appearing in different forms depending on where users encountered it. I consolidated this into a
+        single, predictable flow that could be invoked consistently wherever verification was required, reducing
+        confusion and improving completion. A persistent getting started checklist anchored the early experience,
+        tracking progress across account creation, verification, and first transaction while reinforcing momentum
+        through visible rewards.</p>
       <div class="case-carousel-wrap">
         <div class="case-carousel">
           <div class="carousel-item">
             <div class="carousel-slide"><img src="img/Spritz/auth-flow.png" alt="Unified Auth Flow" class="fill"></div>
-            <p class="carousel-caption"><span>Unified Auth Flow.</span> <span class="muted">One entry point for email,
-                Google, Apple, and wallet users, with chain selection for web3&#8209;native users.</span></p>
+            <p class="carousel-caption"><span>Unified authentication flow.</span> <span class="muted">Supporting both
+                traditional and wallet&#8209;based entry points.</span></p>
           </div>
           <div class="carousel-item">
             <div class="carousel-slide"><img src="img/Spritz/intent.png" alt="Intent Capture" class="fill"></div>
-            <p class="carousel-caption"><span>Intent Capture.</span> <span class="muted">A welcome screen that routed
-                users by goal and fed segmentation data directly into CRM and lifecycle emails.</span></p>
+            <p class="carousel-caption"><span>Intent capture.</span> <span class="muted">Routing users based on goals
+                and feeding segmentation data into lifecycle systems.</span></p>
           </div>
           <div class="carousel-item">
             <div class="carousel-slide"><img src="img/Spritz/kyc.png" alt="KYC Pre-screen" class="fill"></div>
-            <p class="carousel-caption"><span>KYC Pre&#8209;screen.</span> <span class="muted">Setting expectations
-                upfront before users committed to the verification flow.</span></p>
+            <p class="carousel-caption"><span>KYC pre&#8209;screen.</span> <span class="muted">Setting expectations
+                before entering verification.</span></p>
           </div>
           <div class="carousel-item">
             <div class="carousel-slide"><img src="img/Spritz/getting-started.png" alt="Getting Started Checklist"
                 class="fill"></div>
-            <p class="carousel-caption"><span>Getting Started Checklist.</span> <span class="muted">Persistent on the
-                home dashboard with a progress ring, error states for failed KYC, and a live reward countdown.</span>
-            </p>
+            <p class="carousel-caption"><span>Getting started checklist.</span> <span class="muted">With progress
+                tracking, error states, and reward incentives.</span></p>
           </div>
         </div>
       </div>
@@ -378,41 +381,44 @@
 
     <section class="case-section">
       <p class="heading" role="heading" aria-level="2">Cards</p>
-      <p class="text-md">The Spritz Card was one of the product's most complex features and when I joined, it didn't
-        fully exist yet. I designed the end&#8209;to&#8209;end experience from scratch: card type selection, compliance
-        collection, onboarding explainer, progressive card states, activation, card detail management, and top&#8209;up.
-        The payment flow supported wallet pay and blockchain pay, with asset selection, rewards redemption, and a live
-        fee breakdown, all in a single mobile&#8209;optimised screen. Card states communicated exactly where users were
-        in the process without requiring them to navigate elsewhere.</p>
+      <p class="text-md">The Spritz card was one of the most complex areas of the product and did not fully exist when
+        I joined. I designed the experience end to end, shaping the journey from initial selection through onboarding,
+        activation, and ongoing management. Users were guided through card type decisions with clear trade&#8209;offs
+        surfaced in context, followed by compliance requirements and a structured onboarding sequence that made the
+        process legible without oversimplifying it. The experience accounted for multiple states over time, from
+        application through to delivery and activation, ensuring that users always understood where they were without
+        needing to navigate across different parts of the product. The payment flow unified wallet pay and blockchain
+        pay into a single surface, handling asset selection, rewards, fees, and confirmation within a
+        mobile&#8209;optimised layout. The intention was to remove fragmentation and allow complex actions to be
+        completed within a single, coherent context.</p>
       <div class="case-carousel-wrap">
         <div class="case-carousel">
           <div class="carousel-item">
             <div class="carousel-slide"><img src="img/Spritz/card-selection.png" alt="Card Selection" class="fill">
             </div>
-            <p class="carousel-caption"><span>Card Selection.</span> <span class="muted">Virtual (free, instant) and
-                physical ($20, 1 to 2 weeks) presented with clear trade&#8209;offs at the point of decision.</span></p>
+            <p class="carousel-caption"><span>Card selection.</span> <span class="muted">Virtual and physical options
+                presented with clear trade&#8209;offs.</span></p>
           </div>
           <div class="carousel-item">
             <div class="carousel-slide"><img src="img/Spritz/card-designs.png" alt="Card Designs" class="fill"></div>
-            <p class="carousel-caption"><span>Card Graphics.</span> <span class="muted">Custom card art I designed for
-                the Spritz Visa — physical and virtual variants across light and dark finishes.</span></p>
+            <p class="carousel-caption"><span>Custom card design.</span> <span class="muted">The Spritz Visa across
+                physical and virtual formats.</span></p>
           </div>
           <div class="carousel-item">
             <div class="carousel-slide"><img src="img/Spritz/card-states.png" alt="Progressive Card States"
                 class="fill"></div>
-            <p class="carousel-caption"><span>Progressive Card States.</span> <span class="muted">From coming soon
-                through action required, shipped, and ready to use — status always visible without leaving the
-                page.</span></p>
+            <p class="carousel-caption"><span>Progressive card states.</span> <span class="muted">Reflecting status
+                from application to activation.</span></p>
           </div>
           <div class="carousel-item">
             <div class="carousel-slide"></div>
-            <p class="carousel-caption"><span>Activation Flow.</span> <span class="muted">Physical card activated via
-                expiry date entry, with estimated delivery date surfaced in context.</span></p>
+            <p class="carousel-caption"><span>Activation flow.</span> <span class="muted">With delivery context and
+                simple verification.</span></p>
           </div>
           <div class="carousel-item">
             <div class="carousel-slide"><img src="img/Spritz/card-detail.png" alt="Card Detail" class="fill"></div>
-            <p class="carousel-caption"><span>Card Detail.</span> <span class="muted">Card art, freeze, card details,
-                add to Apple/Google Wallet, and transaction history all on one surface.</span></p>
+            <p class="carousel-caption"><span>Card detail.</span> <span class="muted">Combining controls, wallet
+                integration, and transaction history.</span></p>
           </div>
         </div>
       </div>
@@ -420,37 +426,36 @@
 
     <section class="case-section">
       <p class="heading" role="heading" aria-level="2">Core Flows</p>
-      <p class="text-md">Off&#8209;ramp was the product's primary revenue driver. The previous design was a marketing
-        splash page inside the app — a single CTA with no account management. I replaced it with a proper surface:
-        account management, settlement time transparency per method, and localised variations for South American markets
-        including PIX and SPEI CLABE. The core payment flow, shared across off&#8209;ramp, bill pay, card top&#8209;up,
-        and buy crypto, was redesigned from the ground up. It had been broken on mobile and inconsistent across
-        contexts. The new version handled crypto asset selection, fiat conversion, rewards application, fee breakdown,
-        and method&#8209;specific CTAs in a single coherent screen that worked across all device sizes. Bill pay and buy
-        crypto received similar treatment, surfacing key details that had been buried and reducing friction between
-        intent and completion.</p>
+      <p class="text-md">Off&#8209;ramp was the primary revenue driver, yet the existing experience was shallow and
+        disconnected. I redesigned it as a complete account management surface, introducing method selection, settlement
+        transparency, and localisation for markets such as South America. The core payment flow was rebuilt from the
+        ground up, replacing an inconsistent and fragile implementation with a single, coherent interface that handled
+        crypto asset selection, fiat conversion, rewards, fees, and context&#8209;specific actions. This structure was
+        applied consistently across off&#8209;ramp, bill pay, card top&#8209;up, and crypto purchases, creating a
+        shared logic across the product. Other flows followed the same approach. Bill pay surfaced key information such
+        as balances and due dates more clearly, while swaps were simplified into a focused single&#8209;screen
+        experience that reduced friction between intent and completion.</p>
       <div class="case-carousel-wrap">
         <div class="case-carousel">
-
           <div class="carousel-item">
             <div class="carousel-slide"><img src="img/Spritz/off-ramp.png" alt="Off-ramp" class="fill"></div>
-            <p class="carousel-caption"><span>Off&#8209;ramp.</span> <span class="muted">A proper account
-                management surface with method selection, settlement timing, and multi&#8209;market support.</span></p>
+            <p class="carousel-caption"><span>Off&#8209;ramp.</span> <span class="muted">Redesigned as a full account
+                management surface with settlement clarity and market localisation.</span></p>
           </div>
           <div class="carousel-item">
             <div class="carousel-slide"><img src="img/Spritz/payment-flow.png" alt="Payment Flow" class="fill"></div>
-            <p class="carousel-caption"><span>Payment Flow.</span> <span class="muted">Wallet pay and blockchain pay in
-                one screen, with asset selector, rewards toggle, fee breakdown, and a context&#8209;aware CTA. Rebuilt
-                to work on mobile.</span></p>
+            <p class="carousel-caption"><span>Payment flow.</span> <span class="muted">Unifying wallet and blockchain
+                interactions in a single responsive interface.</span></p>
           </div>
           <div class="carousel-item">
             <div class="carousel-slide"><img src="img/Spritz/bill-pay.png" alt="Bill Pay" class="fill"></div>
-            <p class="carousel-caption"><span>Bill Pay.</span> <span class="muted">Card&#8209;based layout surfacing
-                balance, due date, and last sync, with biller search to reduce friction.</span></p>
+            <p class="carousel-caption"><span>Bill pay.</span> <span class="muted">With clearer structure and reduced
+                friction.</span></p>
           </div>
           <div class="carousel-item">
             <div class="carousel-slide"><img src="img/Spritz/swaps.png" alt="Swaps" class="fill"></div>
-            <p class="carousel-caption"><span>Swaps.</span> <span class="muted">Cross&#8209;chain asset swaps with live conversion rates and a single&#8209;screen confirmation.</span></p>
+            <p class="carousel-caption"><span>Swaps.</span> <span class="muted">Supporting cross&#8209;chain
+                transactions with simplified confirmation.</span></p>
           </div>
         </div>
       </div>
@@ -458,27 +463,30 @@
 
     <section class="case-section">
       <p class="heading" role="heading" aria-level="2">Growth & Retention</p>
-      <p class="text-md">A persistent feedback button — my initiative — gave users a direct line to the team from
-        anywhere in the app. The copy asked feature requesters to explain how they'd use it and why, filtering for
-        signal over noise. It got significant traction internally. The referral program and rewards dashboard were
-        refined to be clearer and more actionable. When a third&#8209;party card provider froze user funds, I designed
-        the crisis communication interface, a visually distinct treatment that separated it from the normal product
-        experience, with transparent explanation of the situation and a clear opt-in recovery path.</p>
+      <p class="text-md">Growth work focused on creating direct feedback loops and making incentives more legible. I
+        introduced a persistent in&#8209;app feedback mechanism that gave users a direct line to the team from anywhere
+        in the product. The framing encouraged users to explain how they would use a feature and why, filtering for
+        more useful signal and becoming a valuable internal input. The referral system and rewards dashboard were
+        refined to make progress and incentives easier to understand and act on. During a period where a
+        third&#8209;party provider froze user funds, I designed a dedicated crisis communication interface that clearly
+        separated itself from the core product experience. The emphasis was on clarity and trust, explaining the
+        situation directly while guiding users through recovery options in a controlled and compliant way.</p>
       <div class="case-carousel-wrap">
         <div class="case-carousel">
           <div class="carousel-item">
             <div class="carousel-slide"><img src="img/Spritz/feedback.png" alt="In-app Feedback" class="fill"></div>
-            <p class="carousel-caption"><span>In&#8209;app Feedback.</span> <span class="muted">A simple modal
-                accessible from the nav, framed to extract useful signal, not just sentiment.</span></p>
+            <p class="carousel-caption"><span>In&#8209;app feedback.</span> <span class="muted">Designed to capture
+                high&#8209;quality user input.</span></p>
           </div>
           <div class="carousel-item">
             <div class="carousel-slide"><img src="img/Spritz/rewards.png" alt="Referral & Rewards" class="fill"></div>
-            <p class="carousel-caption"><span>Referral & Rewards.</span> <span class="muted">Reward unlock steps, referral loop, and earnings progress — multiple motivational mechanics designed to drive activation and retention.</span></p>
+            <p class="carousel-caption"><span>Referral & Rewards.</span> <span class="muted">With clearer progress and
+                incentive structures.</span></p>
           </div>
           <div class="carousel-item">
             <div class="carousel-slide"><img src="img/Spritz/crisis.png" alt="Crisis Communication" class="fill"></div>
-            <p class="carousel-caption"><span>Crisis Communication.</span> <span class="muted">A distinct visual
-                treatment for a frozen funds recovery program — honest, calm, and compliant.</span></p>
+            <p class="carousel-caption"><span>Crisis communication.</span> <span class="muted">Designed for clarity,
+                separation, and trust.</span></p>
           </div>
         </div>
       </div>
@@ -486,10 +494,222 @@
 
     <section class="case-section outro">
       <p class="heading" role="heading" aria-level="2">Outro</p>
-      <p class="text-md">Spritz was the most expansive single-product engagement I've taken on — sole designer across a
-        full rebrand implementation, a new design system, and a product suite touching payments, compliance, crypto, and
-        growth. Working alone sharpened my instinct for what to prioritise and what to leave behind. The most meaningful
-        work wasn't any single feature, it was building the foundation that made everything else consistent.</p>
+      <p class="text-md">Spritz was a full system rebuild delivered by a single designer across brand, product, and
+        growth. The work established a consistent foundation across a complex surface area spanning payments,
+        compliance, and crypto interactions. The most meaningful outcome was not any individual feature, but the
+        coherence of the system as a whole, creating a product that felt deliberate, legible, and scalable, and
+        providing a foundation the team could continue to build on.</p>
+    </section>
+
+  </div>
+
+  <div class="kurtosys case-study container" aria-hidden="true">
+
+    <section class="case-section">
+      <p class="heading" role="heading" aria-level="2">Kurtosys</p>
+      <p class="text-md">Kurtosys is a digital experience platform for the asset management industry, enabling fund
+        managers to distribute data, documents, and insights to institutional investors globally. I joined in 2018 as a
+        product designer and grew into the role of lead product designer, ultimately becoming responsible for the design
+        language, core platform, and key client experiences across the business.</p>
+      <p class="text-md">Role: <span class="muted">Product Designer → Lead Product Designer</span></p>
+      <p class="text-md tight">Timeline: <span class="muted">November 2018 – February 2021</span></p>
+      <p class="text-md tight">Team: <span class="muted">Product, Engineering, Marketing, Client Services</span></p>
+    </section>
+
+    <section class="case-section">
+      <p class="heading" role="heading" aria-level="2">From Fragmentation to System</p>
+      <p class="text-md">My first project was a reporting tool for BNY Mellon. It was already underway, but lacked
+        coherence in both product thinking and execution. I took ownership of the design and, in parallel, began
+        contributing directly to the frontend codebase. That overlap quickly became a defining advantage. Decisions
+        collapsed faster, feedback loops tightened, and the quality of the product improved as design and
+        implementation moved together rather than in sequence.</p>
+      <p class="text-md">At the same time, I began refining the core platform. What started as small visual adjustments
+        exposed deeper structural issues. The product had evolved without a unifying logic, with multiple navigation
+        systems, inconsistent branding, and no shared hierarchy across the interface. I approached it as a system
+        problem, working layer by layer through typography, colour, layout, and components until the product resolved
+        into a single, coherent language. This work led to a promotion into the core product team, with responsibility
+        for design across the entire platform.</p>
+      <div class="case-carousel-wrap">
+        <div class="case-carousel">
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Before.</span> <span class="muted">The platform showing fragmented
+                navigation, overlapping product identities, and no shared hierarchy.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>After.</span> <span class="muted">The application resolved into a unified
+                shell with a consistent type system and a single navigation model.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Design System.</span> <span class="muted">Foundational components and
+                patterns used across product and marketing.</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="heading" role="heading" aria-level="2">A System Designed to Scale</p>
+      <p class="text-md">As the company grew, consistency became an operational requirement rather than a visual
+        preference. I built the Kurtosys Design System as a shared foundation across design, engineering, and
+        marketing, defining typography, colour, iconography, and a comprehensive component library that extended from
+        core interface elements to complex data visualisation patterns.</p>
+      <p class="text-md">The system went beyond interface components. I designed a modular library of financial charts
+        and ESG reporting tools, along with a catalogue of composable Studio Apps that allowed teams to assemble
+        client&#8209;facing products without writing code. For a company of roughly 200 people, it became the single
+        source of truth for how Kurtosys products were built and experienced.</p>
+      <div class="case-carousel-wrap">
+        <div class="case-carousel">
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Foundations.</span> <span class="muted">Typography, colour, and core
+                visual language.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Component Library.</span> <span class="muted">Reusable interface patterns
+                built for scale.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Data Visualisation System.</span> <span class="muted">Financial and ESG
+                reporting.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Studio Apps.</span> <span class="muted">Modular composition of client
+                experiences.</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="heading" role="heading" aria-level="2">Kapital — One System, Many Expressions</p>
+      <p class="text-md">On top of this foundation, I designed Kapital, a white&#8209;label product layer that allowed
+        Kurtosys to deploy tailored client portals from a shared system. The architecture was deliberately simple. A
+        single system was extended into multiple branded implementations, allowing each client to express their identity
+        while inheriting the same underlying structure, components, and interaction patterns.</p>
+      <p class="text-md">Clients including BNP Paribas, SALI, OP, and BNY Mellon each received a distinct visual
+        language, while the core experience remained consistent. The product surface covered the full investor journey,
+        including dashboards, fund discovery, portfolio tools, document management, and advanced analytics. One of the
+        more complex features was the Optimizer, a two&#8209;step portfolio construction tool based on
+        mean&#8209;variance optimisation. It allowed users to define constraints, explore the efficient frontier, and
+        apply portfolio allocations directly. Every surface, including responsive and print outputs, was designed as
+        part of a cohesive system.</p>
+      <div class="case-carousel-wrap">
+        <div class="case-carousel">
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Architecture.</span> <span class="muted">A shared system branching into
+                client&#8209;specific implementations.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Product Surface.</span> <span class="muted">Dashboards, fund centre,
+                portfolio tools, and document hub.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Optimizer.</span> <span class="muted">Constraint setup, efficient
+                frontier exploration, and portfolio selection.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Client Implementations.</span> <span class="muted">SALI, BNY Mellon, BNP
+                Paribas, and OP.</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="heading" role="heading" aria-level="2">Designing at Institutional Scale</p>
+      <p class="text-md">Client work introduced a different level of complexity, shaped by data density, regulation,
+        and context. For SALI, I designed a full investor portal including authentication, portfolio tools, and
+        administrative controls suited to a regulated environment. For BNY Mellon, I designed next&#8209;generation
+        portfolio analytics and reporting tools, including large&#8209;scale correlation matrices and scenario analysis
+        across dozens of funds. This pushed the limits of conventional interface design, requiring clarity under
+        extreme data density.</p>
+      <p class="text-md">For BNP Paribas, I adapted the system to support ESG&#8209;focused investment products,
+        aligning the experience with their brand and strategy. For OP, I led multi&#8209;directional design
+        explorations, developing and refining parallel concepts in close collaboration with the client. Across all
+        engagements, the goal remained consistent. Complex financial systems needed to feel structured, legible, and
+        usable.</p>
+      <div class="case-carousel-wrap">
+        <div class="case-carousel">
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>SALI Portal.</span> <span class="muted">Investor portal with fund
+                discovery and portfolio tools.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>BNY Mellon.</span> <span class="muted">Performance analytics with
+                interactive comparison.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Print Reports.</span> <span class="muted">High&#8209;density data
+                visualisation across large fund sets.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>BNP Paribas Portal.</span> <span class="muted">ESG&#8209;focused portal
+                experience.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>OP Portal.</span> <span class="muted">Design exploration across multiple
+                directions.</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="heading" role="heading" aria-level="2">Extending the System Beyond Product</p>
+      <p class="text-md">Later, my scope expanded into brand and marketing. I worked alongside an external brand lead
+        on a company rebrand and later took full ownership, redesigning and building the Kurtosys website
+        end&#8209;to&#8209;end. The work extended across product marketing, case studies, and a full documentation
+        ecosystem including knowledge base and API documentation.</p>
+      <p class="text-md">I also brought the design system into WordPress, aligning marketing output with the same
+        principles used in the product. By the time I left, I was responsible for the full design surface of the
+        company, spanning product, platform, brand, and client work.</p>
+      <div class="case-carousel-wrap">
+        <div class="case-carousel">
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Website.</span> <span class="muted">Marketing pages and product
+                narratives.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Documentation.</span> <span class="muted">Knowledge base and API
+                reference.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Platform.</span> <span class="muted">Design system applied across the
+                live product.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>System View.</span> <span class="muted">All components and visual
+                language in a single context.</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section outro">
+      <p class="heading" role="heading" aria-level="2">Outcome</p>
+      <p class="text-md">I joined Kurtosys as a designer who could code and left having defined the systems that shaped
+        the company's product and client experiences. The most meaningful outcome was not a single feature or release,
+        but the adoption of a shared design language across the organisation and a system that continued to scale after
+        I left.</p>
     </section>
 
   </div>

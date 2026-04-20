@@ -98,6 +98,13 @@
   const spritzCarouselWraps = Array.from(document.querySelectorAll('.spritz .case-carousel-wrap'));
   spritzEl.style.cssText = '';
 
+  const kurtosysEl = document.querySelector('.kurtosys');
+  kurtosysEl.style.cssText = 'display:block;visibility:hidden';
+  const kurtosysOriginals = captureOriginals('.kurtosys p');
+  const kurtosysInners = maskContent('.kurtosys p');
+  const kurtosysCarouselWraps = Array.from(document.querySelectorAll('.kurtosys .case-carousel-wrap'));
+  kurtosysEl.style.cssText = '';
+
   // Wrap nav links in masks
   maskNavLinks();
 
@@ -194,7 +201,7 @@
     }, '-=0.3');
 
   // ScrollTrigger state per case study
-  const csSplitWidths = { journey: window.innerWidth, spritz: window.innerWidth };
+  const csSplitWidths = { journey: window.innerWidth, spritz: window.innerWidth, kurtosys: window.innerWidth };
   const csScrollTriggers = {};
 
   function killScrollTriggers(key) {
@@ -242,8 +249,9 @@
     works:   { el: '.works',    inners: worksInners   },
     apps:    { el: '.apps',     inners: appsInners    },
     contact: { el: '.contact',  inners: contactInners },
-    journey: { el: '.journey',  inners: journeyInners, extras: journeyCarouselWraps, originals: journeyOriginals },
-    spritz:  { el: '.spritz',   inners: spritzInners,  extras: spritzCarouselWraps,  originals: spritzOriginals  }
+    journey:  { el: '.journey',   inners: journeyInners,  extras: journeyCarouselWraps,  originals: journeyOriginals  },
+    spritz:   { el: '.spritz',    inners: spritzInners,   extras: spritzCarouselWraps,   originals: spritzOriginals   },
+    kurtosys: { el: '.kurtosys',  inners: kurtosysInners, extras: kurtosysCarouselWraps, originals: kurtosysOriginals }
   };
 
   let currentView = 'home';
