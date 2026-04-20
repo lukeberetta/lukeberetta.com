@@ -491,13 +491,18 @@ body.loading .nav {
   z-index: 10;
   opacity: 0;
   transition: color 0.15s ease, background 0.15s ease, opacity 0.15s ease;
-  pointer-events: none;
 }
 
-.carousel-slide:hover .carousel-expand {
+.carousel-slide:hover .carousel-expand,
+.carousel-expand:focus-visible {
   opacity: 1;
   color: #fff;
   background: rgba(0, 0, 0, 0.6);
+}
+
+.carousel-expand:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
 }
 
 @media (max-width: 600px) {

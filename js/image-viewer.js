@@ -61,9 +61,12 @@
 
   function resetTransform(animate) {
     if (animate) {
-      gsap.to(viewImg, { x: 0, y: 0, scale: 1, duration: 0.4, ease: 'power3.out' });
+      gsap.to(viewImg, {
+        x: 0, y: 0, scale: 1, duration: 0.4, ease: 'power3.out',
+        onComplete: () => gsap.set(viewImg, { clearProps: 'transform,willChange' })
+      });
     } else {
-      gsap.set(viewImg, { x: 0, y: 0, scale: 1 });
+      gsap.set(viewImg, { clearProps: 'transform,willChange' });
     }
     scale = 1;
     panX = 0;
@@ -85,13 +88,13 @@
     } else {
       overlay.classList.remove('is-video');
       gsap.set(viewVideo, { display: 'none' });
-      viewImg.src = src;
+      gsap.set(viewImg, { display: 'block', opacity: 1 });
+      viewImg.onerror = () => {
+        viewImg.alt = 'Image failed to load';
+        gsap.set(viewImg, { opacity: 0.3 });
+      };
       viewImg.alt = alt || '';
-      gsap.set(viewImg, { display: 'block' });
-    viewImg.onerror = () => {
-      viewImg.alt = 'Image failed to load';
-      gsap.set(viewImg, { opacity: 0.3 });
-    };
+      viewImg.src = src;
     }
 
     resetTransform(false);
@@ -181,7 +184,8 @@
           gsap.set(viewImg, { display: 'block' });
         } else {
           gsap.set(viewImg, { opacity: 1 });
-          viewImg.src = '';
+          viewImg.onerror = null;
+          viewImg.removeAttribute('src');
         }
       }
     });

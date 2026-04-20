@@ -246,20 +246,6 @@
     spritz:  { el: '.spritz',   inners: spritzInners,  extras: spritzCarouselWraps,  originals: spritzOriginals  }
   };
 
-  // Play videos only when they're visible in the viewport
-  const videoObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      const video = entry.target;
-      if (entry.isIntersecting) {
-        video.play().catch(() => {});
-      } else {
-        video.pause();
-      }
-    });
-  }, { threshold: 0.5 });
-
-  document.querySelectorAll('.case-study video').forEach(v => videoObserver.observe(v));
-
   let currentView = 'home';
   let isAnimating = false;
   let pendingView = null;
@@ -277,12 +263,30 @@
   const initialView = (initialHash && views[initialHash]) ? initialHash : 'home';
   history.replaceState({ view: initialView }, '', location.href);
 
+  function setActiveNavLink(name) {
+    document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
+    const link = document.querySelector(`.nav a[data-to="${name}"]`);
+    if (link) link.classList.add('active');
+  }
+
   function transitionTo(name, { pushHistory = true } = {}) {
     if (isAnimating) {
       if (name !== currentView) pendingView = name;
       return;
     }
     if (name === currentView) return;
+
+    // Reconcile nav state whenever we cross the case-study boundary
+    const leavingCase = caseStudyViews.has(currentView);
+    const enteringCase = caseStudyViews.has(name);
+    if (!leavingCase && enteringCase) {
+      enterCaseStudy();
+    } else if (leavingCase && !enteringCase) {
+      exitCaseStudy(name);
+    } else if (!leavingCase && !enteringCase) {
+      setActiveNavLink(name);
+    }
+    // case-to-case: back link stays visible, no nav-link active state
 
     if (pushHistory) {
       history.pushState({ view: name }, '', name === 'home' ? location.pathname : '#' + name);
@@ -344,24 +348,18 @@
   document.querySelectorAll('.nav a[data-to]').forEach(link => {
     link.addEventListener('click', e => {
       e.preventDefault();
-      document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
-      link.classList.add('active');
       transitionTo(link.dataset.to);
     });
   });
 
   // Works item click handlers (case study navigation)
   document.querySelectorAll('.works-item[data-to]').forEach(item => {
-    item.addEventListener('click', () => {
-      enterCaseStudy();
-      transitionTo(item.dataset.to);
-    });
+    item.addEventListener('click', () => transitionTo(item.dataset.to));
   });
 
   // Back link handler
   backLinkEl.addEventListener('click', e => {
     e.preventDefault();
-    exitCaseStudy('works');
     transitionTo('works');
   });
 
@@ -378,15 +376,8 @@
     });
   }
 
-  // Helper: slide back link out and nav links in (used by back-link clicks and popstate)
+  // Helper: slide back link out and nav links in (called from transitionTo when leaving a case study)
   function exitCaseStudy(activeView) {
-    if (isAnimating && activeTimeline) {
-      activeTimeline.kill();
-      activeTimeline = null;
-      gsap.set(views[currentView].el, { display: 'block', opacity: 1 });
-      isAnimating = false;
-      pendingView = null;
-    }
     gsap.to(backLinkInner, {
       y: '110%', duration: 0.5, ease: 'power4.in',
       onComplete: () => {
@@ -395,40 +386,18 @@
         gsap.fromTo(navLinks, { y: '110%' }, { y: '0%', duration: 0.7, ease: 'power4.out', stagger: 0.08 });
       }
     });
-    document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
-    const link = document.querySelector(`.nav a[data-to="${activeView}"]`);
-    if (link) link.classList.add('active');
+    setActiveNavLink(activeView);
   }
 
   // Browser back/forward
   window.addEventListener('popstate', e => {
     const target = (e.state?.view && views[e.state.view]) ? e.state.view : 'home';
-    const leavingCase = caseStudyViews.has(currentView);
-    const enteringCase = caseStudyViews.has(target);
-
-    if (leavingCase && !enteringCase) {
-      exitCaseStudy(target);
-    } else if (!leavingCase && enteringCase) {
-      enterCaseStudy();
-    } else if (!leavingCase && !enteringCase) {
-      document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
-      const link = document.querySelector(`.nav a[data-to="${target}"]`);
-      if (link) link.classList.add('active');
-    }
-
     transitionTo(target, { pushHistory: false });
   });
 
   // Deep-link: if the page loaded with a hash, navigate there after the intro
   if (initialView !== 'home') {
     document.addEventListener('intro-complete', () => {
-      if (caseStudyViews.has(initialView)) {
-        enterCaseStudy();
-      } else {
-        document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
-        const link = document.querySelector(`.nav a[data-to="${initialView}"]`);
-        if (link) link.classList.add('active');
-      }
       transitionTo(initialView, { pushHistory: false });
     }, { once: true });
   }
