@@ -4,6 +4,7 @@
     new Promise(function (resolve) { setTimeout(resolve, 2000); })
   ]);
   fontsReady.then(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const orangeSpans = document.querySelectorAll('.bio .orange');
   if (!orangeSpans.length) return;
 
@@ -20,6 +21,7 @@
       allChars.push(s);
     });
   });
+  if (!allChars.length) return;
 
   // Collect the .line-mask ancestors so we can unclip during animation
   const masks = new Set();

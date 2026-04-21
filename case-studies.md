@@ -191,7 +191,7 @@ Clients including BNP Paribas, SALI, OP, and BNY Mellon each received a distinct
 
 **Carousel captions:**
 - Architecture. A shared system branching into client-specific implementations.
-- Product Surface. Dashboards, fund centre, portfolio tools, and document hub.
+- Template library. Login, dashboard, fund centre, portfolio tools, and document management, restyled per client.
 - Optimizer. Constraint setup, efficient frontier exploration, and portfolio selection.
 - Client Implementations. SALI, BNY Mellon, BNP Paribas, and OP.
 
@@ -204,7 +204,7 @@ For BNP Paribas, I adapted the system to support ESG-focused investment products
 **Carousel captions:**
 - SALI Portal. Investor portal with fund discovery and portfolio tools.
 - BNY Mellon. Performance analytics with interactive comparison.
-- Print Reports. High-density data visualisation across large fund sets.
+- Complex Print Reports. High-density data visualisation across large fund sets.
 - BNP Paribas Portal. ESG-focused portal experience.
 - OP Portal. Design exploration across multiple directions.
 

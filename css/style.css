@@ -173,6 +173,7 @@ body {
   font-size: var(--font-size-md);
   line-height: var(--line-height-md);
   letter-spacing: var(--letter-spacing-md);
+  font-weight: inherit;
   color: var(--color-accent);
 }
 
@@ -285,10 +286,8 @@ body.loading .nav {
   min-height: unset;
 }
 
-.case-section p+p {
-  margin-top: var(--space-sm);
-}
-
+.case-section p+p,
+.case-section .line-mask+p,
 .case-section .case-carousel-wrap+p {
   margin-top: var(--space-sm);
 }
@@ -563,7 +562,6 @@ body.loading .nav {
 .works-item.unavailable {
   cursor: none;
   color: var(--color-text-muted);
-  /* opacity: 0.5; */
 }
 
 @media (max-width: 600px) {

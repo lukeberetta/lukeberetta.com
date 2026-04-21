@@ -7,6 +7,9 @@
 
   gsap.registerPlugin(ScrollTrigger);
 
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const D = (d) => reduceMotion ? 0 : d;
+
   function maskContent(selector) {
     const inners = [];
     document.querySelectorAll(selector).forEach(el => {
@@ -84,24 +87,26 @@
   const worksInners   = maskContent('.works .works-item');
   const appsInners    = maskContent('.apps .works-item');
   const contactInners = maskContent('.contact .works-item');
+  const CASE_CONTENT = ':is(p, h2)';
+
   const journeyEl = document.querySelector('.journey');
   journeyEl.style.cssText = 'display:block;visibility:hidden';
-  const journeyOriginals = captureOriginals('.journey p');
-  const journeyInners = maskContent('.journey p');
+  const journeyOriginals = captureOriginals('.journey ' + CASE_CONTENT);
+  const journeyInners = maskContent('.journey ' + CASE_CONTENT);
   const journeyCarouselWraps = Array.from(document.querySelectorAll('.journey .case-carousel-wrap'));
   journeyEl.style.cssText = '';
 
   const spritzEl = document.querySelector('.spritz');
   spritzEl.style.cssText = 'display:block;visibility:hidden';
-  const spritzOriginals = captureOriginals('.spritz p');
-  const spritzInners = maskContent('.spritz p');
+  const spritzOriginals = captureOriginals('.spritz ' + CASE_CONTENT);
+  const spritzInners = maskContent('.spritz ' + CASE_CONTENT);
   const spritzCarouselWraps = Array.from(document.querySelectorAll('.spritz .case-carousel-wrap'));
   spritzEl.style.cssText = '';
 
   const kurtosysEl = document.querySelector('.kurtosys');
   kurtosysEl.style.cssText = 'display:block;visibility:hidden';
-  const kurtosysOriginals = captureOriginals('.kurtosys p');
-  const kurtosysInners = maskContent('.kurtosys p');
+  const kurtosysOriginals = captureOriginals('.kurtosys ' + CASE_CONTENT);
+  const kurtosysInners = maskContent('.kurtosys ' + CASE_CONTENT);
   const kurtosysCarouselWraps = Array.from(document.querySelectorAll('.kurtosys .case-carousel-wrap'));
   kurtosysEl.style.cssText = '';
 
@@ -171,34 +176,38 @@
   const allNavInners = Array.from(document.querySelectorAll('.nav .line-inner'));
   const navLinks = allNavInners.filter(inner => inner !== backLinkInner);
 
-  // Set initial aria-hidden state — home view is visible, all others are hidden
-  document.querySelector('.bio').setAttribute('aria-hidden', 'false');
-
   // Intro animation
   gsap.set(allInners, { y: '110%' });
   gsap.set(navLinks, { y: '110%' });
   gsap.set(backLinkInner, { y: '110%' });
   document.body.classList.remove('loading');
 
-  gsap.timeline({
-    onUpdate: updateFade,
-    onComplete: () => {
-      updateFade();
-      document.dispatchEvent(new CustomEvent('intro-complete'));
-    }
-  })
-    .to(allInners, {
-      y: '0%',
-      duration: 0.9,
-      ease: 'power4.out',
-      stagger: 0.08
+  if (reduceMotion) {
+    gsap.set(allInners, { y: '0%' });
+    gsap.set(navLinks, { y: '0%' });
+    updateFade();
+    requestAnimationFrame(() => document.dispatchEvent(new CustomEvent('intro-complete')));
+  } else {
+    gsap.timeline({
+      onUpdate: updateFade,
+      onComplete: () => {
+        updateFade();
+        document.dispatchEvent(new CustomEvent('intro-complete'));
+      }
     })
-    .to(navLinks, {
-      y: '0%',
-      stagger: 0.08,
-      duration: 0.7,
-      ease: 'power4.out'
-    }, '-=0.3');
+      .to(allInners, {
+        y: '0%',
+        duration: 0.9,
+        ease: 'power4.out',
+        stagger: 0.08
+      })
+      .to(navLinks, {
+        y: '0%',
+        stagger: 0.08,
+        duration: 0.7,
+        ease: 'power4.out'
+      }, '-=0.3');
+  }
 
   // ScrollTrigger state per case study
   const csSplitWidths = { journey: window.innerWidth, spritz: window.innerWidth, kurtosys: window.innerWidth };
@@ -217,6 +226,10 @@
     inners.forEach(inner => {
       (inner.getBoundingClientRect().top < vh * 0.9 ? aboveFold : belowFold).push(inner);
     });
+    if (reduceMotion) {
+      gsap.set(inners, { y: '0%' });
+      return;
+    }
     if (aboveFold.length) {
       gsap.to(aboveFold, { y: '0%', duration: 0.9, ease: 'power4.out', stagger: 0.08 });
     }
@@ -235,7 +248,7 @@
     const csEl = document.querySelector(view.el);
     const isHidden = getComputedStyle(csEl).display === 'none';
     if (isHidden) csEl.style.cssText = 'display:block;visibility:hidden';
-    view.inners = maskContent(view.el + ' p');
+    view.inners = maskContent(view.el + ' ' + CASE_CONTENT);
     if (isHidden) csEl.style.cssText = '';
     csSplitWidths[key] = window.innerWidth;
     // Refresh fadeInners to include new line-inner elements
@@ -268,8 +281,9 @@
 
   // Seed the initial history entry so popstate always has state
   const initialHash = location.hash.slice(1);
-  const initialView = (initialHash && views[initialHash]) ? initialHash : 'home';
-  history.replaceState({ view: initialView }, '', location.href);
+  const isValidHash = !!(initialHash && views[initialHash]);
+  const initialView = isValidHash ? initialHash : 'home';
+  history.replaceState({ view: initialView }, '', isValidHash ? location.href : location.pathname);
 
   function setActiveNavLink(name) {
     document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
@@ -321,30 +335,28 @@
         }
       }
     })
-      .to(from.el, { opacity: 0, duration: 0.3, ease: 'power2.in' })
-      .to(from.extras || [], { opacity: 0, duration: 0.3, ease: 'power2.in' }, '<')
+      .to(from.el, { opacity: 0, duration: D(0.3), ease: 'power2.in' })
+      .to(from.extras || [], { opacity: 0, duration: D(0.3), ease: 'power2.in' }, '<')
       .add(() => {
         document.querySelectorAll(from.el + ' video').forEach(v => { v.pause(); v.currentTime = 0; });
         if (caseStudyViews.has(fromKey)) killScrollTriggers(fromKey);
         gsap.set(from.el, { display: 'none', opacity: 1 });
-        document.querySelector(from.el).setAttribute('aria-hidden', 'true');
         if (caseStudyViews.has(name)) ensureSplit(name);
         gsap.set(to.inners, { y: '110%' });
         gsap.set(to.el, { display: 'block' });
-        document.querySelector(to.el).setAttribute('aria-hidden', 'false');
         window.scrollTo(0, 0);
         if (to.extras?.length) gsap.set(to.extras, { opacity: 0 });
         if (caseStudyViews.has(name)) setupScrollTriggers(name);
       });
 
     if (!caseStudyViews.has(name)) {
-      activeTimeline.to(to.inners, { y: '0%', duration: 0.9, ease: 'power4.out', stagger: 0.08 });
+      activeTimeline.to(to.inners, { y: '0%', duration: D(0.9), ease: 'power4.out', stagger: reduceMotion ? 0 : 0.08 });
     }
 
     activeTimeline.fromTo(
       to.extras || [],
       { opacity: 0 },
-      { opacity: 1, duration: 0.8, ease: 'power1.inOut' },
+      { opacity: 1, duration: D(0.8), ease: 'power1.inOut' },
       caseStudyViews.has(name) ? '+=0' : '<'
     );
   }
@@ -375,11 +387,11 @@
   function enterCaseStudy() {
     document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
     gsap.to(navLinks, {
-      y: '110%', duration: 0.5, ease: 'power4.in', stagger: 0.04,
+      y: '110%', duration: D(0.5), ease: 'power4.in', stagger: reduceMotion ? 0 : 0.04,
       onComplete: () => {
         navLinks.forEach(inner => { inner.closest('.line-mask').style.display = 'none'; });
         backLinkMask.classList.add('visible');
-        gsap.fromTo(backLinkInner, { y: '110%' }, { y: '0%', duration: 0.7, ease: 'power4.out' });
+        gsap.fromTo(backLinkInner, { y: '110%' }, { y: '0%', duration: D(0.7), ease: 'power4.out' });
       }
     });
   }
@@ -387,11 +399,11 @@
   // Helper: slide back link out and nav links in (called from transitionTo when leaving a case study)
   function exitCaseStudy(activeView) {
     gsap.to(backLinkInner, {
-      y: '110%', duration: 0.5, ease: 'power4.in',
+      y: '110%', duration: D(0.5), ease: 'power4.in',
       onComplete: () => {
         backLinkMask.classList.remove('visible');
         navLinks.forEach(inner => { inner.closest('.line-mask').style.display = ''; });
-        gsap.fromTo(navLinks, { y: '110%' }, { y: '0%', duration: 0.7, ease: 'power4.out', stagger: 0.08 });
+        gsap.fromTo(navLinks, { y: '110%' }, { y: '0%', duration: D(0.7), ease: 'power4.out', stagger: reduceMotion ? 0 : 0.08 });
       }
     });
     setActiveNavLink(activeView);
