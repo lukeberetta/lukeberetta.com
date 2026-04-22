@@ -110,6 +110,13 @@
     const kurtosysCarouselWraps = Array.from(document.querySelectorAll('.kurtosys .case-carousel-wrap'));
     kurtosysEl.style.cssText = '';
 
+    const peachEl = document.querySelector('.peach');
+    peachEl.style.cssText = 'display:block;visibility:hidden';
+    const peachOriginals = captureOriginals('.peach ' + CASE_CONTENT);
+    const peachInners = maskContent('.peach ' + CASE_CONTENT);
+    const peachCarouselWraps = Array.from(document.querySelectorAll('.peach .case-carousel-wrap'));
+    peachEl.style.cssText = '';
+
     // Wrap nav links in masks
     maskNavLinks();
 
@@ -228,7 +235,7 @@
     }
 
     // ScrollTrigger state per case study
-    const csSplitWidths = { journey: window.innerWidth, spritz: window.innerWidth, kurtosys: window.innerWidth };
+    const csSplitWidths = { journey: window.innerWidth, spritz: window.innerWidth, kurtosys: window.innerWidth, peach: window.innerWidth };
     const csScrollTriggers = {};
 
     function killScrollTriggers(key) {
@@ -291,7 +298,8 @@
       contact: { el: '.contact', inners: contactInners },
       journey: { el: '.journey', inners: journeyInners, extras: journeyCarouselWraps, originals: journeyOriginals },
       spritz: { el: '.spritz', inners: spritzInners, extras: spritzCarouselWraps, originals: spritzOriginals },
-      kurtosys: { el: '.kurtosys', inners: kurtosysInners, extras: kurtosysCarouselWraps, originals: kurtosysOriginals }
+      kurtosys: { el: '.kurtosys', inners: kurtosysInners, extras: kurtosysCarouselWraps, originals: kurtosysOriginals },
+      peach: { el: '.peach', inners: peachInners, extras: peachCarouselWraps, originals: peachOriginals }
     };
 
     let currentView = 'home';

@@ -64,9 +64,8 @@
         data-default="2024 – 2025"></span></div>
     <div class="works-item" data-to="journey"><span>Journey (YC W21)</span><span class="muted"
         data-default="2022 – 2023"></span></div>
-    <div class="works-item unavailable"><span>Peach Payments</span><span class="muted"
-        data-default="2021 – 2022"></span>
-    </div>
+    <div class="works-item" data-to="peach"><span>Peach Payments</span><span class="muted"
+        data-default="2021 – 2022"></span></div>
     <div class="works-item" data-to="kurtosys"><span>Kurtosys</span><span class="muted"
         data-default="2018 – 2021"></span></div>
     <div class="works-item unavailable"><span>MakeReign</span><span class="muted" data-default="2018 – 2018"></span>
@@ -733,6 +732,164 @@
         the company's product and client experiences. The most meaningful outcome was not a single feature or release,
         but the adoption of a shared design language across the organisation and a system that continued to scale after
         I left.</p>
+    </section>
+
+  </div>
+
+  <div class="peach case-study container">
+
+    <section class="case-section">
+      <h2 class="heading">Peach Payments</h2>
+      <p class="text-md">Peach Payments is a payment orchestration platform serving Africa&#8209;s leading enterprise merchants — from Superbalist and Travelstart to Computicket and iStore Group. When a new head of product joined from the US with a mandate to elevate design as a core function, he recruited me from Kurtosys to lead it. I joined in March 2021 as Senior Product Designer and spent the next 19 months building the design foundation the company needed to scale: a new brand direction, a cross&#8209;product design system, a rebuilt merchant dashboard, a redesigned onboarding flow, and a customer&#8209;facing checkout that finally worked on mobile.</p>
+      <p class="text-md">Role: <span class="muted">Senior Product Designer</span></p>
+      <p class="text-md tight">Timeline: <span class="muted">Mar 2021 – Sep 2022</span></p>
+      <p class="text-md tight">Teams: <span class="muted">Design lead across a three&#8209;person design function</span></p>
+    </section>
+
+    <section class="case-section">
+      <h2 class="heading">Brand &amp; Design System</h2>
+      <p class="text-md">Peach was at the start of a rebrand when I joined. I helped narrow the agency shortlist, worked with the chosen agency to define the brand direction, then took over the inhouse execution alongside the marketing lead. The brand that emerged had energy but also tension — the bold, playful tone the marketing team favoured didn&#8217;t always translate cleanly into product, where merchants needed to feel in control of serious financial operations. I defined a separate product aesthetic: more restrained, more precise, with the brand colour used as an accent rather than a statement.</p>
+      <p class="text-md">From that product direction I built Peach Core — the core design system for all Peach Payments products. Peach Core covered foundations (8px spacing system, border radius, colour palette including a dynamic merchant token, typography scale, baseline grid), and a complete component library of 25+ components adopted by engineering across the dashboard, checkout, and marketing website. It wasn&#8217;t just a Figma file — it became the shared visual language for everything the company shipped.</p>
+      <div class="case-carousel-wrap">
+        <div class="case-carousel">
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Peach Core.</span> <span class="muted">The core design system for all Peach Payments products, designed in Figma.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Foundations.</span> <span class="muted">Spacing multiples, 8px border radius, semantic colour palette, typography scale, baseline grid.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Component Library.</span> <span class="muted">25+ components including Alert, Button, Date picker, Modal, Table, Skeleton loader, Toast, and more.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Full Component List.</span> <span class="muted">Production&#8209;complete coverage from Avatar to Tooltip.</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <h2 class="heading">Dashboard</h2>
+      <p class="text-md">The merchant console I inherited was engineering&#8209;led, bloated, and clearly undesigned. Navigation read like a sitemap. Data was presented without hierarchy. Merchants complained, support tickets were high, and the product showed no evidence of design thinking at any meaningful level. The brief I set for myself was to replace it entirely.</p>
+      <p class="text-md">The new dashboard was built as a full merchant operations platform. At its centre is a transactions surface with search, date filtering, advanced filters, a summary row that reflects active filter state, and a slide&#8209;out detail panel showing a rendered card visual, full customer and payment information, a complete audit timeline, and an inline refund flow. Payment Links brought the same pattern to link&#8209;based commerce — creation, multi&#8209;channel dispatch, status tracking, and settings in a coherent system. Team management introduced role&#8209;based permissions with a live preview of what each role grants before invites are sent.</p>
+      <p class="text-md">Two decisions defined the product&#8217;s character. The first was merchant theming: instead of logos, each merchant account gets a generated industry icon in a colour accent derived from their own brand. It kept the interface clean across thousands of merchants while still feeling personal. The second was the mobile dashboard — intentionally scoped to monitoring rather than full operations, but genuinely designed rather than reflowed. I also wrote production TypeScript alongside the engineering team, doing pixel&#8209;perfect frontend polish myself rather than accepting anything less through back&#8209;and&#8209;forth handoff.</p>
+      <div class="case-carousel-wrap">
+        <div class="case-carousel">
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Before.</span> <span class="muted">Engineering&#8209;led, flat hierarchy, basic bar chart, no design system, beta banner still visible.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Org Picker.</span> <span class="muted">Multi&#8209;entity architecture, industry icons, real merchants including iStore Group and Cape Union Mart Group.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Transactions.</span> <span class="muted">Populated table, summary row with filter&#8209;aware totals, status pills, payment brand logos.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Transaction Detail.</span> <span class="muted">Rendered card visual, customer details, payment info, audit timeline across Details and Updates tabs.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Refund.</span> <span class="muted">Amount field with available balance, reason, free&#8209;text notes, appropriately weighted destructive CTA.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Advanced Filters.</span> <span class="muted">Amount comparator, status, brand, transaction type — power&#8209;user depth without cluttering the default view.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Payment Links.</span> <span class="muted">List view with sending channel badges, link detail across three tabs, create flow with live preview and file attachments.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Team Settings.</span> <span class="muted">Role&#8209;based permission builder with live permission preview, member detail panel, destructive action confirmation modals.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Mobile.</span> <span class="muted">iStore Cape Town instance, transaction list with currency flags, intentionally scoped for monitoring.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Component Systems.</span> <span class="muted">Two product&#8209;specific libraries both drawing from Peach Core as foundation.</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <h2 class="heading">Onboarding</h2>
+      <p class="text-md">Merchant onboarding was the first point of real friction in the Peach relationship. The existing flow generated significant drop&#8209;off and support load, partly because the product made no effort to orient new merchants or accommodate the range of business types that needed to sign up. The redesigned flow runs across five steps — Business information, Configuration, Business verification, Bank verification, Activate — with four distinct journey variants branching by business type: main, SME, registered business, and manual entry.</p>
+      <p class="text-md">Every step was designed for both desktop and mobile from the outset. A persistent contextual help panel sits alongside the form on desktop, offering relevant links and a live chat trigger at each stage. The generated merchant icon appears from the first field entry, giving the brand identity a presence before onboarding is complete. Copy was written to feel human rather than procedural. The final activation step surfaces a full business summary before the commit, and the post&#8209;submission state sets clear expectations for what happens next. The redesign produced a measurable reduction in onboarding drop&#8209;off.</p>
+      <div class="case-carousel-wrap">
+        <div class="case-carousel">
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Step 1.</span> <span class="muted">Business information, with the generated industry icon appearing from the first field entry and the contextual help panel alongside.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Mobile.</span> <span class="muted">Sidebar nav, thumb&#8209;friendly form layout, consistent merchant identity across breakpoints.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Business Verification.</span> <span class="muted">Minimal, focused step with manual verification escape hatch.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Activate.</span> <span class="muted">Business summary accordion, terms of use, final commit with full pre&#8209;activation review.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Post&#8209;Submission.</span> <span class="muted">Three&#8209;card next steps sequence setting expectations for review, integration, and first settlement.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Flow Map.</span> <span class="muted">Four journey variants (Main, SME, Registered business, Manual entry) with desktop and mobile states across all steps.</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <h2 class="heading">Checkout</h2>
+      <p class="text-md">The customer&#8209;facing checkout is the moment Peach&#8217;s work becomes visible to millions of end consumers — every shopper paying through a Peach&#8209;powered merchant touches it. When I arrived it had been overlooked. Mobile in particular was unpolished in ways that showed: nobody had cared enough to close the gap between what was designed and what was implemented.</p>
+      <p class="text-md">The redesigned checkout runs in three steps: select payment method, enter card details, confirm billing address. Apple Pay leads as a native full&#8209;width CTA where available. Alternative methods — Card, EFT Secure, Masterpass, 1Voucher, Mobicred — are presented in a clean grid with brand logos. A thin progress bar advances across the top of each step, keyed to the merchant&#8217;s brand colour. CTAs shift colour at the final commit step — blue to green — signalling that something irreversible is about to happen. The success state is calm and clear, with an auto&#8209;redirect countdown and a manual fallback. I wrote the frontend TypeScript to bring the implementation to pixel&#8209;perfect standard where engineering capacity and technical constraints limited what could be pushed through normal handoff.</p>
+      <div class="case-carousel-wrap">
+        <div class="case-carousel">
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Step 1.</span> <span class="muted">Payment method selection, Apple Pay as primary CTA, alternative methods in branded grid.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Step 2.</span> <span class="muted">Card detail entry with real&#8209;time card brand detection, clean three&#8209;column secondary row.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Step 3.</span> <span class="muted">Billing address confirmation, CTA shifts to green for the final payment commit.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Success.</span> <span class="muted">Green checkmark, clear redirect messaging, calm and uncluttered.</span></p>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-slide"></div>
+            <p class="carousel-caption"><span>Mobile.</span> <span class="muted">All five states across iPhone Safari, genuinely adapted for touch rather than reflowed from desktop.</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section outro">
+      <h2 class="heading">Outcome</h2>
+      <p class="text-md">Peach had the ingredients to build something good — the merchant base, the product breadth, the ambition. What it lacked was design infrastructure. In 19 months I built the system that gave the company a shared visual language, redesigned the products that mattered most to merchants and end customers, and raised the standard of what shipping meant at Peach. The work I did on Peach Core outlasted my tenure. The company has since raised significant funding and continued to grow. The foundation held.</p>
     </section>
 
   </div>
