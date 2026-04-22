@@ -113,29 +113,43 @@
     // Wrap nav links in masks
     maskNavLinks();
 
-    // Cache nav element and non-nav inners once — avoids DOM queries on every frame
     const navEl = document.querySelector('.nav');
     let fadeInners = Array.from(document.querySelectorAll('.line-inner')).filter(el => !el.closest('.nav'));
 
-    // Fade content elements as they approach the bottom of the viewport
-    // Reads all rects first, then writes opacity — avoids layout thrashing
+    // Per-element document-top cache: built once per view, invalidated on resize/re-split.
+    // offsetTop tree-walking is transform-independent, so y:110% elements don't corrupt it.
+    let fadePosCache = null;
+
+    function getNaturalDocTop(el) {
+      let top = 0;
+      let node = el;
+      while (node) { top += node.offsetTop || 0; node = node.offsetParent; }
+      return top;
+    }
+
+    function buildFadeCache() {
+      fadePosCache = fadeInners.map(el => ({ el, docTop: getNaturalDocTop(el) }));
+    }
+
+    // On scroll: pure arithmetic against cache — zero DOM reads per frame.
+    // Falls back to live getBCR only when cache is stale (during transitions).
     function updateFade() {
       const fadeEnd = window.innerHeight * (window.innerWidth <= 600 ? 0.92 : 0.85);
       const fadeStart = fadeEnd - 200;
 
-      const rects = fadeInners.map(el => ({ el, rect: el.getBoundingClientRect() }));
-      rects.forEach(({ el, rect }) => {
-        const top = rect.top;
-        let opacity;
-        if (top <= fadeStart) {
-          opacity = 1;
-        } else if (top >= fadeEnd) {
-          opacity = 0;
-        } else {
-          opacity = 1 - (top - fadeStart) / (fadeEnd - fadeStart);
-        }
-        el.style.opacity = opacity;
-      });
+      if (fadePosCache) {
+        const scrollY = window.scrollY;
+        fadePosCache.forEach(({ el, docTop }) => {
+          const top = docTop - scrollY;
+          el.style.opacity = top <= fadeStart ? 1 : top >= fadeEnd ? 0 : 1 - (top - fadeStart) / (fadeEnd - fadeStart);
+        });
+      } else {
+        const rects = fadeInners.map(el => ({ el, rect: el.getBoundingClientRect() }));
+        rects.forEach(({ el, rect }) => {
+          const top = rect.top;
+          el.style.opacity = top <= fadeStart ? 1 : top >= fadeEnd ? 0 : 1 - (top - fadeStart) / (fadeEnd - fadeStart);
+        });
+      }
     }
 
     let fadeTicking = false;
@@ -160,6 +174,9 @@
           if (caseStudyViews?.has(currentView)) {
             killScrollTriggers(currentView);
             ensureSplit(currentView);
+            const extras = views[currentView].extras;
+            if (extras?.length) gsap.set(extras, { opacity: 1 });
+            buildFadeCache();
             updateFade();
           }
         }
@@ -184,12 +201,14 @@
     if (reduceMotion) {
       gsap.set(allInners, { y: '0%' });
       gsap.set(navLinks, { y: '0%' });
+      buildFadeCache();
       updateFade();
       requestAnimationFrame(() => document.dispatchEvent(new CustomEvent('intro-complete')));
     } else {
       gsap.timeline({
         onUpdate: updateFade,
         onComplete: () => {
+          buildFadeCache();
           updateFade();
           document.dispatchEvent(new CustomEvent('intro-complete'));
         }
@@ -219,6 +238,7 @@
 
     function setupScrollTriggers(key) {
       const inners = views[key].inners;
+      const extras = views[key].extras || [];
       const vh = window.innerHeight;
       const aboveFold = [];
       const belowFold = [];
@@ -227,17 +247,26 @@
       });
       if (reduceMotion) {
         gsap.set(inners, { y: '0%' });
+        if (extras.length) gsap.set(extras, { opacity: 1 });
         return;
       }
       if (aboveFold.length) {
         gsap.to(aboveFold, { y: '0%', duration: 0.9, ease: 'power4.out', stagger: 0.08 });
       }
+      const triggers = [];
       if (belowFold.length) {
-        csScrollTriggers[key] = ScrollTrigger.batch(belowFold, {
+        triggers.push(...ScrollTrigger.batch(belowFold, {
           onEnter: batch => gsap.to(batch, { y: '0%', duration: 0.8, ease: 'power4.out', stagger: 0.06 }),
           start: 'top 88%',
-        });
+        }));
       }
+      if (extras.length) {
+        triggers.push(...ScrollTrigger.batch(extras, {
+          onEnter: batch => gsap.to(batch, { opacity: 1, duration: 0.8, ease: 'power1.inOut', stagger: 0.1 }),
+          start: 'top 88%',
+        }));
+      }
+      if (triggers.length) csScrollTriggers[key] = triggers;
     }
 
     function ensureSplit(key) {
@@ -251,6 +280,7 @@
       if (isHidden) csEl.style.cssText = '';
       csSplitWidths[key] = window.innerWidth;
       fadeInners = Array.from(document.querySelectorAll('.line-inner')).filter(el => !el.closest('.nav'));
+      fadePosCache = null;
     }
 
     // View registry
@@ -313,6 +343,7 @@
 
       isAnimating = true;
       pendingView = null;
+      fadePosCache = null;
 
       const fromKey = currentView;
       const from = views[currentView];
@@ -324,6 +355,7 @@
         onComplete: () => {
           isAnimating = false;
           activeTimeline = null;
+          buildFadeCache();
           updateFade();
           if (pendingView) {
             const next = pendingView;
@@ -348,14 +380,10 @@
 
       if (!caseStudyViews.has(name)) {
         activeTimeline.to(to.inners, { y: '0%', duration: D(0.9), ease: 'power4.out', stagger: reduceMotion ? 0 : 0.08 });
+        if (to.extras?.length) {
+          activeTimeline.fromTo(to.extras, { opacity: 0 }, { opacity: 1, duration: D(0.8), ease: 'power1.inOut' }, '<');
+        }
       }
-
-      activeTimeline.fromTo(
-        to.extras || [],
-        { opacity: 0 },
-        { opacity: 1, duration: D(0.8), ease: 'power1.inOut' },
-        caseStudyViews.has(name) ? '+=0' : '<'
-      );
     }
 
     // Nav active state + click handlers
