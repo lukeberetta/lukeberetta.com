@@ -130,7 +130,6 @@ body {
   line-height: var(--line-height-lg);
   letter-spacing: var(--letter-spacing-lg);
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
 }
 
 

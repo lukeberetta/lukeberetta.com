@@ -117,15 +117,24 @@
     const navEl = document.querySelector('.nav');
     let fadeInners = Array.from(document.querySelectorAll('.line-inner')).filter(el => !el.closest('.nav'));
 
+    // Nav is position:fixed so its top is stable — only invalidated on resize
+    let cachedNavTop = null;
+
     // Fade content elements as they approach the nav (replaces gradient overlay)
     // Reads all rects first, then writes opacity — avoids layout thrashing
     function updateFade() {
-      const navTop = navEl.getBoundingClientRect().top;
-      const fadeEnd = navTop;
+      // At scroll 0 nothing can be near the nav — skip all layout reads
+      if (window.scrollY === 0) {
+        fadeInners.forEach(el => { el.style.opacity = ''; });
+        return;
+      }
+
+      if (cachedNavTop === null) cachedNavTop = navEl.getBoundingClientRect().top;
+      const fadeEnd = cachedNavTop;
+      const fadeStart = fadeEnd - 100;
 
       const rects = fadeInners.map(el => ({ el, rect: el.getBoundingClientRect() }));
       rects.forEach(({ el, rect }) => {
-        const fadeStart = fadeEnd - 100;
         const top = rect.top;
         let opacity;
         if (top <= fadeStart) {
@@ -151,6 +160,7 @@
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
+        cachedNavTop = null;
         updateFade();
         const newWidth = window.innerWidth;
         if (newWidth !== lastWidth) {
