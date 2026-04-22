@@ -240,13 +240,12 @@ Team: Design, Engineering, Product, Marketing
 
 Peach was beginning a rebrand when I joined. I helped narrow the agency shortlist, worked with the chosen agency to define the brand direction, then took over the inhouse execution alongside the marketing lead. The brand that emerged had energy but also tension. The bold, playful tone the marketing team favoured didn't always translate cleanly into product, where merchants needed to feel in control of serious financial operations. I defined a separate product aesthetic: more restrained, more precise, with the brand colour used as an accent rather than a statement.
 
-From that product direction I built Peach Core, the core design system for all Peach Payments products. Peach Core covered foundations (8px spacing system, border radius, colour palette including a dynamic merchant token, typography scale, baseline grid), and a complete component library of 25+ components adopted by engineering across the dashboard, checkout, and marketing website. It wasn't just a Figma file. It became the shared visual language for everything the company shipped.
+From that product direction I built Peach Core, the core design system for all Peach Payments products. Peach Core covered foundations (8px spacing system, border radius, colour palette including a dynamic merchant token, typography scale, baseline grid), and a complete component library of hundreds of components adopted by engineering across the dashboard, checkout, and marketing website. It wasn't just a Figma file. It became the shared visual language for everything the company shipped.
 
 **Image captions:**
 - Peach Core title card, designed in Figma with multiplayer context, showing the system's relationship to product work
 - Foundations covering spacing multiples, 8px border radius, semantic colour palette, typography scale, and baseline grid
-- Component library of 25+ components including Alert, Button, Date picker, Modal, Table, Skeleton loader, Toast, and more
-- Full component list showing production-complete coverage from Avatar to Tooltip
+- Component library of hundreds of components including Alert, Button, Date picker, Modal, Table, Skeleton loader, Toast, and more
 
 ---
 
@@ -261,7 +260,7 @@ Two decisions defined the product's character. The first was merchant theming: i
 I also wrote production TypeScript alongside the engineering team to close the gap between design and implementation, doing pixel-perfect frontend polish myself rather than accepting anything less through back-and-forth handoff.
 
 **Image captions:**
-- The old console, engineering-led with flat hierarchy, a basic bar chart, no design system, and a beta banner still visible
+- Dashboard. The rebuilt merchant operations platform, with transactions surface, merchant theming, and slide-out detail panel.
 - Org picker and business selector showing multi-entity architecture, industry icons, and real merchants including iStore Group and Cape Union Mart Group
 - Transactions table with filter-aware summary row, status pills, and payment brand logos
 - Transaction detail panel showing a rendered card visual, customer details, payment info, and audit timeline across Details and Updates tabs
