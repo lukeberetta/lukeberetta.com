@@ -226,73 +226,85 @@ I joined Kurtosys as a designer who could code and left having defined the syste
 
 ---
 
-## Peach Payments
+# Peach Payments
 
-**Role:** Senior Product Designer
-**Timeline:** Mar 2021 – Sep 2022
-**Teams:** Design lead across a three-person design function
+Peach Payments is a payment orchestration platform serving Africa's leading enterprise merchants, from Superbalist and Travelstart to Computicket and iStore Group. When a new head of product joined from the US with a mandate to elevate design as a core function, he recruited me from Kurtosys to lead it. I joined in March 2021 as Senior Product Designer and spent the next 19 months building the design foundation the company needed to scale: a new brand direction, a cross-product design system, a rebuilt merchant dashboard, a redesigned onboarding flow, and a customer-facing checkout that finally worked on mobile. I worked directly under the head of product, maintained close relationships with the CEO and engineering leads, and mentored a small in-house design team.
 
-Peach Payments is a payment orchestration platform serving Africa's leading enterprise merchants — from Superbalist and Travelstart to Computicket and iStore Group. When a new head of product joined from the US with a mandate to elevate design as a core function, he recruited me from Kurtosys to lead it. I joined in March 2021 as Senior Product Designer and spent the next 19 months building the design foundation the company needed to scale: a new brand direction, a cross-product design system, a rebuilt merchant dashboard, a redesigned onboarding flow, and a customer-facing checkout that finally worked on mobile.
+Role: Senior Product Designer
+Timeline: Mar 2021 – Sep 2022
+Team: Design, Engineering, Product, Marketing
 
-### Brand & Design System
+---
 
-Peach was at the start of a rebrand when I joined. I helped narrow the agency shortlist, worked with the chosen agency to define the brand direction, then took over the inhouse execution alongside the marketing lead. The brand that emerged had energy but also tension — the bold, playful tone the marketing team favoured didn't always translate cleanly into product, where merchants needed to feel in control of serious financial operations. I defined a separate product aesthetic: more restrained, more precise, with the brand colour used as an accent rather than a statement.
+## Brand & Design System
 
-From that product direction I built Peach Core — the core design system for all Peach Payments products. Peach Core covered foundations (8px spacing system, border radius, colour palette including a dynamic merchant token, typography scale, baseline grid), and a complete component library of 25+ components adopted by engineering across the dashboard, checkout, and marketing website. It wasn't just a Figma file — it became the shared visual language for everything the company shipped.
+Peach was beginning a rebrand when I joined. I helped narrow the agency shortlist, worked with the chosen agency to define the brand direction, then took over the inhouse execution alongside the marketing lead. The brand that emerged had energy but also tension. The bold, playful tone the marketing team favoured didn't always translate cleanly into product, where merchants needed to feel in control of serious financial operations. I defined a separate product aesthetic: more restrained, more precise, with the brand colour used as an accent rather than a statement.
 
-**Carousel captions:**
-- Peach Core. The core design system for all Peach Payments products, designed in Figma.
-- Foundations. Spacing multiples, 8px border radius, semantic colour palette, typography scale, baseline grid.
-- Component Library. 25+ components including Alert, Button, Date picker, Modal, Table, Skeleton loader, Toast, and more.
-- Full Component List. Production-complete coverage from Avatar to Tooltip.
+From that product direction I built Peach Core, the core design system for all Peach Payments products. Peach Core covered foundations (8px spacing system, border radius, colour palette including a dynamic merchant token, typography scale, baseline grid), and a complete component library of 25+ components adopted by engineering across the dashboard, checkout, and marketing website. It wasn't just a Figma file. It became the shared visual language for everything the company shipped.
 
-### Dashboard
+**Image captions:**
+- Peach Core title card, designed in Figma with multiplayer context, showing the system's relationship to product work
+- Foundations covering spacing multiples, 8px border radius, semantic colour palette, typography scale, and baseline grid
+- Component library of 25+ components including Alert, Button, Date picker, Modal, Table, Skeleton loader, Toast, and more
+- Full component list showing production-complete coverage from Avatar to Tooltip
 
-The merchant console I inherited was engineering-led, bloated, and clearly undesigned. Navigation read like a sitemap. Data was presented without hierarchy. Merchants complained, support tickets were high, and the product showed no evidence of design thinking at any meaningful level. The brief I set for myself was to replace it entirely.
+---
 
-The new dashboard was built as a full merchant operations platform. At its centre is a transactions surface with search, date filtering, advanced filters, a summary row that reflects active filter state, and a slide-out detail panel showing a rendered card visual, full customer and payment information, a complete audit timeline, and an inline refund flow. Payment Links brought the same pattern to link-based commerce — creation, multi-channel dispatch, status tracking, and settings in a coherent system. Team management introduced role-based permissions with a live preview of what each role grants before invites are sent.
+## Dashboard
 
-Two decisions defined the product's character. The first was merchant theming: instead of logos, each merchant account gets a generated industry icon in a colour accent derived from their own brand. It kept the interface clean across thousands of merchants while still feeling personal. The second was the mobile dashboard — intentionally scoped to monitoring rather than full operations, but genuinely designed rather than reflowed. I also wrote production TypeScript alongside the engineering team, doing pixel-perfect frontend polish myself rather than accepting anything less through back-and-forth handoff.
+The merchant console I inherited was engineering-led, bloated, and clearly undesigned. Navigation read like a sitemap. Data was presented without hierarchy. Merchants complained, support tickets were high, and the product showed no evidence of design thinking at any meaningful level. I was brought in to own the new dashboard from the ground up.
 
-**Carousel captions:**
-- Before. Engineering-led, flat hierarchy, basic bar chart, no design system, beta banner still visible.
-- Org Picker. Multi-entity architecture, industry icons, real merchants including iStore Group and Cape Union Mart Group.
-- Transactions. Populated table, summary row with filter-aware totals, status pills, payment brand logos.
-- Transaction Detail. Rendered card visual, customer details, payment info, audit timeline across Details and Updates tabs.
-- Refund. Amount field with available balance, reason, free-text notes, appropriately weighted destructive CTA.
-- Advanced Filters. Amount comparator, status, brand, transaction type — power-user depth without cluttering the default view.
-- Payment Links. List view with sending channel badges, link detail across three tabs, create flow with live preview and file attachments.
-- Team Settings. Role-based permission builder with live permission preview, member detail panel, destructive action confirmation modals.
-- Mobile. iStore Cape Town instance, transaction list with currency flags, intentionally scoped for monitoring.
-- Component Systems. Two product-specific libraries both drawing from Peach Core as foundation.
+The new dashboard was built as a full merchant operations platform. At its centre is a transactions surface with search, date filtering, advanced filters, a summary row that reflects active filter state, and a slide-out detail panel showing a rendered card visual, full customer and payment information, a complete audit timeline, and an inline refund flow. Payment Links brought the same pattern to link-based commerce: creation, multi-channel dispatch, status tracking, and settings in a coherent system. Team management introduced role-based permissions with a live preview of what each role grants before invites are sent.
 
-### Onboarding
+Two decisions defined the product's character. The first was merchant theming: instead of logos, each merchant account gets a generated industry icon in a colour accent derived from their own brand. It kept the interface clean across thousands of merchants while still feeling personal. The second was the mobile dashboard, intentionally scoped to monitoring rather than full operations, but genuinely designed rather than reflowed. Both desktop and mobile were built on a dashboard-specific component system that extended Peach Core without duplicating it.
 
-Merchant onboarding was the first point of real friction in the Peach relationship. The existing flow generated significant drop-off and support load, partly because the product made no effort to orient new merchants or accommodate the range of business types that needed to sign up. The redesigned flow runs across five steps — Business information, Configuration, Business verification, Bank verification, Activate — with four distinct journey variants branching by business type: main, SME, registered business, and manual entry.
+I also wrote production TypeScript alongside the engineering team to close the gap between design and implementation, doing pixel-perfect frontend polish myself rather than accepting anything less through back-and-forth handoff.
+
+**Image captions:**
+- The old console, engineering-led with flat hierarchy, a basic bar chart, no design system, and a beta banner still visible
+- Org picker and business selector showing multi-entity architecture, industry icons, and real merchants including iStore Group and Cape Union Mart Group
+- Transactions table with filter-aware summary row, status pills, and payment brand logos
+- Transaction detail panel showing a rendered card visual, customer details, payment info, and audit timeline across Details and Updates tabs
+- Refund modal with amount field, available balance, reason dropdown, free-text notes, and appropriately weighted destructive CTA
+- Advanced filters covering amount comparator, status, brand, and transaction type without cluttering the default view
+- Payment Links list view with sending channel badges, link detail across three tabs, and a create flow with live preview and file attachments
+- Team settings with role-based permission builder, live permission preview, member detail panel, and destructive action confirmation modals
+- Mobile dashboard showing the iStore Cape Town instance, transaction list with currency flags, intentionally scoped for monitoring
+- Dashboard and checkout component systems, two product-specific libraries both drawing from Peach Core as foundation
+
+---
+
+## Onboarding
+
+Merchant onboarding was the first point of real friction in the Peach relationship. The existing flow generated significant drop-off and support load, partly because the product made no effort to orient new merchants or accommodate the range of business types that needed to sign up. The redesigned flow runs across five steps: Business information, Configuration, Business verification, Bank verification, and Activate, with three distinct journey variants branching by business type: SME, registered business, and manual entry.
 
 Every step was designed for both desktop and mobile from the outset. A persistent contextual help panel sits alongside the form on desktop, offering relevant links and a live chat trigger at each stage. The generated merchant icon appears from the first field entry, giving the brand identity a presence before onboarding is complete. Copy was written to feel human rather than procedural. The final activation step surfaces a full business summary before the commit, and the post-submission state sets clear expectations for what happens next. The redesign produced a measurable reduction in onboarding drop-off.
 
-**Carousel captions:**
-- Step 1. Business information, with the generated industry icon appearing from the first field entry and the contextual help panel alongside.
-- Mobile. Sidebar nav, thumb-friendly form layout, consistent merchant identity across breakpoints.
-- Business Verification. Minimal, focused step with manual verification escape hatch.
-- Activate. Business summary accordion, terms of use, final commit with full pre-activation review.
-- Post-Submission. Three-card next steps sequence setting expectations for review, integration, and first settlement.
-- Flow Map. Four journey variants (Main, SME, Registered business, Manual entry) with desktop and mobile states across all steps.
+**Image captions:**
+- Step 1 showing Business information, with the generated industry icon appearing from the first field entry and the contextual help panel alongside
+- Mobile onboarding with sidebar nav, thumb-friendly form layout, and consistent merchant identity across breakpoints
+- Business verification step, minimal and focused with a manual verification escape hatch
+- Activate step showing business summary accordion, terms of use, and final commit with full pre-activation review
+- Post-submission showing a three-card next steps sequence setting expectations for review, integration, and first settlement
+- Full flow map showing three journey variants across SME, Registered business, and Manual entry with desktop and mobile states
 
-### Checkout
+---
 
-The customer-facing checkout is the moment Peach's work becomes visible to millions of end consumers — every shopper paying through a Peach-powered merchant touches it. When I arrived it had been overlooked. Mobile in particular was unpolished in ways that showed: nobody had cared enough to close the gap between what was designed and what was implemented.
+## Checkout
 
-The redesigned checkout runs in three steps: select payment method, enter card details, confirm billing address. Apple Pay leads as a native full-width CTA where available. Alternative methods — Card, EFT Secure, Masterpass, 1Voucher, Mobicred — are presented in a clean grid with brand logos. A thin progress bar advances across the top of each step, keyed to the merchant's brand colour. CTAs shift colour at the final commit step — blue to green — signalling that something irreversible is about to happen. The success state is calm and clear, with an auto-redirect countdown and a manual fallback. I wrote the frontend TypeScript to bring the implementation to pixel-perfect standard where engineering capacity and technical constraints limited what could be pushed through normal handoff.
+The customer-facing checkout is the moment Peach's work becomes visible to millions of end consumers. Every shopper paying through a Peach-powered merchant touches it. When I arrived it had been overlooked. Mobile in particular was unpolished in ways that showed: nobody had cared enough to close the gap between what was designed and what was implemented.
 
-**Carousel captions:**
-- Step 1. Payment method selection, Apple Pay as primary CTA, alternative methods in branded grid.
-- Step 2. Card detail entry with real-time card brand detection, clean three-column secondary row.
-- Step 3. Billing address confirmation, CTA shifts to green for the final payment commit.
-- Success. Green checkmark, clear redirect messaging, calm and uncluttered.
-- Mobile. All five states across iPhone Safari, genuinely adapted for touch rather than reflowed from desktop.
+The redesigned checkout runs in three steps: select payment method, enter card details, confirm billing address. Apple Pay leads as a native full-width CTA where available. Alternative methods including Card, EFT Secure, Masterpass, 1Voucher, and Mobicred are presented in a clean grid with brand logos. A thin progress bar advances across the top of each step, keyed to the merchant's brand colour. CTAs shift colour at the final commit step, from blue to green, signalling that something irreversible is about to happen. The success state is calm and clear, with an auto-redirect countdown and a manual fallback.
 
-### Outro
+The checkout has its own component system, drawing from Peach Core as its foundation. I wrote the frontend TypeScript to bring the implementation to pixel-perfect standard where engineering capacity and technical constraints limited what could be pushed through normal handoff.
 
-Peach had the ingredients to build something good — the merchant base, the product breadth, the ambition. What it lacked was design infrastructure. In 19 months I built the system that gave the company a shared visual language, redesigned the products that mattered most to merchants and end customers, and raised the standard of what shipping meant at Peach. The work I did on Peach Core outlasted my tenure. The company has since raised significant funding and continued to grow. The foundation held.
+**Image captions:**
+- Step 1 showing payment method selection with Apple Pay as primary CTA and alternative methods in a branded grid
+- Step 2 showing card detail entry with real-time card brand detection and a clean three-column secondary row
+- Step 3 showing billing address confirmation with the CTA shifting to green for the final payment commit
+- Success state with green checkmark, clear redirect messaging, calm and uncluttered
+- Mobile flow showing all five states across iPhone Safari, genuinely adapted for touch rather than reflowed from desktop
+
+---
+
+Peach had the ingredients to build something good: the merchant base, the product breadth, the ambition. What it lacked was design infrastructure. In 19 months I built the system that gave the company a shared visual language, redesigned the products that mattered most to merchants and end customers, and raised the standard of what shipping meant at Peach. The work I did on Peach Core outlasted my tenure. The company has since raised significant funding and continued to grow. The foundation held.
