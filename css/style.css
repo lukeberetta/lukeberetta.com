@@ -279,7 +279,6 @@ body.loading .nav {
 
 .case-section {
   padding-bottom: var(--space-section);
-  min-height: 80vh;
 }
 
 .case-section:last-child {
