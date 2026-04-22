@@ -5,6 +5,9 @@
   --color-text: #fff;
   --color-accent: #FFA303;
   --color-text-muted: rgb(145, 145, 145);
+  --color-slide-teal: #0C3A41;
+  --color-slide-light: #e7e7e7;
+  --color-slide-rust: #70270C;
 
   /* Typography */
   --font-family: 'Rams', sans-serif;
@@ -266,15 +269,15 @@ body.loading .nav {
 
 /* Slide background color variants */
 .carousel-slide.slide-bg-teal {
-  background: #0C3A41;
+  background: var(--color-slide-teal);
 }
 
 .carousel-slide.slide-bg-light {
-  background: #e7e7e7;
+  background: var(--color-slide-light);
 }
 
 .carousel-slide.slide-bg-rust {
-  background: #70270C;
+  background: var(--color-slide-rust);
 }
 
 .case-section {
