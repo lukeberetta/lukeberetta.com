@@ -281,9 +281,7 @@ Every step was designed for both desktop and mobile from the outset. A persisten
 - Step 1 showing Business information, with the generated industry icon appearing from the first field entry and the contextual help panel alongside
 - Mobile onboarding with sidebar nav, thumb-friendly form layout, and consistent merchant identity across breakpoints
 - Business verification step, minimal and focused with a manual verification escape hatch
-- Activate step showing business summary accordion, terms of use, and final commit with full pre-activation review
-- Post-submission showing a three-card next steps sequence setting expectations for review, integration, and first settlement
-- Full flow map showing three journey variants across SME, Registered business, and Manual entry with desktop and mobile states
+- Activate step showing business summary accordion, terms of use, and final commit with full pre-activation review- Full flow map showing three journey variants across SME, Registered business, and Manual entry with desktop and mobile states
 
 ---
 
@@ -300,8 +298,6 @@ The checkout has its own component system, drawing from Peach Core as its founda
 - Step 2 showing card detail entry with real-time card brand detection and a clean three-column secondary row
 - Step 3 showing billing address confirmation with the CTA shifting to green for the final payment commit
 - Success state with green checkmark, clear redirect messaging, calm and uncluttered
-- Mobile flow showing all five states across iPhone Safari, genuinely adapted for touch rather than reflowed from desktop
-
 ---
 
 Peach had the ingredients to build something good: the merchant base, the product breadth, the ambition. What it lacked was design infrastructure. In 19 months I built the system that gave the company a shared visual language, redesigned the products that mattered most to merchants and end customers, and raised the standard of what shipping meant at Peach. The work I did on Peach Core outlasted my tenure. The company has since raised significant funding and continued to grow. The foundation held.
