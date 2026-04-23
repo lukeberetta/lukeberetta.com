@@ -269,8 +269,6 @@ I also wrote production TypeScript alongside the engineering team to close the g
 - Payment Links list view with sending channel badges, link detail across three tabs, and a create flow with live preview and file attachments
 - Team settings with role-based permission builder, live permission preview, member detail panel, and destructive action confirmation modals
 - Mobile dashboard showing the iStore Cape Town instance, transaction list with currency flags, intentionally scoped for monitoring
-- Dashboard and checkout component systems, two product-specific libraries both drawing from Peach Core as foundation
-
 ---
 
 ## Onboarding
