@@ -84,7 +84,7 @@ Each case study follows this content formula:
     <div class="case-carousel-wrap">
       <div class="case-carousel">
         <div class="carousel-item">
-          <div class="carousel-slide"><img src="img/..." alt="..." class="fill"></div>
+          <div class="carousel-slide"><img src="img/Folder/name-800.webp" data-full="img/Folder/name.webp" width="800" height="800" loading="lazy" decoding="async" alt="..." class="fill"></div>
           <p class="carousel-caption"><span>Label.</span> <span class="muted">Description.</span></p>
         </div>
       </div>
@@ -130,3 +130,12 @@ Rules:
 - Favicons: `img/favicon*.png`, `img/apple-touch-icon.png`, `img/site.webmanifest`
 - OG image: `img/og-image.png`
 - Always compress image assets before adding them to the project
+
+### Case study image pattern
+Each carousel image ships in two sizes — the full-size original (lightbox) and an 800×800 carousel thumbnail:
+- `img/Folder/name.webp` — full-size source; loaded by the lightbox via `data-full`
+- `img/Folder/name-800.webp` — 800×800 @ q78 thumbnail; set as `src` for carousel rendering
+
+Generate the `-800` variant with `cwebp -q 78 -resize 800 0 name.webp -o name-800.webp`.
+
+The lightbox (`js/image-viewer.js`) reads `img.dataset.full` to swap in the full-size image on open, so the carousel never downloads the large file unless the user clicks to expand.

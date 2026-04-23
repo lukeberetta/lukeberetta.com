@@ -448,14 +448,6 @@
       transitionTo(target, { pushHistory: false });
     });
 
-    // Pre-decode carousel images after intro so they're ready on first case-study reveal
-    document.addEventListener('intro-complete', () => {
-      document.querySelectorAll('.case-carousel-wrap img').forEach(img => {
-        if (img.complete) img.decode?.();
-        else img.addEventListener('load', () => img.decode?.(), { once: true });
-      });
-    }, { once: true });
-
     // Deep-link: if the page loaded with a hash, navigate there after the intro
     if (initialView !== 'home') {
       document.addEventListener('intro-complete', () => {

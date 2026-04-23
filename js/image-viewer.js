@@ -94,6 +94,7 @@
         gsap.set(viewImg, { opacity: 0.3 });
       };
       viewImg.alt = alt || '';
+      viewImg.fetchPriority = 'high';
       viewImg.src = src;
     }
 
@@ -212,7 +213,7 @@
     } else {
       el.addEventListener('click', () => {
         if (window.innerWidth <= 600) return;
-        open(img.src, img.alt, el);
+        open(img.dataset.full || img.currentSrc || img.src, img.alt, el);
       });
     }
   });
