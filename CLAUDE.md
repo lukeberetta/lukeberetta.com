@@ -48,7 +48,7 @@ Every text line or content block is wrapped in `.line-mask > .line-inner`. GSAP 
 ## CSS conventions
 - All tokens in `:root` — `--color-*`, `--font-*`, `--space-*`
 - Key colors: `--color-accent` (`#FFA303` orange), `--color-bg` (`#101010`), `--color-text-muted` (`rgba(255,255,255,0.5)`)
-- Font: `Rams` (local TTF at `fonts/Rams-569.ttf`) — loaded via `@font-face`
+- Font: `Rams` (WOFF2 at `fonts/Rams-569.woff2`) — loaded via `@font-face` with `font-display: swap`
 - Single breakpoint at `max-width: 600px` (padding only)
 
 ### Type scale
@@ -139,3 +139,8 @@ Each carousel image ships in two sizes — the full-size original (lightbox) and
 Generate the `-800` variant with `cwebp -q 78 -resize 800 0 name.webp -o name-800.webp`.
 
 The lightbox (`js/image-viewer.js`) reads `img.dataset.full` to swap in the full-size image on open, so the carousel never downloads the large file unless the user clicks to expand.
+
+### Video poster pattern
+Each carousel `<video>` needs a `poster` attribute so the slide isn't blank before playback:
+- Extract with: `ffmpeg -y -ss 1 -i name.mp4 -frames:v 1 -vf "scale=400:-1" name-poster.jpg`
+- Add to the video tag: `poster="img/Folder/name-poster.jpg"`
