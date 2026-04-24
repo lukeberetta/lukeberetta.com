@@ -136,6 +136,8 @@ Each carousel image ships in two sizes — the full-size original (lightbox) and
 - `img/Folder/name.webp` — full-size source; loaded by the lightbox via `data-full`
 - `img/Folder/name-800.webp` — 800×800 @ q78 thumbnail; set as `src` for carousel rendering
 
+If the source is a PNG, convert it to webp first: `cwebp -q 85 name.png -o name.webp`, then delete the original PNG.
+
 Generate the `-800` variant with `cwebp -q 78 -resize 800 0 name.webp -o name-800.webp`.
 
 The lightbox (`js/image-viewer.js`) reads `img.dataset.full` to swap in the full-size image on open, so the carousel never downloads the large file unless the user clicks to expand.
