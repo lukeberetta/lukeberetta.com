@@ -8,11 +8,11 @@
 **Timeline:** Nov 2024 – Nov 2025
 **Teams:** Product, Engineering, Marketing
 
-Spritz bridges the gap between crypto and everyday financial life, allowing users to pay bills, off-ramp to their bank, and spend globally via a Visa card, all funded by crypto. I joined as the sole product designer at a pivotal moment, just as a new brand identity had been developed by an external agency and the entire product needed to be rebuilt around it. Over the following year, I led design across the full app suite, establishing the system foundations and carrying that through into every major feature and flow across the product.
+Spritz bridges the gap between crypto and everyday financial life, allowing users to pay bills, off-ramp to their bank, and spend globally via a Visa card, all funded by crypto. I joined as the sole product designer just as an external agency had finished a new brand identity. The entire product needed to be rebuilt around it. Over the following year, I led design across the full app suite, establishing the system foundations and carrying that through into every major feature and flow across the product.
 
 ### Brand & Design System
 
-The new brand marked a decisive shift in how Spritz positioned itself. What had previously felt like a soft, fintech-adjacent product became darker, more restrained, and aligned with crypto-native expectations. My role was to translate that identity into a system that could support a complex and rapidly evolving product surface. I designed Aperol, a comprehensive design system built in Figma that defined colour, typography, iconography, variables, and a complete component library. Motion was treated as a first class concern, with interaction behaviour defined through spring physics so that overlays and transitions felt consistent and responsive across contexts. The system was adopted across design, engineering, and marketing, becoming the shared foundation for how the product was built, extended, and maintained.
+The new brand marked a decisive shift in how Spritz positioned itself. What had previously felt like a soft, fintech-adjacent product became darker, more restrained, and aligned with crypto-native expectations. I translated that identity into a system that could support a rapidly evolving product. I designed Aperol, a comprehensive design system built in Figma that defined colour, typography, iconography, variables, and a complete component library. I treated motion as a first class concern, defining interaction behaviour through spring physics so that overlays and transitions felt consistent across contexts. Design, engineering, and marketing adopted the system as the shared foundation for how the product was built, extended, and maintained.
 
 **Carousel captions:**
 - Aperol design system. Covering foundations, variables, and a full component library built for scale.
@@ -31,7 +31,7 @@ Spritz served two fundamentally different audiences, crypto-native users connect
 
 ### Cards
 
-The Spritz card was one of the most complex areas of the product and did not fully exist when I joined. I designed the experience end to end, shaping the journey from initial selection through onboarding, activation, and ongoing management. Users were guided through card type decisions with clear trade-offs surfaced in context, followed by compliance requirements and a structured onboarding sequence that made the process legible without oversimplifying it. The experience accounted for multiple states over time, from application through to delivery and activation, ensuring that users always understood where they were without needing to navigate across different parts of the product. The payment flow unified wallet pay and blockchain pay into a single surface, handling asset selection, rewards, fees, and confirmation within a mobile-optimised layout. The intention was to remove fragmentation and allow complex actions to be completed within a single, coherent context.
+The Spritz card was one of the most complex areas of the product and did not fully exist when I joined. I designed the experience end to end, shaping the journey from initial selection through onboarding, activation, and ongoing management. I guided users through card type decisions with clear trade-offs surfaced in context, followed by compliance requirements and a structured onboarding sequence that made the process legible without oversimplifying it. The experience accounted for multiple states over time, from application through to delivery and activation, ensuring users always understood where they were without needing to navigate across different parts of the product. The payment flow unified wallet pay and blockchain pay into a single surface, handling asset selection, rewards, fees, and confirmation within a mobile-optimised layout. The goal was a single surface where complex actions could complete.
 
 **Carousel captions:**
 - Card selection. Virtual and physical options presented with clear trade-offs.
@@ -42,7 +42,7 @@ The Spritz card was one of the most complex areas of the product and did not ful
 
 ### Core Flows
 
-Off-ramp was the primary revenue driver, yet the existing experience was shallow and disconnected. I redesigned it as a complete account management surface, introducing method selection, settlement transparency, and localisation for markets such as South America. The core payment flow was rebuilt from the ground up, replacing an inconsistent and fragile implementation with a single, coherent interface that handled crypto asset selection, fiat conversion, rewards, fees, and context-specific actions. This structure was applied consistently across off-ramp, bill pay, card top-up, and crypto purchases, creating a shared logic across the product. Other flows followed the same approach. Bill pay surfaced key information such as balances and due dates more clearly, while swaps were simplified into a focused single-screen experience that reduced friction between intent and completion.
+Off-ramp was the primary revenue driver, yet the existing experience was shallow and disconnected. I redesigned it as a complete account management surface, introducing method selection, settlement transparency, and localisation for markets such as South America. I rebuilt the core payment flow, replacing an inconsistent and fragile implementation with a single, coherent interface that handled crypto asset selection, fiat conversion, rewards, fees, and context-specific actions. I applied this structure consistently across off-ramp, bill pay, card top-up, and crypto purchases, creating a shared logic across the product. Other flows followed the same approach. Bill pay surfaced key information such as balances and due dates more clearly, while I simplified swaps into a single screen, reducing the gap between intent and completion.
 
 **Carousel captions:**
 - Off-ramp. Redesigned as a full account management surface with settlement clarity and market localisation.
@@ -52,7 +52,7 @@ Off-ramp was the primary revenue driver, yet the existing experience was shallow
 
 ### Growth & Retention
 
-Growth work focused on creating direct feedback loops and making incentives more legible. I introduced a persistent in-app feedback mechanism that gave users a direct line to the team from anywhere in the product. The framing encouraged users to explain how they would use a feature and why, filtering for more useful signal and becoming a valuable internal input. The referral system and rewards dashboard were refined to make progress and incentives easier to understand and act on. During a period where a third-party provider froze user funds, I designed a dedicated crisis communication interface that clearly separated itself from the core product experience. The emphasis was on clarity and trust, explaining the situation directly while guiding users through recovery options in a controlled and compliant way.
+Growth work focused on creating direct feedback loops and making incentives more legible. I introduced a persistent in-app feedback mechanism that gave users a direct line to the team from anywhere in the product. The framing encouraged users to explain how they would use a feature and why, filtering for more useful signal and becoming a valuable internal input. I refined the referral system and rewards dashboard to make progress and incentives easier to understand. During a period where a third-party provider froze user funds, I designed a dedicated crisis communication interface that clearly separated itself from the core product experience. I prioritised clarity and trust, explaining the situation directly and guiding users through recovery options in a controlled and compliant way.
 
 **Carousel captions:**
 - In-app feedback. Designed to capture high-quality user input.
@@ -61,7 +61,7 @@ Growth work focused on creating direct feedback loops and making incentives more
 
 ### Outro
 
-Spritz was a full system rebuild delivered by a single designer across brand, product, and growth. The work established a consistent foundation across a complex surface area spanning payments, compliance, and crypto interactions. The most meaningful outcome was not any individual feature, but the coherence of the system as a whole, creating a product that felt deliberate, legible, and scalable, and providing a foundation the team could continue to build on.
+Spritz was a full system rebuild. One designer across brand, product, and growth. The work established a consistent foundation across payments, compliance, and crypto. The most meaningful outcome was not any individual feature but the coherence of the system as a whole. The product felt deliberate and legible, and it gave the team a foundation to build from.
 
 ---
 
@@ -77,7 +77,7 @@ Journey helped teams communicate complex ideas at the moments that shaped outcom
 
 I audited Notion, Pitch, and Coda to understand how leading tools approached flexible content creation. The pattern was consistent. Each had built powerful authoring systems while largely ignoring the reading experience. Structure, pacing, and clarity for the recipient were secondary.
 
-Journey set out to design for both creator and reader as a single system. That became the organising principle for the work.
+The organising principle was designing for creator and reader as a single system.
 
 **Carousel captions:**
 - Competitive analysis. Mapping creator and reader experience across Notion, Pitch, and Coda.
@@ -85,7 +85,7 @@ Journey set out to design for both creator and reader as a single system. That b
 
 ### Design Direction
 
-The fundamental move was away from rigid slide structures toward a fluid block canvas where structure emerged from the content rather than constraining it. Creators could move non-linearly, combining text, media, and interactive elements the way ideas actually get communicated.
+The move was away from rigid slide structures toward a fluid block canvas where structure emerged from the content rather than constraining it. Creators could move non-linearly, combining text, media, and interactive elements the way ideas actually get communicated.
 
 Onboarding had to account for very different starting points. Some users needed a template, others wanted AI to generate a first draft, others just needed a blank canvas. I designed multiple entry points so creators could start the way they worked, not the way the product assumed they would.
 
@@ -98,7 +98,7 @@ Visual coherence was a harder problem. I designed a theming system that derived 
 
 ### Validation
 
-We ran structured tests across canvas and onboarding variations, from constrained layouts to fully open systems. The block-based canvas with guided entry points consistently performed best. Users reached their first publish faster, abandoned less at the blank state, and reported more confidence in what they were producing.
+I ran structured tests across canvas and onboarding variations, from constrained layouts to fully open systems. The block-based canvas with guided entry points consistently performed best. Users reached their first publish faster, abandoned less at the blank state, and reported more confidence in what they were producing.
 
 **Carousel captions:**
 - Testing variants. Canvas and onboarding approaches evaluated side by side.
@@ -108,7 +108,7 @@ We ran structured tests across canvas and onboarding variations, from constraine
 
 The block system replaced fixed slides with a format that adapted to the content. Text, video, embeds, and interactive elements could be combined freely, the layout adjusting across screen sizes without manual intervention. It felt less like a presentation and more like a living document.
 
-I designed the reading experience with the same rigour. Content was structured for clarity, pacing, and engagement. Recipients could move through ideas without friction on any device.
+I designed the reading experience with the same rigour. I structured content for clarity, pacing, and engagement. Recipients could move through ideas on any device.
 
 **Carousel captions:**
 - Journey 2.0. A responsive, context-aware storytelling format.
@@ -117,9 +117,9 @@ I designed the reading experience with the same rigour. Content was structured f
 
 ### AI Across the Full Loop
 
-The decision was to integrate AI across the full product loop rather than treat it as a standalone feature. On the creation side, users could describe what they wanted to communicate and receive a structured draft to refine in context. Inline tools supported block-level editing without breaking flow.
+I integrated AI across the full product loop rather than treating it as a standalone feature. On the creation side, users could describe what they wanted to communicate and receive a structured draft to refine in context. Inline tools supported block-level editing without breaking flow.
 
-On the consumption side, an Ask Anything panel let recipients query the content directly. Each surface was designed to feel native rather than grafted on. AI shaped how the product worked, not just what it could do.
+On the consumption side, an Ask Anything panel let recipients query the content directly. I designed each surface to feel native rather than grafted on. AI shaped how the product worked, not just what it could do.
 
 **Carousel captions:**
 - AI-assisted creation. Describing intent and receiving a structured draft to refine.
@@ -128,7 +128,7 @@ On the consumption side, an Ask Anything panel let recipients query the content 
 
 ### Analytics
 
-The redesigned analytics layer gave creators clear visibility into how their content was being experienced. Session behaviour, time spent, and reader progression through each section were surfaced in a single view.
+The redesigned analytics layer gave creators clear visibility into how their content landed. One view showed session behaviour, time spent, and reader progression through each section.
 
 Publishing became a feedback loop. Creators could see how their ideas landed and refine accordingly.
 
@@ -162,7 +162,7 @@ Kurtosys is a digital experience platform for the asset management industry, ena
 
 ### From Fragmentation to System
 
-My first project was a reporting tool for BNY Mellon. It was already underway, but lacked coherence in both product thinking and execution. I took ownership of the design and, in parallel, began contributing directly to the frontend codebase. That overlap quickly became a defining advantage. Decisions collapsed faster, feedback loops tightened, and the quality of the product improved as design and implementation moved together rather than in sequence.
+My first project was a reporting tool for BNY Mellon. It was already underway, but lacked coherence in both product thinking and execution. I took ownership of the design and, in parallel, started writing frontend code. That overlap quickly became a defining advantage. Decisions collapsed faster, feedback loops tightened, and the quality of the product improved as design and implementation moved together rather than in sequence.
 
 At the same time, I began refining the core platform. What started as small visual adjustments exposed deeper structural issues. The product had evolved without a unifying logic, with multiple navigation systems, inconsistent branding, and no shared hierarchy across the interface. I approached it as a system problem, working layer by layer through typography, colour, layout, and components until the product resolved into a single, coherent language. This work led to a promotion into the core product team, with responsibility for design across the entire platform.
 
@@ -185,9 +185,9 @@ The system went beyond interface components. I designed a modular library of fin
 
 ### Kapital: One System, Many Expressions
 
-On top of this foundation, I designed Kapital, a white-label product layer that allowed Kurtosys to deploy tailored client portals from a shared system. The architecture was deliberately simple. A single system was extended into multiple branded implementations, allowing each client to express their identity while inheriting the same underlying structure, components, and interaction patterns.
+On top of this foundation, I designed Kapital, a white-label product layer that allowed Kurtosys to deploy tailored client portals from a shared system. Each client got a distinct visual language while inheriting the same underlying structure, components, and interaction patterns.
 
-Clients including BNP Paribas, SALI, OP, and BNY Mellon each received a distinct visual language, while the core experience remained consistent. The product surface covered the full investor journey, including dashboards, fund discovery, portfolio tools, document management, and advanced analytics. One of the more complex features was the Optimizer, a two-step portfolio construction tool based on mean-variance optimisation. It allowed users to define constraints, explore the efficient frontier, and apply portfolio allocations directly. Every surface, including responsive and print outputs, was designed as part of a cohesive system.
+Clients including BNP Paribas, SALI, OP, and BNY Mellon each received a distinct visual language, while the core experience remained consistent. The product surface covered the full investor journey, including dashboards, fund discovery, portfolio tools, document management, and advanced analytics. The Optimizer was a two-step portfolio construction tool based on mean-variance optimisation, letting users define constraints, explore the efficient frontier, and apply portfolio allocations directly. I designed every surface, including responsive and print outputs, as part of a cohesive system.
 
 **Carousel captions:**
 - Architecture. A shared system branching into client-specific implementations.
@@ -197,9 +197,9 @@ Clients including BNP Paribas, SALI, OP, and BNY Mellon each received a distinct
 
 ### Designing at Institutional Scale
 
-Client work introduced a different level of complexity, shaped by data density, regulation, and context. For SALI, I designed a full investor portal including authentication, portfolio tools, and administrative controls suited to a regulated environment. For BNY Mellon, I designed next-generation portfolio analytics and reporting tools, including large-scale correlation matrices and scenario analysis across dozens of funds. This pushed the limits of conventional interface design, requiring clarity under extreme data density.
+Client work introduced a different level of complexity, shaped by data density, regulation, and context. For SALI, I designed a full investor portal including authentication, portfolio tools, and administrative controls suited to a regulated environment. For BNY Mellon, I designed portfolio analytics and reporting tools, including large-scale correlation matrices and scenario analysis across dozens of funds. The density pushed the limits of what conventional interface design could handle.
 
-For BNP Paribas, I adapted the system to support ESG-focused investment products, aligning the experience with their brand and strategy. For OP, I led multi-directional design explorations, developing and refining parallel concepts in close collaboration with the client. Across all engagements, the goal remained consistent. Complex financial systems needed to feel structured, legible, and usable.
+For BNP Paribas, I adapted the system to support ESG-focused investment products, aligning the experience with their brand and strategy. For OP, I developed and refined parallel design directions with the client. Across all engagements, the goal was the same: complex financial data needed to feel structured and legible.
 
 **Carousel captions:**
 - SALI Portal. Investor portal with fund discovery and portfolio tools.
@@ -210,7 +210,7 @@ For BNP Paribas, I adapted the system to support ESG-focused investment products
 
 ### Extending the System Beyond Product
 
-Later, my scope expanded into brand and marketing. I worked alongside an external brand lead on a company rebrand and later took full ownership, redesigning and building the Kurtosys website end-to-end. The work extended across product marketing, case studies, and a full documentation ecosystem including knowledge base and API documentation.
+Later, my scope expanded into brand and marketing. I worked alongside an external brand lead on a company rebrand and later took full ownership, redesigning and building the Kurtosys website. The work extended across product marketing, case studies, and a full documentation ecosystem including knowledge base and API documentation.
 
 I also brought the design system into WordPress, aligning marketing output with the same principles used in the product. By the time I left, I was responsible for the full design surface of the company, spanning product, platform, brand, and client work.
 
@@ -222,7 +222,7 @@ I also brought the design system into WordPress, aligning marketing output with 
 
 ### Outro
 
-I joined Kurtosys as a designer who could code and left having defined the systems that shaped the company's product and client experiences. The most meaningful outcome was not a single feature or release, but the adoption of a shared design language across the organisation and a system that continued to scale after I left.
+I joined Kurtosys as a designer who could code and left having defined the systems that shaped the company's product and client experiences. The shared design language outlasted my tenure. The system continued to scale after I left.
 
 ---
 
@@ -238,7 +238,7 @@ Team: Design, Engineering, Product, Marketing
 
 ## Brand & Design System
 
-Peach was beginning a rebrand when I joined. I helped narrow the agency shortlist, worked with the chosen agency to define the brand direction, then took over the inhouse execution alongside the marketing lead. The brand that emerged had energy but also tension. The bold, playful tone the marketing team favoured didn't always translate cleanly into product, where merchants needed to feel in control of serious financial operations. I defined a separate product aesthetic: more restrained, more precise, with the brand colour used as an accent rather than a statement.
+Peach was beginning a rebrand when I joined. I narrowed the agency shortlist, shaped the brand direction with the chosen agency, then took over the inhouse execution alongside the marketing lead. The brand that emerged had energy but also tension. The bold, playful tone the marketing team favoured didn't always translate cleanly into product, where merchants needed to feel in control of serious financial operations. I defined a separate product aesthetic: more restrained, more precise, with the brand colour used as an accent rather than a statement.
 
 From that product direction I built Peach Core, the core design system for all Peach Payments products. Peach Core covered foundations (8px spacing system, border radius, colour palette including a dynamic merchant token, typography scale, baseline grid), and a complete component library of hundreds of components adopted by engineering across the dashboard, checkout, and marketing website. It wasn't just a Figma file. It became the shared visual language for everything the company shipped.
 
@@ -251,11 +251,11 @@ From that product direction I built Peach Core, the core design system for all P
 
 ## Dashboard
 
-The merchant console I inherited was engineering-led, bloated, and clearly undesigned. Navigation read like a sitemap. Data was presented without hierarchy. Merchants complained, support tickets were high, and the product showed no evidence of design thinking at any meaningful level. I was brought in to own the new dashboard from the ground up.
+The merchant console I inherited was engineering-led, bloated, and clearly undesigned. Navigation read like a sitemap. Data had no hierarchy. Merchants complained, support tickets were high, and the product showed no evidence of design thinking at any meaningful level. I owned the new dashboard from day one.
 
-The new dashboard was built as a full merchant operations platform. At its centre is a transactions surface with search, date filtering, advanced filters, a summary row that reflects active filter state, and a slide-out detail panel showing a rendered card visual, full customer and payment information, a complete audit timeline, and an inline refund flow. Payment Links brought the same pattern to link-based commerce: creation, multi-channel dispatch, status tracking, and settings in a coherent system. Team management introduced role-based permissions with a live preview of what each role grants before invites are sent.
+I built the new dashboard as a full merchant operations platform. The transactions surface covers search, date filtering, advanced filters, a summary row that reflects active filter state, and a slide-out detail panel showing a rendered card visual, full customer and payment information, a complete audit timeline, and an inline refund flow. Payment Links brought the same pattern to link-based commerce: creation, multi-channel dispatch, status tracking, and settings in a coherent system. Team management introduced role-based permissions with a live preview of what each role grants before invites are sent.
 
-Two decisions defined the product's character. The first was merchant theming: instead of logos, each merchant account gets a generated industry icon in a colour accent derived from their own brand. It kept the interface clean across thousands of merchants while still feeling personal. The second was the mobile dashboard, intentionally scoped to monitoring rather than full operations, but genuinely designed rather than reflowed. Both desktop and mobile were built on a dashboard-specific component system that extended Peach Core without duplicating it.
+Two decisions defined the product's character. The first was merchant theming: instead of logos, each merchant account gets a generated industry icon in a colour accent derived from their own brand. It kept the interface clean across thousands of merchants while still feeling personal. The second was the mobile dashboard, intentionally scoped to monitoring rather than full operations, but genuinely designed rather than reflowed. Both desktop and mobile ran on a dashboard-specific component system that extended Peach Core without duplicating it.
 
 I also wrote production TypeScript alongside the engineering team to close the gap between design and implementation, doing pixel-perfect frontend polish myself rather than accepting anything less through back-and-forth handoff.
 
@@ -275,7 +275,7 @@ I also wrote production TypeScript alongside the engineering team to close the g
 
 Merchant onboarding was the first point of real friction in the Peach relationship. The existing flow generated significant drop-off and support load, partly because the product made no effort to orient new merchants or accommodate the range of business types that needed to sign up. The redesigned flow runs across five steps: Business information, Configuration, Business verification, Bank verification, and Activate, with three distinct journey variants branching by business type: SME, registered business, and manual entry.
 
-Every step was designed for both desktop and mobile from the outset. A persistent contextual help panel sits alongside the form on desktop, offering relevant links and a live chat trigger at each stage. The generated merchant icon appears from the first field entry, giving the brand identity a presence before onboarding is complete. Copy was written to feel human rather than procedural. The final activation step surfaces a full business summary before the commit, and the post-submission state sets clear expectations for what happens next. The redesign produced a measurable reduction in onboarding drop-off.
+I designed every step for desktop and mobile from the outset. A persistent contextual help panel sits alongside the form on desktop, offering relevant links and a live chat trigger at each stage. The generated merchant icon appears from the first field entry, giving the brand identity a presence before onboarding is complete. I wrote the copy to feel human rather than procedural. The final activation step surfaces a full business summary before the commit, and the post-submission state sets clear expectations for what happens next. The redesign produced a measurable reduction in onboarding drop-off.
 
 **Image captions:**
 - Step 1 showing Business information, with the generated industry icon appearing from the first field entry and the contextual help panel alongside
@@ -289,7 +289,7 @@ Every step was designed for both desktop and mobile from the outset. A persisten
 
 The customer-facing checkout is the moment Peach's work becomes visible to millions of end consumers. Every shopper paying through a Peach-powered merchant touches it. When I arrived it had been overlooked. Mobile in particular was unpolished in ways that showed: nobody had cared enough to close the gap between what was designed and what was implemented.
 
-The redesigned checkout runs in three steps: select payment method, enter card details, confirm billing address. Apple Pay leads as a native full-width CTA where available. Alternative methods including Card, EFT Secure, Masterpass, 1Voucher, and Mobicred are presented in a clean grid with brand logos. A thin progress bar advances across the top of each step, keyed to the merchant's brand colour. CTAs shift colour at the final commit step, from blue to green, signalling that something irreversible is about to happen. The success state is calm and clear, with an auto-redirect countdown and a manual fallback.
+The redesigned checkout runs in three steps: select payment method, enter card details, confirm billing address. Apple Pay leads as a native full-width CTA where available. Alternative methods including Card, EFT Secure, Masterpass, 1Voucher, and Mobicred appear in a clean grid with brand logos. A thin progress bar advances across the top of each step, keyed to the merchant's brand colour. CTAs shift colour at the final commit step, from blue to green, signalling that something irreversible is about to happen. The success state is calm and clear, with an auto-redirect countdown and a manual fallback.
 
 The checkout has its own component system, drawing from Peach Core as its foundation. I wrote the frontend TypeScript to bring the implementation to pixel-perfect standard where engineering capacity and technical constraints limited what could be pushed through normal handoff.
 
