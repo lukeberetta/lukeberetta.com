@@ -15,6 +15,8 @@ Open the URL printed in the terminal (default `http://localhost:3000`).
 ## Copy source of truth
 Case study copy lives in `case-studies.md`. Always keep it in sync with `index.html` — update both whenever copy changes.
 
+Voice, tone, and language rules for all copy live in `copy-direction.md`. Follow these whenever writing or editing case study copy.
+
 ## Architecture
 
 ### Views

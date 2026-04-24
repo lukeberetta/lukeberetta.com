@@ -71,84 +71,84 @@ Spritz was a full system rebuild delivered by a single designer across brand, pr
 **Timeline:** Sep 2022 – Dec 2023
 **Teams:** Founders, Product, Engineering, AI/ML
 
-Journey helped teams explain complex ideas at the moments that matter most, whether onboarding, proposals, or introductions where clarity directly shapes outcome. I co-led the design of Journey 2.0 alongside the founding designer, rethinking the product as a flexible block-based system supported by integrated AI and a deeper analytics layer. The architecture we established became the foundation inherited by the acquiring company following Journey's acquisition.
+Journey helped teams communicate complex ideas at the moments that shaped outcomes. Proposals, onboarding, introductions where clarity determines what happens next. I partnered with the founding designer on Journey 2.0, each owning distinct parts of the product end to end as we rethought it as a flexible block-based system with integrated AI and a redesigned analytics layer. The architecture became the foundation the acquiring company inherited.
 
 ### Understanding the Space
 
-To ground the work, I audited products such as Notion, Pitch, and Coda to understand how leading tools approached flexible content creation. A consistent pattern emerged. While these tools had evolved powerful systems for authorship, they largely neglected the reading experience. Structure, pacing, and clarity for the recipient were often secondary considerations.
+I audited Notion, Pitch, and Coda to understand how leading tools approached flexible content creation. The pattern was consistent. Each had built powerful authoring systems while largely ignoring the reading experience. Structure, pacing, and clarity for the recipient were secondary.
 
-Journey approached the problem differently. The goal was not only to give creators flexibility, but to ensure that what they produced was clear and compelling when consumed. Designing for both sides of that equation became a defining principle for the product.
+Journey set out to design for both creator and reader as a single system. That became the organising principle for the work.
 
 **Carousel captions:**
-- Competitive analysis highlighting the gap between flexible creation and effective reading experiences.
-- Reader experience comparison showing how existing tools prioritised authorship over consumption.
+- Competitive analysis. Mapping creator and reader experience across Notion, Pitch, and Coda.
+- The gap. Existing tools built powerful authoring systems while the reading experience went largely undesigned.
 
 ### Design Direction
 
-The core shift was moving away from rigid presentation structures toward something more fluid. A block-based canvas allowed structure to emerge from content rather than forcing content into predefined layouts. This enabled creators to move non-linearly, combining text, media, and interactive elements in ways that reflected how ideas are actually communicated.
+The fundamental move was away from rigid slide structures toward a fluid block canvas where structure emerged from the content rather than constraining it. Creators could move non-linearly, combining text, media, and interactive elements the way ideas actually get communicated.
 
-Onboarding was designed to meet users at different levels of confidence. Some needed structure, others needed speed, and others needed a place to start. Multiple entry points addressed this directly, allowing creators to begin with templates, generate drafts using AI, or start from a blank canvas without friction.
+Onboarding had to account for very different starting points. Some users needed a template, others wanted AI to generate a first draft, others just needed a blank canvas. I designed multiple entry points so creators could start the way they worked, not the way the product assumed they would.
 
-To support visual coherence, I designed an intelligent theming system that could derive brand identity from a company domain. This allowed every Journey to feel considered and aligned without requiring design expertise, reducing the gap between intention and execution.
+Visual coherence was a harder problem. I designed a theming system that derived brand identity from a company domain, generating coherent styles without requiring any design knowledge. Every Journey felt considered regardless of who built it.
 
 **Carousel captions:**
-- Block canvas editor enabling modular, non-linear storytelling.
-- Onboarding entry points supporting templates, AI generation, and blank canvas workflows.
-- Automated theming system generating brand coherence from a company domain.
+- Block canvas editor. Modular, non-linear storytelling with flexible content types.
+- Blank canvas. One of three entry points, alongside templates and AI-generated drafts.
+- Automated theming. Brand coherence derived from a company domain, no design knowledge required.
 
 ### Validation
 
-We tested multiple approaches to both the canvas and the onboarding experience. Variations ranged from more structured layouts to fully open systems, as well as different ways of introducing users to the product. The combination of a block-based canvas with guided entry points consistently performed best. Users reached their first publish faster, abandoned less frequently at the blank state, and reported greater confidence in what they were creating.
+We ran structured tests across canvas and onboarding variations, from constrained layouts to fully open systems. The block-based canvas with guided entry points consistently performed best. Users reached their first publish faster, abandoned less at the blank state, and reported more confidence in what they were producing.
 
 **Carousel captions:**
-- Usability testing sessions observing interaction across different canvas approaches.
-- Performance metrics showing improved time to first publish with guided onboarding.
+- Testing variants. Canvas and onboarding approaches evaluated side by side.
+- Outcomes. Time to first publish and blank state abandonment across tested configurations.
 
 ### Solution
 
-Replacing the fixed slide model with a fluid block system allowed creators to assemble narratives that adapted naturally to context. Text, video, embeds, and interactive elements could be combined freely, with the layout responding across screen sizes without manual adjustment. The result was a format that felt less like a presentation and more like a living document, capable of expanding or contracting depending on the needs of the moment.
+The block system replaced fixed slides with a format that adapted to the content. Text, video, embeds, and interactive elements could be combined freely, the layout adjusting across screen sizes without manual intervention. It felt less like a presentation and more like a living document.
 
-The reading experience was designed with equal care. Content was structured for clarity, pacing, and engagement, ensuring that recipients could move through ideas without friction regardless of device or depth of interaction.
+I designed the reading experience with the same rigour. Content was structured for clarity, pacing, and engagement. Recipients could move through ideas without friction on any device.
 
 **Carousel captions:**
-- Journey 2.0 introducing a responsive, context-aware storytelling format.
-- Recipient experience designed for clarity, pacing, and engagement.
-- Interactive content blocks enriching narrative depth.
+- Journey 2.0. A responsive, context-aware storytelling format.
+- Recipient experience. Designed for clarity, pacing, and engagement across devices.
+- Interactive blocks. Text, video, and embeds combined in a single narrative surface.
 
 ### AI Across the Full Loop
 
-AI was integrated across both creation and consumption, rather than treated as an isolated feature. On the creation side, users could describe what they wanted to communicate and receive a structured draft that could be refined in context. Inline tools allowed for iterative editing at the level of individual blocks, supporting a more fluid workflow.
+The decision was to integrate AI across the full product loop rather than treat it as a standalone feature. On the creation side, users could describe what they wanted to communicate and receive a structured draft to refine in context. Inline tools supported block-level editing without breaking flow.
 
-On the consumption side, an Ask Anything panel allowed recipients to query the content directly, transforming reading into an interactive experience. Each of these surfaces was designed to feel native to the product, ensuring that AI enhanced the workflow rather than interrupting it.
+On the consumption side, an Ask Anything panel let recipients query the content directly. Each surface was designed to feel native rather than grafted on. AI shaped how the product worked, not just what it could do.
 
 **Carousel captions:**
-- AI-assisted creation enabling rapid drafting of structured narratives.
-- Inline editing tools supporting contextual refinement.
-- Ask Anything panel allowing readers to interact directly with content.
+- AI-assisted creation. Describing intent and receiving a structured draft to refine.
+- Inline AI editing. Block-level refinement without leaving the canvas.
+- Ask Anything. Readers query the content directly, turning reading into an active session.
 
 ### Analytics
 
-A redesigned analytics layer gave creators visibility into how their content was being experienced. Engagement could be understood at the level of individual blocks, revealing where attention was sustained and where it dropped off. Reader behaviour, time spent, and interaction patterns became visible in a way that had previously been opaque.
+The redesigned analytics layer gave creators clear visibility into how their content was being experienced. Session behaviour, time spent, and reader progression through each section were surfaced in a single view.
 
-This turned each Journey into a feedback loop. Instead of publishing and guessing, creators could observe how their ideas landed and refine accordingly.
+Publishing became a feedback loop. Creators could see how their ideas landed and refine accordingly.
 
 **Carousel captions:**
-- Analytics dashboard providing a comprehensive view of engagement.
-- Block-level metrics showing where attention is gained or lost.
-- Reader journey visualisation identifying drop-off points.
+- Session analytics. Reader progression, time spent, and engagement surfaced per Journey.
 
 ### Impact
 
-The redesign led to faster time to first publish by aligning onboarding with different user needs and reducing friction at the starting point. Blank state abandonment decreased as creators were given clearer ways to begin, whether through templates or AI-assisted drafts. The block-based system increased confidence by allowing ideas to take shape more naturally, while AI features deepened both creation and consumption. The resulting architecture became the strategic foundation for acquisition, with the 2.0 system forming the basis of what the acquiring team inherited.
+Time to first publish improved as onboarding gave creators clearer ways to begin. Blank state abandonment dropped. AI features extended the product's value across the full session, deepening both creation and consumption.
+
+The 2.0 architecture became the foundation the acquiring company inherited. The acquisition was a direct outcome of what the redesign established.
 
 **Carousel captions:**
-- Engagement metrics showing improved creator and reader behaviour.
-- Acquisition timeline highlighting the product's strategic value.
-- System architecture supporting scalability and future development.
+- User reviews. G2 ratings reflecting improved creator confidence and engagement.
+- Reader experience, desktop. The published Journey as received by a recipient.
+- Reader experience, mobile. The same Journey adapted for mobile without manual adjustment.
 
 ### Outcome
 
-Journey reinforced the importance of designing for both creation and consumption as a single system. By combining flexibility, intelligence, and clear feedback loops, the product enabled teams to communicate complex ideas with greater clarity and confidence.
+The most important insight from Journey was that creation and consumption are a single design problem, not two separate ones. Every decision about the editor had implications for the reader. Getting that right is what made the product worth acquiring.
 
 ---
 
