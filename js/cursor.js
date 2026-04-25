@@ -1,49 +1,76 @@
 if (window.matchMedia('(pointer: fine)').matches) {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   const cursor = document.createElement('div');
   cursor.id = 'cursor';
   document.body.appendChild(cursor);
 
-  const styles = getComputedStyle(document.documentElement);
-  const colorAccent = styles.getPropertyValue('--color-accent').trim();
-  const colorMuted = styles.getPropertyValue('--color-text-muted').trim();
+  let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
+  let rafId = null, isVisible = false;
 
-  const xTo = gsap.quickTo(cursor, 'x', { duration: 0.4, ease: 'power3' });
-  const yTo = gsap.quickTo(cursor, 'y', { duration: 0.4, ease: 'power3' });
-  const opacityTo = gsap.quickTo(cursor, 'opacity', { duration: 0.15 });
+  const setPos = (x, y) => {
+    cursor.style.setProperty('--x', x + 'px');
+    cursor.style.setProperty('--y', y + 'px');
+  };
+
+  const tick = () => {
+    const dx = targetX - currentX;
+    const dy = targetY - currentY;
+    if (Math.abs(dx) < 0.1 && Math.abs(dy) < 0.1) {
+      currentX = targetX;
+      currentY = targetY;
+      setPos(currentX, currentY);
+      rafId = null;
+      return;
+    }
+    currentX += dx * 0.18;
+    currentY += dy * 0.18;
+    setPos(currentX, currentY);
+    rafId = requestAnimationFrame(tick);
+  };
 
   document.addEventListener('mousemove', e => {
-    xTo(e.clientX - 10);
-    yTo(e.clientY - 10);
-    opacityTo(1);
+    targetX = e.clientX;
+    targetY = e.clientY;
+    if (!isVisible) {
+      isVisible = true;
+      cursor.classList.add('is-visible');
+    }
+    if (reduceMotion) {
+      currentX = targetX;
+      currentY = targetY;
+      setPos(currentX, currentY);
+    } else if (rafId === null) {
+      rafId = requestAnimationFrame(tick);
+    }
   }, { passive: true });
 
-  document.addEventListener('mousedown', () => {
-    gsap.to(cursor, { scale: 0.8, duration: 0.12, ease: 'power2.out', overwrite: 'auto' });
-  });
-
-  document.addEventListener('mouseup', () => {
-    gsap.to(cursor, { scale: 1, duration: 0.2, ease: 'power2.out', overwrite: 'auto' });
-  });
+  document.addEventListener('mousedown', () => cursor.classList.add('is-down'));
+  document.addEventListener('mouseup', () => cursor.classList.remove('is-down'));
 
   document.addEventListener('mouseout', e => {
     if (!e.relatedTarget) {
-      gsap.to(cursor, { opacity: 0, duration: 0.3, overwrite: 'auto' });
+      isVisible = false;
+      cursor.classList.remove('is-visible');
     }
   });
 
   document.addEventListener('mouseover', e => {
     if (!e.relatedTarget) {
-      gsap.set(cursor, { x: e.clientX - 10, y: e.clientY - 10 });
-      gsap.to(cursor, { opacity: 1, duration: 0.15, overwrite: 'auto' });
+      targetX = e.clientX;
+      targetY = e.clientY;
+      currentX = targetX;
+      currentY = targetY;
+      setPos(currentX, currentY);
+      if (!isVisible) {
+        isVisible = true;
+        cursor.classList.add('is-visible');
+      }
     }
   });
 
   document.querySelectorAll('.works-item.unavailable').forEach(item => {
-    item.addEventListener('mouseenter', () => {
-      gsap.to(cursor, { backgroundColor: colorMuted, duration: 0.2, overwrite: 'auto' });
-    });
-    item.addEventListener('mouseleave', () => {
-      gsap.to(cursor, { backgroundColor: colorAccent, duration: 0.2, overwrite: 'auto' });
-    });
+    item.addEventListener('mouseenter', () => cursor.classList.add('is-muted'));
+    item.addEventListener('mouseleave', () => cursor.classList.remove('is-muted'));
   });
 }
