@@ -12,7 +12,7 @@ if (window.matchMedia('(pointer: fine)').matches) {
   let rafId = null, isVisible = false;
 
   const setPos = (x, y) => {
-    cursor.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)';
+    cursor.style.transform = 'translate3d(' + (x | 0) + 'px,' + (y | 0) + 'px,0)';
   };
 
   const tick = () => {

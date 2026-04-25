@@ -63,6 +63,8 @@
     left: 0;
     pointer-events: none;
     opacity: 0;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
     transition: opacity 0.15s linear;
     will-change: transform, opacity;
     z-index: 9999;
@@ -74,18 +76,32 @@
     margin: -10px 0 0 -10px;
     background: var(--color-accent);
     border-radius: 50%;
-    transform: translateZ(0) scale(1);
-    transition: transform 0.12s ease-out, background-color 0.2s linear;
-    will-change: transform, background-color;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    transition: background-color 0.2s linear;
+    will-change: background-color;
   }
 
-  #cursor.is-visible { opacity: 1; }
-  #cursor.is-down .cursor-dot { transform: translateZ(0) scale(0.8); }
-  #cursor.is-muted .cursor-dot { background-color: var(--color-text-muted); }
+  #cursor.is-visible {
+    opacity: 1;
+  }
+
+  #cursor.is-down .cursor-dot {
+    transform: translateZ(0) scale(0.8);
+  }
+
+  #cursor.is-muted .cursor-dot {
+    background-color: var(--color-text-muted);
+  }
 
   @media (prefers-reduced-motion: reduce) {
-    #cursor { transition: opacity 0.1s linear; }
-    #cursor .cursor-dot { transition: background-color 0.1s linear; }
+    #cursor {
+      transition: opacity 0.1s linear;
+    }
+
+    #cursor .cursor-dot {
+      transition: background-color 0.1s linear;
+    }
   }
 
   #img-viewer-backdrop,
