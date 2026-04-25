@@ -3,8 +3,17 @@ if (window.matchMedia('(pointer: fine)').matches) {
 
   const cursor = document.createElement('div');
   cursor.id = 'cursor';
-  const dot = document.createElement('div');
-  dot.className = 'cursor-dot';
+  const svgNS = 'http://www.w3.org/2000/svg';
+  const dot = document.createElementNS(svgNS, 'svg');
+  dot.setAttribute('class', 'cursor-dot');
+  dot.setAttribute('width', '20');
+  dot.setAttribute('height', '20');
+  dot.setAttribute('viewBox', '0 0 20 20');
+  const circle = document.createElementNS(svgNS, 'circle');
+  circle.setAttribute('cx', '10');
+  circle.setAttribute('cy', '10');
+  circle.setAttribute('r', '10');
+  dot.appendChild(circle);
   cursor.appendChild(dot);
   document.body.appendChild(cursor);
 
@@ -12,7 +21,7 @@ if (window.matchMedia('(pointer: fine)').matches) {
   let rafId = null, isVisible = false;
 
   const setPos = (x, y) => {
-    cursor.style.transform = 'translate3d(' + (x | 0) + 'px,' + (y | 0) + 'px,0)';
+    cursor.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)';
   };
 
   const tick = () => {
