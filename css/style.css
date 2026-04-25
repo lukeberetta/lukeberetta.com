@@ -61,29 +61,31 @@
     position: fixed;
     top: 0;
     left: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s linear;
+    will-change: transform, opacity;
+    z-index: 9999;
+  }
+
+  #cursor .cursor-dot {
     width: 20px;
     height: 20px;
     margin: -10px 0 0 -10px;
     background: var(--color-accent);
     border-radius: 50%;
-    pointer-events: none;
-    opacity: 0;
-    transform: translate3d(var(--x, 0), var(--y, 0), 0) scale(1);
-    transition: opacity 0.15s linear,
-                transform 0.12s ease-out,
-                background-color 0.2s linear;
-    will-change: transform, opacity;
-    z-index: 9999;
+    transform: translateZ(0) scale(1);
+    transition: transform 0.12s ease-out, background-color 0.2s linear;
+    will-change: transform, background-color;
   }
 
   #cursor.is-visible { opacity: 1; }
-  #cursor.is-down { transform: translate3d(var(--x, 0), var(--y, 0), 0) scale(0.8); }
-  #cursor.is-muted { background-color: var(--color-text-muted); }
+  #cursor.is-down .cursor-dot { transform: translateZ(0) scale(0.8); }
+  #cursor.is-muted .cursor-dot { background-color: var(--color-text-muted); }
 
   @media (prefers-reduced-motion: reduce) {
-    #cursor {
-      transition: opacity 0.1s linear, background-color 0.1s linear;
-    }
+    #cursor { transition: opacity 0.1s linear; }
+    #cursor .cursor-dot { transition: background-color 0.1s linear; }
   }
 
   #img-viewer-backdrop,

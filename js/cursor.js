@@ -3,14 +3,16 @@ if (window.matchMedia('(pointer: fine)').matches) {
 
   const cursor = document.createElement('div');
   cursor.id = 'cursor';
+  const dot = document.createElement('div');
+  dot.className = 'cursor-dot';
+  cursor.appendChild(dot);
   document.body.appendChild(cursor);
 
   let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
   let rafId = null, isVisible = false;
 
   const setPos = (x, y) => {
-    cursor.style.setProperty('--x', x + 'px');
-    cursor.style.setProperty('--y', y + 'px');
+    cursor.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)';
   };
 
   const tick = () => {
