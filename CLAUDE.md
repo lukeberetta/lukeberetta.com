@@ -28,6 +28,7 @@ All views are `<div>` siblings in `index.html`. Only one is visible at a time.
 | `works`    | `.works`        | index.html |
 | `apps`     | `.apps`         | index.html |
 | `contact`  | `.contact`      | index.html |
+| `gate`     | `.gate`         | index.html |
 | `journey`  | `.journey`      | index.html |
 | `spritz`   | `.spritz`       | index.html |
 | `kurtosys` | `.kurtosys`     | index.html |
@@ -46,6 +47,14 @@ Every text line or content block is wrapped in `.line-mask > .line-inner`. GSAP 
 - Nav links use `data-to="viewName"` → calls `transitionTo(viewName)`
 - Works list items use `data-to="viewName"` on the `.works-item` div to navigate to case studies
 - Case study views show a "Back" link in the nav (`.nav a[data-back]`), hidden by default via `.back-mask` class. Regular nav links slide out, back link slides in — and vice versa on return.
+
+### Password gate
+Case study views are diverted to the `gate` view unless unlocked. The check lives in `js/app.js`:
+- `GATE_HASH` — SHA-256 of the password. Regenerate with `printf '%s' 'newpassword' | shasum -a 256`
+- Unlock persists in `localStorage` under `lb_cs_unlocked`
+- Interception happens at the top of `transitionTo`, so it covers nav clicks, works-item clicks, deep links (`#journey`) and back/forward alike
+
+**This is a client-side speed bump, not access control.** Case study markup ships in `index.html` and is readable via View Source or `curl` without the password; images under `img/` are public URLs. For real protection the content must move behind Cloudflare Access or a Worker.
 
 ## CSS conventions
 - All tokens in `:root` — `--color-*`, `--font-*`, `--space-*`

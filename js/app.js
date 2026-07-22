@@ -110,6 +110,28 @@
     const kurtosysCarouselWraps = Array.from(document.querySelectorAll('.kurtosys .case-carousel-wrap'));
     kurtosysEl.style.cssText = '';
 
+    const finnEl = document.querySelector('.finn');
+    finnEl.style.cssText = 'display:block;visibility:hidden';
+    const finnOriginals = captureOriginals('.finn ' + CASE_CONTENT);
+    const finnInners = maskContent('.finn ' + CASE_CONTENT);
+    const finnCarouselWraps = Array.from(document.querySelectorAll('.finn .case-carousel-wrap'));
+    finnEl.style.cssText = '';
+
+    const makereignEl = document.querySelector('.makereign');
+    makereignEl.style.cssText = 'display:block;visibility:hidden';
+    const makereignOriginals = captureOriginals('.makereign ' + CASE_CONTENT);
+    const makereignInners = maskContent('.makereign ' + CASE_CONTENT);
+    const makereignCarouselWraps = Array.from(document.querySelectorAll('.makereign .case-carousel-wrap'));
+    makereignEl.style.cssText = '';
+
+    const gateEl = document.querySelector('.gate');
+    gateEl.style.cssText = 'display:block;visibility:hidden';
+    const gateInners = maskContent('.gate > ' + CASE_CONTENT);
+    const gateForm = document.querySelector('.gate-form');
+    const gateInput = document.querySelector('.gate-input');
+    const gateError = document.querySelector('.gate-error');
+    gateEl.style.cssText = '';
+
     const peachEl = document.querySelector('.peach');
     peachEl.style.cssText = 'display:block;visibility:hidden';
     const peachOriginals = captureOriginals('.peach ' + CASE_CONTENT);
@@ -235,7 +257,7 @@
     }
 
     // ScrollTrigger state per case study
-    const csSplitWidths = { journey: window.innerWidth, spritz: window.innerWidth, kurtosys: window.innerWidth, peach: window.innerWidth };
+    const csSplitWidths = { journey: window.innerWidth, spritz: window.innerWidth, kurtosys: window.innerWidth, peach: window.innerWidth, makereign: window.innerWidth, finn: window.innerWidth };
     const csScrollTriggers = {};
 
     function killScrollTriggers(key) {
@@ -296,10 +318,13 @@
       works: { el: '.works', inners: worksInners },
       apps: { el: '.apps', inners: appsInners },
       contact: { el: '.contact', inners: contactInners },
+      gate: { el: '.gate', inners: gateInners, extras: [gateForm] },
       journey: { el: '.journey', inners: journeyInners, extras: journeyCarouselWraps, originals: journeyOriginals },
       spritz: { el: '.spritz', inners: spritzInners, extras: spritzCarouselWraps, originals: spritzOriginals },
       kurtosys: { el: '.kurtosys', inners: kurtosysInners, extras: kurtosysCarouselWraps, originals: kurtosysOriginals },
-      peach: { el: '.peach', inners: peachInners, extras: peachCarouselWraps, originals: peachOriginals }
+      peach: { el: '.peach', inners: peachInners, extras: peachCarouselWraps, originals: peachOriginals },
+      makereign: { el: '.makereign', inners: makereignInners, extras: makereignCarouselWraps, originals: makereignOriginals },
+      finn: { el: '.finn', inners: finnInners, extras: finnCarouselWraps, originals: finnOriginals }
     };
 
     let currentView = 'home';
@@ -308,8 +333,69 @@
     let activeTimeline = null;
 
     const caseStudyViews = new Set(
-      Object.keys(views).filter(k => !['home', 'works', 'apps', 'contact'].includes(k))
+      Object.keys(views).filter(k => !['home', 'works', 'apps', 'contact', 'gate'].includes(k))
     );
+
+    // ── Password gate ────────────────────────────────────────────────────
+    // NOTE: this is a client-side speed bump, not access control. The case
+    // study markup ships in index.html and is readable via View Source or
+    // curl regardless of this check. For real protection, put the content
+    // behind Cloudflare Access or a Worker.
+    const GATE_HASH = '4d39ca6a0dd9900c9d30e6b79aab6e9f3491d7b5ea363698aa8aea89b0464591';
+    const GATE_KEY = 'lb_cs_unlocked';
+
+    let unlocked = false;
+    try { unlocked = localStorage.getItem(GATE_KEY) === GATE_HASH; } catch (e) { /* private mode */ }
+
+    // Where to send the visitor once they unlock, and whether the gate pushed a
+    // history entry that unlocking should overwrite
+    let gateTarget = null;
+    let gateReplace = true;
+
+    async function sha256(str) {
+      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    function setGateError(msg) {
+      gateError.textContent = msg;
+      gateError.classList.toggle('is-error', !!msg);
+    }
+
+    gateForm.addEventListener('submit', async e => {
+      e.preventDefault();
+      const value = gateInput.value.trim();
+      if (!value) return;
+
+      let hash;
+      try {
+        hash = await sha256(value);
+      } catch (err) {
+        // crypto.subtle is unavailable on insecure origins (plain http)
+        setGateError('Unable to verify — try over https.');
+        return;
+      }
+
+      if (hash !== GATE_HASH) {
+        setGateError('Incorrect password.');
+        gateInput.select();
+        return;
+      }
+
+      unlocked = true;
+      try { localStorage.setItem(GATE_KEY, GATE_HASH); } catch (err) { /* private mode */ }
+      setGateError('');
+      gateInput.value = '';
+      gateInput.blur();
+
+      // Overwrite the gate's history entry so back from the case study skips it.
+      // If the gate never pushed one (deep link / popstate), leave history alone —
+      // the URL already points at the right place.
+      const target = gateTarget || 'works';
+      const replace = gateTarget ? gateReplace : true;
+      gateTarget = null;
+      transitionTo(target, { pushHistory: false, replaceHistory: replace });
+    });
 
     // Prevent browser from auto-restoring scroll on back/forward — we handle it in transitionTo
     history.scrollRestoration = 'manual';
@@ -326,11 +412,36 @@
       if (link) link.classList.add('active');
     }
 
-    function transitionTo(name, { pushHistory = true } = {}) {
+    function transitionTo(name, { pushHistory = true, replaceHistory = false } = {}) {
       if (isAnimating) {
         if (name !== currentView) pendingView = name;
         return;
       }
+
+      // Locked case study → divert to the gate, remembering the intended target.
+      // Runs before the same-view bail-out so re-picking a case study while the
+      // gate is open still updates where unlocking sends you.
+      if (caseStudyViews.has(name) && !unlocked) {
+        gateTarget = name;
+        setGateError('');
+        gateInput.value = '';
+
+        // Already on the gate: just retarget. Pushing again would stack duplicate
+        // gate entries and force multiple back presses to escape.
+        if (currentView === 'gate') {
+          gateInput.focus();
+          return;
+        }
+
+        // Give the gate its own history entry at the *current* URL, so browser back
+        // returns to the list the visitor came from rather than skipping past it.
+        // Unlocking then replaces this entry with the real destination.
+        gateReplace = pushHistory;
+        if (pushHistory) history.pushState({ view: 'gate' }, '', location.href);
+        name = 'gate';
+        pushHistory = false;
+      }
+
       if (name === currentView) return;
 
       // Reconcile nav state whenever we cross the case-study boundary
@@ -345,8 +456,11 @@
       }
       // case-to-case: back link stays visible, no nav-link active state
 
-      if (pushHistory) {
-        history.pushState({ view: name }, '', name === 'home' ? location.pathname : '#' + name);
+      const url = name === 'home' ? location.pathname : '#' + name;
+      if (replaceHistory) {
+        history.replaceState({ view: name }, '', url);
+      } else if (pushHistory) {
+        history.pushState({ view: name }, '', url);
       }
 
       isAnimating = true;
@@ -392,6 +506,8 @@
           activeTimeline.fromTo(to.extras, { opacity: 0 }, { opacity: 1, duration: D(0.8), ease: 'power1.inOut' }, '<');
         }
       }
+
+      if (name === 'gate') activeTimeline.add(() => gateInput.focus());
     }
 
     // Nav active state + click handlers

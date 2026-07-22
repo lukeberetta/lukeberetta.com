@@ -53,6 +53,7 @@
 <body class="loading">
   <main class="bio container">
     <p>Hi, I'm <span class="orange">Luke Beretta.</span> Product designer and developer based in Cape Town.</p>
+    <p>Right now I work for myself, building algorithmic trading systems.</p>
     <p>I've created products across fintech, crypto, SaaS, retail, and consumer experiences.
     </p>
     <p>My work has supported the movement of trillions of dollars, enabled payments across emerging markets,
@@ -60,6 +61,7 @@
   </main>
 
   <div class="works">
+    <div class="works-item" data-to="finn"><span>Finn</span><span class="muted" data-default="Current"></span></div>
     <div class="works-item" data-to="spritz"><span>Spritz Finance</span><span class="muted"
         data-default="2024 – 2025"></span></div>
     <div class="works-item" data-to="journey"><span>Journey (YC W21)</span><span class="muted"
@@ -68,8 +70,8 @@
         data-default="2021 – 2022"></span></div>
     <div class="works-item" data-to="kurtosys"><span>Kurtosys</span><span class="muted"
         data-default="2018 – 2021"></span></div>
-    <div class="works-item unavailable"><span>MakeReign</span><span class="muted" data-default="2018 – 2018"></span>
-    </div>
+    <div class="works-item" data-to="makereign"><span>MakeReign</span><span class="muted"
+        data-default="2018 – 2018"></span></div>
     <div class="works-item"><a href="https://dribbble.com/LukeBeretta" target="_blank" rel="noopener">Dribbble</a><span
         class="muted" data-default="2017 – 2022"></span></div>
   </div>
@@ -928,10 +930,40 @@
     <div class="works-item"><a href="https://github.com/lukeberetta" target="_blank" rel="noopener">Github</a></div>
   </div>
 
+  <div class="finn case-study container">
+
+    <section class="case-section">
+      <h2 class="heading">Finn</h2>
+      <p class="text-md">Coming soon.</p>
+    </section>
+
+  </div>
+
+  <div class="makereign case-study container">
+
+    <section class="case-section">
+      <h2 class="heading">MakeReign</h2>
+      <p class="text-md">Coming soon.</p>
+    </section>
+
+  </div>
+
+  <div class="gate container">
+    <h2 class="heading">Protected</h2>
+    <p class="text-md">Case studies are password protected. Get in touch if you need access.</p>
+    <form class="gate-form" novalidate>
+      <label class="visually-hidden" for="gate-input">Password</label>
+      <input id="gate-input" class="gate-input text-md" type="password" autocomplete="off" autocapitalize="off"
+        spellcheck="false" placeholder="Password" aria-describedby="gate-error">
+      <button class="gate-submit text-md" type="submit">Enter</button>
+      <p id="gate-error" class="gate-error text-sm muted" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+
   <nav class="nav" aria-label="Main">
     <a href="#" data-to="home">About</a>
-    <a href="#" data-to="works">Works (6)</a>
-    <a href="#" data-to="apps">Apps (3)</a>
+    <a href="#" data-to="works">Work (7)</a>
+    <!-- <a href="#" data-to="apps">Apps (3)</a> -->
     <a href="#" data-to="contact">Contact</a>
     <a href="#" data-back>Back</a>
   </nav>

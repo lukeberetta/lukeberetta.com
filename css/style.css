@@ -245,6 +245,7 @@ body.loading .nav {
 .works,
 .apps,
 .contact,
+.gate,
 .case-study {
   display: none;
 }
@@ -294,6 +295,85 @@ body.loading .nav {
 
 .works .works-item .muted::after {
   content: attr(data-default);
+}
+
+
+/* ── Password gate ── */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.gate .heading {
+  margin-bottom: var(--space-sm);
+}
+
+.gate-form {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  margin-top: var(--space-md);
+}
+
+.gate-input {
+  font-family: inherit;
+  font-weight: inherit;
+  color: var(--color-text);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--color-text-muted);
+  border-radius: 0;
+  padding: 0 0 0.2em;
+  min-width: 0;
+  flex: 1 1 12ch;
+  transition: border-color 0.15s ease;
+}
+
+.gate-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.gate-input:focus {
+  outline: none;
+  border-bottom-color: var(--color-accent);
+}
+
+.gate-submit {
+  font-family: inherit;
+  font-weight: inherit;
+  color: var(--color-accent);
+  background: none;
+  border: 0;
+  padding: 0 0 0.2em;
+  transition: var(--transition-color);
+}
+
+.gate-submit:hover {
+  color: var(--color-text-muted);
+}
+
+.gate-submit:focus-visible,
+.gate-input:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+.gate-error {
+  flex: 1 0 100%;
+  margin: 0;
+  min-height: 1.4em;
+}
+
+.gate-error.is-error {
+  color: var(--color-accent);
 }
 
 
