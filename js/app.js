@@ -336,6 +336,10 @@
       Object.keys(views).filter(k => !['home', 'works', 'apps', 'contact', 'gate'].includes(k))
     );
 
+    // Views that swap the nav links for the back link. The gate is included so
+    // the locked screen offers the same way out as the case study behind it.
+    const backNavViews = new Set([...caseStudyViews, 'gate']);
+
     // ── Password gate ────────────────────────────────────────────────────
     // NOTE: this is a client-side speed bump, not access control. The case
     // study markup ships in index.html and is readable via View Source or
@@ -445,8 +449,8 @@
       if (name === currentView) return;
 
       // Reconcile nav state whenever we cross the case-study boundary
-      const leavingCase = caseStudyViews.has(currentView);
-      const enteringCase = caseStudyViews.has(name);
+      const leavingCase = backNavViews.has(currentView);
+      const enteringCase = backNavViews.has(name);
       if (!leavingCase && enteringCase) {
         enterCaseStudy();
       } else if (leavingCase && !enteringCase) {
