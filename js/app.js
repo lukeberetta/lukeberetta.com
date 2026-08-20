@@ -345,7 +345,7 @@
     // study markup ships in index.html and is readable via View Source or
     // curl regardless of this check. For real protection, put the content
     // behind Cloudflare Access or a Worker.
-    const GATE_HASH = '4d39ca6a0dd9900c9d30e6b79aab6e9f3491d7b5ea363698aa8aea89b0464591';
+    const GATE_HASH = '493cfcb7eb43b2fc07b6de200d7d7df978b4bee4db859e5e7e2e600ca0b54190';
     const GATE_KEY = 'lb_cs_unlocked';
 
     let unlocked = false;
